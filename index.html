@@ -1,352 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>SSARP &amp; Associates | Chartered Accountants</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="SSARP & Associates, Chartered Accountants in Patna & Araria, providing Income Tax, GST, Audits, Corporate Compliance and Legal Drafting services." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSARP & Associates | Chartered Accountants</title>
 
-  <!-- Simple clean styling -->
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:#f5f7fb;
-      color:#222;
-      line-height:1.5;
-    }
-    a { color:#0055aa; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-    header {
-      background: linear-gradient(135deg,#002b5c,#005b99);
-      color:#fff;
-      padding:18px 16px 24px;
-    }
-    .top-bar {
-      display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      gap:8px;
-      font-size:13px;
-      opacity:.95;
-    }
-    .badge { 
-      display:inline-block;
-      background:#ffcf33;
-      color:#333;
-      font-weight:600;
-      font-size:11px;
-      padding:3px 8px;
-      border-radius:999px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-    }
-    .logo-name { font-size:22px; font-weight:700; margin-top:10px; }
-    .tagline { font-size:14px; opacity:.9; margin-top:4px; }
+<style>
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f8f9fa;
+}
+header {
+  background: #003366;
+  color: white;
+  padding: 25px;
+  text-align: center;
+}
+nav {
+  background: #02427c;
+  padding: 12px;
+  text-align: center;
+}
+nav a {
+  color: #fff;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+}
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+.section {
+  background: #fff;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+h2 { color: #003366; }
+.btn {
+  display: inline-block;
+  background: #0077cc;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+footer {
+  background:#003366;
+  color:white;
+  padding:20px;
+  text-align:center;
+  margin-top:40px;
+}
+</style>
 
-    .hero {
-      margin-top:16px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-    .hero-cta {
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:8px;
-    }
-    .btn {
-      display:inline-block;
-      padding:9px 14px;
-      border-radius:999px;
-      border:none;
-      font-size:13px;
-      font-weight:600;
-      cursor:pointer;
-      text-align:center;
-      text-decoration:none;
-      white-space:nowrap;
-    }
-    .btn-primary {
-      background:#ffcf33;
-      color:#222;
-    }
-    .btn-outline {
-      background:transparent;
-      color:#fff;
-      border:1px solid rgba(255,255,255,.6);
-    }
-
-    main { padding:18px 14px 40px; max-width:1024px; margin:0 auto; }
-
-    .section {
-      background:#fff;
-      border-radius:14px;
-      padding:16px 14px 18px;
-      margin-bottom:14px;
-      box-shadow:0 4px 10px rgba(15,35,75,0.06);
-    }
-    .section h2 {
-      font-size:17px;
-      margin-bottom:8px;
-      color:#003366;
-    }
-    .section p { font-size:14px; margin-bottom:6px; }
-
-    .grid {
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-    .card {
-      flex:1 1 250px;
-      background:#f7f9ff;
-      border-radius:10px;
-      padding:10px 11px 11px;
-      font-size:13px;
-    }
-    .card h3 { font-size:15px; margin-bottom:4px; color:#003366; }
-    .card small { font-size:12px; color:#666; }
-
-    .label {
-      font-size:12px;
-      font-weight:600;
-      text-transform:uppercase;
-      letter-spacing:.06em;
-      color:#777;
-      margin-top:6px;
-    }
-    ul { padding-left:16px; margin-top:4px; font-size:13px; }
-    ul li { margin-bottom:4px; }
-
-    .contact-line {
-      font-size:13px;
-      margin-top:4px;
-    }
-    .contact-line strong { color:#003366; }
-
-    .office-meta {
-      font-size:12px;
-      margin-top:2px;
-      color:#555;
-    }
-
-    footer {
-      background:#031a33;
-      color:#d2d7e5;
-      font-size:12px;
-      padding:16px 14px 22px;
-      text-align:center;
-      margin-top:10px;
-    }
-    footer a { color:#ffcf33; }
-
-    @media (min-width:720px) {
-      header { padding:20px 40px 26px; }
-      main   { padding:22px 30px 44px; }
-    }
-  </style>
 </head>
 <body>
 
 <header>
-  <div class="top-bar">
-    <div>📌 <strong>Head Office:</strong> Patna, Bihar</div>
-    <div>📞 <a href="tel:+919955778482" style="color:#ffcf33;">+91-99557-78482</a></div>
-  </div>
-
-  <div class="badge" style="margin-top:10px;">Chartered Accountants</div>
-
-  <div class="logo-name">SSARP &amp; Associates</div>
-  <div class="tagline">Integrated Financial, Tax &amp; Corporate Compliance Advisors</div>
-
-  <div class="hero">
-    <p style="font-size:13px;max-width:520px;">
-      Income Tax • GST • Corporate Law • ROC &amp; Compliance • Audit &amp; Assurance • Legal Drafting – 
-      specialised support for Indian &amp; foreign corporations.
-    </p>
-
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="https://wa.me/919955778482?text=Hi%20SSARP%20%26%20Associates%2C%20I%20want%20to%20book%20a%20consultation." target="_blank" rel="noopener">
-        💬 WhatsApp / Appointment
-      </a>
-      <a class="btn btn-outline" href="mailto:info@ssarpca.com?subject=Consultation%20request%20via%20website">
-        ✉️ Email us: info@ssarpca.com
-      </a>
-    </div>
-  </div>
+  <h1>SSARP & ASSOCIATES</h1>
+  <p>Chartered Accountants | Patna & Araria</p>
 </header>
 
-<main>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="team.html">Team</a>
+  <a href="updates.html">Updates</a>
+  <a href="tools.html">Tools</a>
+  <a href="contact.html">Contact</a>
+</nav>
 
-  <!-- Offices & primary contacts -->
-  <section class="section" id="offices">
-    <h2>Our Offices &amp; Primary Contacts</h2>
-    <div class="grid">
+<div class="container">
 
-      <div class="card">
-        <h3>Head Office – Patna</h3>
-        <p>
-          301A, The Orchid Mall,<br />
-          Boring Road, Opp. A.N. College,<br />
-          Patna – 800013, Bihar
-        </p>
-        <p class="office-meta">
-          📍 <a href="https://www.google.com/maps/search/?api=1&query=301A+The+Orchid+Mall,+Boring+Road,+Patna+800013" target="_blank" rel="noopener">
-          View on Google Maps
-          </a>
-        </p>
-        <p class="contact-line">
-          📞 <strong>Office Landline:</strong> <a href="tel:+919955778451">+91-99557-78451</a>
-        </p>
-        <p class="contact-line">
-          📱 <strong>WhatsApp / Video consult:</strong> <a href="https://wa.me/919955778482" target="_blank" rel="noopener">+91-99557-78482</a>
-        </p>
-        <p class="contact-line">
-          ✉️ <strong>Email:</strong> <a href="mailto:info@ssarpca.com">info@ssarpca.com</a>
-        </p>
-      </div>
+<div class="section">
+  <h2>📌 Primary Contact</h2>
+  <p><b>Email:</b> srezaco@gmail.com</p>
+  <p><b>Phone:</b> 8709348748</p>
+</div>
 
-      <div class="card">
-        <h3>Branch Office – Araria</h3>
-        <p>
-          65, Jahangir Nagar,<br />
-          On NH-27 / NH-57, Near ARG Hotel,<br />
-          Araria – 854311, Bihar
-        </p>
-        <p class="office-meta">
-          📍 <a href="https://www.google.com/maps/search/?api=1&query=65+Jahangir+Nagar+NH27+near+ARG+Hotel+Araria+854311" target="_blank" rel="noopener">
-          View on Google Maps
-          </a>
-        </p>
-        <p class="contact-line">
-          📞 <strong>Branch Contact:</strong> 955778482
-        </p>
-      </div>
+<div class="section">
+<h2>🏢 Patna Head Office</h2>
+<p><b>Address:</b> 301A, The Orchid Mall, Boring Road, Patna - 800013 (Opp. A.N. College)</p>
+<p><b>Phone:</b> 9955778451</p>
+<a class="btn" href="https://maps.app.goo.gl/WFQbgwowdDPVYokx5" target="_blank">📍 View on Google Maps</a>
+</div>
 
-      <div class="card">
-        <h3>Alternate Contact &amp; Training</h3>
-        <p class="contact-line">
-          📱 <strong>Mobile:</strong> <a href="tel:+918709348748">+91-87093-48748</a>
-        </p>
-        <p class="contact-line">
-          ✉️ <strong>Email:</strong> <a href="mailto:srezaco@gmail.com">srezaco@gmail.com</a>
-        </p>
-        <p class="office-meta">
-          For collaborations, guest lectures, corporate trainings &amp; international tax / structuring queries.
-        </p>
-      </div>
+<div class="section">
+<h2>🏢 Araria Branch Office</h2>
+<p><b>Address:</b> 65, Jahangir Nagar, NH 27/57, Near ARG Hotel, Araria - 854311</p>
+<p><b>Phone:</b> 9955778482</p>
+<a class="btn" href="https://maps.app.goo.gl/your_araria_location" target="_blank">📍 View on Google Maps</a>
+</div>
 
-    </div>
-  </section>
+<div class="section">
+<h2>📞 Instant Video Call</h2>
+<a class="btn" href="https://wa.me/919955778482?video=true" target="_blank">📹 WhatsApp Video Call</a>
+</div>
 
-  <!-- Services (short) -->
-  <section class="section" id="services">
-    <h2>Core Services</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Tax &amp; Regulatory</h3>
-        <ul>
-          <li>Income Tax advisory &amp; return filing</li>
-          <li>Scrutiny, assessments &amp; appeals</li>
-          <li>GST registration, returns &amp; litigation</li>
-          <li>TDS / TCS compliance &amp; certifications</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Corporate Law &amp; Compliance</h3>
-        <ul>
-          <li>Company / LLP / Section 8 incorporation</li>
-          <li>ROC annual &amp; event based filings</li>
-          <li>Corporate restructuring &amp; FEMA advisory</li>
-          <li>Board minutes, resolutions &amp; legal drafting</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Audit &amp; Advisory</h3>
-        <ul>
-          <li>Statutory &amp; Tax audit</li>
-          <li>Internal &amp; management audit</li>
-          <li>Project report, CMA &amp; valuations</li>
-          <li>Virtual CFO &amp; MIS reporting</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+<div class="section">
+<h2>📅 Book Appointment</h2>
+<form action="https://formspree.io/f/xwpeqrny" method="POST">
+  <label>Your Name:</label><br>
+  <input type="text" name="name" required><br><br>
 
-  <!-- Video consultation -->
-  <section class="section" id="video">
-    <h2>Instant Video Consultation</h2>
-    <p style="font-size:14px;margin-bottom:6px;">
-      For urgent matters, you can directly connect over WhatsApp chat and start a video call with the firm.
-    </p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="https://wa.me/919955778482?text=Hi%20CA%20Saem%2C%20I%20would%20like%20a%20video%20consultation." target="_blank" rel="noopener">
-        🎥 Start WhatsApp Chat / Video
-      </a>
-      <a class="btn btn-outline" style="color:#003366;border-color:#003366;background:#fff;" href="tel:+919955778482">
-        📞 Call: +91-99557-78482
-      </a>
-    </div>
-    <p class="office-meta" style="margin-top:10px;">
-      Available by prior appointment during business hours. Weekend / off-hour consultations can be scheduled on request.
-    </p>
-  </section>
+  <label>Your Email:</label><br>
+  <input type="email" name="email" required><br><br>
 
-  <!-- Appointment form (simple) -->
-  <section class="section" id="appointment">
-    <h2>Book an Appointment</h2>
-    <p style="font-size:14px;">
-      Please share your basic details and preferred time using WhatsApp or email. Our team will confirm your slot.
-    </p>
+  <label>Phone:</label><br>
+  <input type="text" name="phone" required><br><br>
 
-    <div class="grid" style="margin-top:8px;">
-      <div class="card">
-        <h3>Option 1 – WhatsApp Booking</h3>
-        <p style="font-size:13px;">
-          Click the button below – a pre-filled message will open in WhatsApp. You can edit if required and send.
-        </p>
-        <a class="btn btn-primary" style="margin-top:8px;"
-           href="https://wa.me/919955778482?text=Name%3A%0AMobile%3A%0AEmail%3A%0AIssue%20%28Income%20Tax%2F%20GST%2F%20ROC%2F%20Audit%20etc.%29%3A%0APreferred%20date%20%26%20time%3A%0ALocation%3A"
-           target="_blank" rel="noopener">
-          ✅ Book via WhatsApp
-        </a>
-      </div>
+  <label>Service Required:</label><br>
+  <select name="service">
+    <option>Income Tax</option>
+    <option>GST</option>
+    <option>ROC/Company Law</option>
+    <option>Appeals/Scrutiny</option>
+    <option>Audit</option>
+    <option>Others</option>
+  </select><br><br>
 
-      <div class="card">
-        <h3>Option 2 – Email Booking</h3>
-        <p style="font-size:13px;">
-          If you prefer email, click below. It will open your email app with a template for appointment request.
-        </p>
-        <a class="btn btn-outline" style="margin-top:8px;color:#003366;border-color:#003366;background:#fff;"
-           href="mailto:info@ssarpca.com?subject=Appointment%20Request&body=Name:%0AMobile:%0APreferred%20Office%20(Patna/Araria/Online):%0AIssue%20(Income%20Tax/GST/ROC/Audit):%0APreferred%20Date%20%26%20Time:%0AAdditional%20Details:">
-          ✉️ Book via Email
-        </a>
-      </div>
-    </div>
-  </section>
+  <button class="btn" type="submit">Submit Appointment</button>
+</form>
+</div>
 
-</main>
+</div>
 
 <footer>
-  <div><strong>SSARP &amp; Associates – Chartered Accountants</strong></div>
-  <div style="margin-top:4px;">
-    Serving businesses, startups and institutions across India from Patna &amp; Araria.
-  </div>
-  <div style="margin-top:6px;">
-    📧 <a href="mailto:info@ssarpca.com">info@ssarpca.com</a> &nbsp;|&nbsp;
-    📱 <a href="https://wa.me/919955778482" target="_blank" rel="noopener">+91-99557-78482</a>
-  </div>
-  <div style="margin-top:8px;opacity:.75;">
-    © <span id="year"></span> SSARP &amp; Associates. All rights reserved.
-  </div>
-
-  <script>
-    // Just to show current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  © 2025 SSARP & Associates | All Rights Reserved
 </footer>
 
 </body>
