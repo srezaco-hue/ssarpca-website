@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SSARP & ASSOCIATES | Chartered Accountants</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="SSARP & ASSOCIATES – Chartered Accountants in Patna & Araria providing services in Direct Tax, GST, Corporate Law, Audit, Compliance and Business Advisory."
+  />
+
+  <!-- Optional external CSS if you already have style.css -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Page specific styles (ye style.css ke upar override karega) -->
+  <style>
+    :root {
+      --primary:#003366;
+      --primary-light:#0056a3;
+      --accent:#f5b700;
+      --bg:#f5f7fb;
+      --text:#222;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{text-decoration:none;color:var(--primary-light);}
+    header{
+      background:var(--primary);
+      color:#fff;
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+    .nav{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0.6rem 1rem;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+    }
+    .brand{
+      font-weight:700;
+      letter-spacing:0.04em;
+      font-size:0.95rem;
+    }
+    .brand span{display:block;font-size:0.75rem;font-weight:400;opacity:.85;}
+    .nav-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:0.75rem;
+      font-size:0.85rem;
+    }
+    .nav-links a{
+      color:#e9f3ff;
+      padding:0.25rem 0.5rem;
+      border-radius:999px;
+    }
+    .nav-links a:hover{
+      background:rgba(255,255,255,0.12);
+    }
+
+    .hero{
+      background:linear-gradient(135deg,#003366,#001a33);
+      color:#fff;
+      padding:2.5rem 1.25rem 2rem;
+    }
+    .hero-inner{
+      max-width:1100px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:minmax(0,2fr) minmax(0,1.4fr);
+      gap:2rem;
+      align-items:center;
+    }
+    .badge{
+      display:inline-block;
+      padding:0.2rem 0.75rem;
+      border-radius:999px;
+      background:rgba(255,255,255,0.12);
+      font-size:0.75rem;
+      margin-bottom:0.75rem;
+    }
+    .hero h1{
+      font-size:1.9rem;
+      margin-bottom:0.75rem;
+    }
+    .hero p{
+      font-size:0.95rem;
+      max-width:32rem;
+      opacity:0.95;
+    }
+    .hero-actions{
+      margin-top:1.25rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:0.75rem;
+    }
+    .btn{
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      padding:0.55rem 1.2rem;
+      font-size:0.85rem;
+      display:inline-flex;
+      align-items:center;
+      gap:0.4rem;
+      text-decoration:none;
+      transition:transform .1s ease,box-shadow .1s ease;
+      white-space:nowrap;
+    }
+    .btn-primary{
+      background:var(--accent);
+      color:#222;
+      box-shadow:0 4px 10px rgba(0,0,0,.25);
+    }
+    .btn-outline{
+      background:transparent;
+      color:#fff;
+      border:1px solid rgba(255,255,255,.4);
+    }
+    .btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 6px 16px rgba(0,0,0,.25);
+    }
+
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:1.5rem 1rem 2.5rem;
+    }
+    section{
+      margin-bottom:2rem;
+      background:#fff;
+      border-radius:14px;
+      padding:1.4rem 1.25rem;
+      box-shadow:0 8px 22px rgba(15,23,42,0.06);
+    }
+    section h2{
+      font-size:1.1rem;
+      margin-bottom:0.75rem;
+      color:var(--primary);
+    }
+    .two-col{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:1.25rem;
+    }
+    .card{
+      border-radius:12px;
+      border:1px solid #e2e8f0;
+      padding:0.9rem 0.9rem;
+      background:#fdfefe;
+    }
+    .card h3{
+      font-size:0.98rem;
+      margin-bottom:0.35rem;
+      color:var(--primary);
+    }
+    .card p{font-size:0.85rem;margin-bottom:0.25rem;}
+    .office-meta{
+      font-size:0.8rem;
+      margin-top:0.35rem;
+    }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:1rem;
+      font-size:0.85rem;
+    }
+
+    .list-columns{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:0.5rem 1.5rem;
+      font-size:0.85rem;
+    }
+    .list-columns li{margin-bottom:0.2rem;}
+
+    .team-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:0.9rem;
+    }
+    .team-card h3{
+      font-size:0.9rem;
+      margin-bottom:0.1rem;
+    }
+    .team-card span{
+      font-size:0.78rem;
+      opacity:0.75;
+    }
+
+    .updates-list article{
+      padding:0.6rem 0;
+      border-top:1px dashed #e2e8f0;
+      font-size:0.85rem;
+    }
+    .updates-list article:first-child{border-top:none;}
+    .updates-list h3{
+      font-size:0.9rem;
+      margin-bottom:0.2rem;
+      color:var(--primary);
+    }
+    .updates-list time{
+      font-size:0.75rem;
+      opacity:.7;
+      display:block;
+      margin-bottom:0.25rem;
+    }
+
+    .video-note{
+      font-size:0.8rem;
+      opacity:.8;
+      margin-top:0.35rem;
+    }
+
+    .tools-list li{
+      font-size:0.85rem;
+      margin-bottom:0.4rem;
+    }
+
+    form.appointment-form{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:0.75rem;
+      font-size:0.85rem;
+    }
+    form.appointment-form label{
+      display:block;
+      margin-bottom:0.15rem;
+      font-weight:500;
+    }
+    form.appointment-form input,
+    form.appointment-form select,
+    form.appointment-form textarea{
+      width:100%;
+      padding:0.4rem 0.45rem;
+      border-radius:6px;
+      border:1px solid #cbd5e1;
+      font-size:0.85rem;
+    }
+    form.appointment-form textarea{
+      min-height:80px;
+      resize:vertical;
+    }
+    form .full-row{grid-column:1 / -1;}
+
+    footer{
+      background:#020617;
+      color:#cbd5f5;
+      padding:1.4rem 1rem 1rem;
+      font-size:0.8rem;
+      margin-top:0.5rem;
+    }
+    .footer-inner{
+      max-width:1100px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:2fr 1.4fr;
+      gap:1.25rem;
+    }
+    .footer-inner a{color:#e5f0ff;}
+    .footer-meta{margin-top:0.4rem;font-size:0.78rem;opacity:.8;}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero-inner{
+        grid-template-columns:minmax(0,1fr);
+      }
+      .contact-grid,
+      .two-col,
+      .team-grid,
+      form.appointment-form{
+        grid-template-columns:minmax(0,1fr);
+      }
+      .footer-inner{
+        grid-template-columns:minmax(0,1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="brand">
+      SSARP & ASSOCIATES
+      <span>Chartered Accountants</span>
+    </div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#offices">Offices</a>
+      <a href="#team">Team</a>
+      <a href="#updates">Updates</a>
+      <a href="#tools">Tools</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="badge">Patna • Araria • Integrated Tax & Corporate Compliance</div>
+      <h1>Integrated CA, Tax & Corporate Compliance Partner for Your Business</h1>
+      <p>
+        SSARP & ASSOCIATES is a Patna-based CA firm helping businesses with Direct Tax,
+        GST, Corporate Law, Audit, Valuation, Documentation and ongoing compliance – so
+        you can focus on growth while we handle the regulations.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="tel:+918709348748">📞 Call Primary: 8709348748</a>
+        <a class="btn btn-outline" href="mailto:srezaco@gmail.com">✉️ Email: srezaco@gmail.com</a>
+        <a class="btn btn-outline"
+           href="https://wa.me/919955778482?text=I%20would%20like%20to%20book%20a%20video%20consultation"
+           target="_blank">📹 WhatsApp Video Consult</a>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <h3>Same Roof. Multiple Services.</h3>
+        <p>• Direct Tax, Assessments & Appeals</p>
+        <p>• GST Advisory, Returns & Litigation</p>
+        <p>• Company Law & ROC Compliance</p>
+        <p>• Statutory / Tax / Internal Audits</p>
+        <p>• Business Structuring & Valuation</p>
+        <p>• Project Reports & Virtual CFO</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <!-- OFFICES -->
+  <section id="offices">
+    <h2>Our Offices</h2>
+    <div class="two-col">
+      <div class="card">
+        <h3>Head Office – Patna</h3>
+        <p><strong>SSARP & ASSOCIATES</strong></p>
+        <p>301A, The Orchid Mall, Boring Road,</p>
+        <p>Opp. A.N. College, Patna – 800013</p>
+        <p class="office-meta">📞 <a href="tel:+919955778451">9955778451</a></p>
+        <p class="office-meta">
+          📍
+          <!-- Yahan apna exact Google Maps link paste kar sakte hain -->
+          <a href="#" target="_blank">View on Google Maps</a>
+        </p>
+      </div>
+      <div class="card">
+        <h3>Branch Office – Araria</h3>
+        <p>65, Jahangir Nagar, on NH-27/57,</p>
+        <p>Near ARG Hotel, Araria – 854311</p>
+        <p class="office-meta">📞 <a href="tel:+919955778482">9955778482</a></p>
+        <p class="office-meta">
+          📍
+          <a href="#" target="_blank">View on Google Maps</a>
+        </p>
+      </div>
+    </div>
+
+    <div style="margin-top:1rem" class="contact-grid">
+      <div class="card">
+        <h3>Primary Contact</h3>
+        <p>📞 <strong><a href="tel:+918709348748">8709348748</a></strong></p>
+        <p>✉️ <a href="mailto:srezaco@gmail.com">srezaco@gmail.com</a></p>
+      </div>
+      <div class="card">
+        <h3>Firm Email</h3>
+        <p>✉️ <a href="mailto:info@ssarpca.com">info@ssarpca.com</a></p>
+        <p>Use for invoices, documents and formal communication.</p>
+      </div>
+      <div class="card">
+        <h3>WhatsApp Video Consultation</h3>
+        <p>📱 WhatsApp: <strong>9955778482</strong></p>
+        <p><a href="https://wa.me/919955778482?text=I%20would%20like%20to%20book%20a%20video%20consultation"
+              target="_blank">Click here to start chat</a> and then tap the video icon.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About SSARP & ASSOCIATES</h2>
+    <p style="font-size:0.9rem;">
+      Founded in 2012 by CA Mohammad Saem Reza, SSARP & ASSOCIATES is a professionally
+      managed Chartered Accountancy firm based in Patna, Bihar. Over the years we have grown
+      into an integrated service platform providing Accounting, Taxation, Audit, Company Law,
+      Management Consultancy and Documentation services to manufacturing, trading, financial
+      and service sector clients – including Indian entities and international corporations.
+    </p>
+    <p style="font-size:0.9rem;margin-top:0.4rem;">
+      Our aim is simple – <strong>timely, practical and compliant solutions</strong> with
+      a strong focus on documentation, representation and long-term relationships.
+    </p>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <h2>Core Services</h2>
+    <div class="list-columns">
+      <ul>
+        <li>Income Tax planning, return filing & assessments</li>
+        <li>Representation before Income Tax & GST authorities</li>
+        <li>GST registration, returns, refund & litigation support</li>
+        <li>Statutory, Tax, Internal & Management Audits</li>
+        <li>Accounting system design & Virtual CFO services</li>
+      </ul>
+      <ul>
+        <li>Company/LLP/NGO registration & ROC compliance</li>
+        <li>FEMA, foreign remittance & 15CA/15CB certifications</li>
+        <li>Project report & financial modelling for funding</li>
+        <li>Business valuation & transaction support</li>
+        <li>Commercial & legal agreements drafting</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <h2>Our Team</h2>
+    <div class="team-grid">
+      <div class="card team-card">
+        <h3>CA Mohammad Saem Reza</h3>
+        <span>Founder & Managing Partner</span>
+        <p>Direct Tax, GST, International Tax, Valuation & High-value litigation.</p>
+      </div>
+      <div class="card team-card">
+        <h3>S. Emam</h3>
+        <span>CS, LLB, B.Com – Head: Corporate Compliance & Legal Drafting</span>
+        <p>Company law, ROC filings, corporate governance, agreements and legal documentation.</p>
+      </div>
+      <div class="card team-card">
+        <h3>CA Shah Alam</h3>
+        <span>Partner – Direct Tax, Audit & GST</span>
+        <p>Statutory, tax & internal audits, tax advisory and GST matters.</p>
+      </div>
+      <div class="card team-card">
+        <h3>Priyanshu Bhagat</h3>
+        <span>B.Com – GST Expert</span>
+        <p>GST registrations, returns, reconciliations and advisory.</p>
+      </div>
+      <div class="card team-card">
+        <h3>Harsh Kabeer</h3>
+        <span>Accountant</span>
+        <p>Day-to-day accounting and compliance support.</p>
+      </div>
+      <div class="card team-card">
+        <h3>Ravi Kumar</h3>
+        <span>CA Final – Audit & Tax</span>
+        <p>Audit support, direct tax working and documentation.</p>
+      </div>
+      <div class="card team-card">
+        <h3>Rashid Ansari</h3>
+        <span>Accounts & Compliance</span>
+        <p>Books, reconciliations and backend compliance.</p>
+      </div>
+      <div class="card team-card">
+        <h3>Fatima</h3>
+        <span>Admin & Client Coordination</span>
+        <p>Scheduling, documentation and client support.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO CONSULTATION -->
+  <section id="video">
+    <h2>Video Consultation</h2>
+    <p style="font-size:0.9rem;">
+      For out-station or busy clients, we offer consultation via WhatsApp video call.
+    </p>
+    <p style="margin-top:0.3rem;">
+      📱 WhatsApp: <strong>9955778482</strong>
+    </p>
+    <p class="video-note">
+      Click the button below – chat window open hoga, wahan se aap video icon dabaa sakte hain.
+    </p>
+    <div style="margin-top:0.75rem;">
+      <a class="btn btn-primary"
+         href="https://wa.me/919955778482?text=I%20would%20like%20to%20book%20a%20video%20consultation"
+         target="_blank">Start WhatsApp Chat</a>
+    </div>
+  </section>
+
+  <!-- APPOINTMENT FORM -->
+  <section id="appointment">
+    <h2>Book an Appointment</h2>
+    <p style="font-size:0.85rem;margin-bottom:0.6rem;">
+      Fill this basic form – a mail draft will open with the details and we will confirm time
+      over call / WhatsApp. (Later agar aap chahein to hum isko Formspree / backend se integrate bhi kar sakte hain.)
+    </p>
+
+    <form class="appointment-form"
+      action="mailto:srezaco@gmail.com"
+      method="POST"
+      enctype="text/plain">
+      <div>
+        <label for="name">Full Name</label>
+        <input id="name" name="Name" required />
+      </div>
+      <div>
+        <label for="phone">Mobile</label>
+        <input id="phone" name="Mobile" required />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input id="email" name="Email" />
+      </div>
+      <div>
+        <label for="office">Preferred Office</label>
+        <select id="office" name="Preferred Office">
+          <option value="Patna">Patna</option>
+          <option value="Araria">Araria</option>
+          <option value="Video">Video Consultation</option>
+        </select>
+      </div>
+      <div class="full-row">
+        <label for="service">Service / Issue</label>
+        <input id="service" name="Service / Issue" placeholder="Income Tax Scrutiny, GST, ROC, Audit, Project Report, etc." />
+      </div>
+      <div class="full-row">
+        <label for="message">Brief Background</label>
+        <textarea id="message" name="Details"></textarea>
+      </div>
+      <div class="full-row" style="margin-top:0.4rem;">
+        <button class="btn btn-primary" type="submit">Send Appointment Request</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- UPDATES / BLOG -->
+  <section id="updates">
+    <h2>Income Tax & GST Updates</h2>
+    <p style="font-size:0.8rem;margin-bottom:0.6rem;">
+      Naya update add karne ke liye, sirf ek <code>&lt;article&gt;</code> block copy karke niche paste kar dijiye
+      aur heading + date + text change kar dijiye.
+    </p>
+    <div class="updates-list">
+      <article>
+        <h3>Coming Soon – Latest Direct Tax & GST Notes</h3>
+        <time>—</time>
+        <p>Yahan par aap apne short notes, FAQs, compliance checklist ya client circulars daal sakte hain.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section id="videos">
+    <h2>Office / Knowledge Videos</h2>
+    <p style="font-size:0.85rem;margin-bottom:0.4rem;">
+      Aap apne office tour, explainer ya seminar videos ko YouTube pe upload karke yahan embed kar sakte hain.
+    </p>
+    <p style="font-size:0.8rem;">
+      Example (YouTube embed placeholder):
+    </p>
+    <div style="margin-top:0.6rem;">
+      <!-- Yahan apna YouTube video link ka embed code paste karein -->
+      <iframe width="100%" height="220"
+        src="https://www.youtube.com/embed/VIDEO_ID_HERE"
+        title="YouTube video"
+        frameborder="0"
+        allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- TOOLS / CALCULATORS -->
+  <section id="tools">
+    <h2>Online Tools & Calculators</h2>
+    <p style="font-size:0.85rem;margin-bottom:0.5rem;">
+      Agar aap HTML based EMI / TDS / Tax calculators banate hain, unke liye ek-ek alag HTML
+      file (e.g. <code>emi-calculator.html</code>) bana kar repo me add karein. Fir unke link
+      yahan list kar sakte hain.
+    </p>
+    <ul class="tools-list">
+      <li><a href="emi-calculator.html">EMI Calculator (sample link)</a> – create this file later.</li>
+      <li><a href="tds-calculator.html">TDS Calculator (sample link)</a></li>
+      <li><a href="tax-planner.html">Basic Tax Planner (sample link)</a></li>
+    </ul>
+  </section>
+
+  <!-- CONTACT SUMMARY -->
+  <section id="contact">
+    <h2>Quick Contact</h2>
+    <div class="contact-grid">
+      <div class="card">
+        <h3>Primary</h3>
+        <p>📞 <strong><a href="tel:+918709348748">8709348748</a></strong></p>
+        <p>✉️ <a href="mailto:srezaco@gmail.com">srezaco@gmail.com</a></p>
+      </div>
+      <div class="card">
+        <h3>Head Office – Patna</h3>
+        <p>301A, The Orchid Mall, Boring Road,</p>
+        <p>Opp. A.N. College, Patna – 800013</p>
+        <p>📞 <a href="tel:+919955778451">9955778451</a></p>
+      </div>
+      <div class="card">
+        <h3>Branch Office – Araria</h3>
+        <p>65, Jahangir Nagar, NH-27/57,</p>
+        <p>Near ARG Hotel, Araria – 854311</p>
+        <p>📞 <a href="tel:+919955778482">9955778482</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <strong>SSARP & ASSOCIATES – Chartered Accountants</strong>
+      <div class="footer-meta">
+        Integrated services in Direct Tax, GST, Corporate Law, Audit, Valuation & Compliance.
+        This website is for information only and does not constitute professional advice.
+      </div>
+    </div>
+    <div>
+      <div>Primary: <a href="tel:+918709348748">+91-8709348748</a></div>
+      <div>Email: <a href="mailto:srezaco@gmail.com">srezaco@gmail.com</a></div>
+      <div>Firm Email: <a href="mailto:info@ssarpca.com">info@ssarpca.com</a></div>
+      <div>WhatsApp Video: 9955778482</div>
+    </div>
+  </div>
+  <div style="margin-top:0.7rem;text-align:center;font-size:0.75rem;opacity:.7;">
+    © <span id="year"></span> SSARP & ASSOCIATES. All rights reserved.
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</footer>
+
+</body>
+</html>
