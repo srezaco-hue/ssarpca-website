@@ -1,1025 +1,116 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>SSARP & ASSOCIATES | Chartered Accountants</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content="SSARP & ASSOCIATES, Chartered Accountants based in Patna & Araria – Direct & Indirect Tax, Audit, Business Advisory and Virtual CFO services."
-  />
-
-  <!-- Simple icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-
-  <style>
-    :root {
-      --primary: #005a9c;
-      --primary-soft: #e6f2ff;
-      --accent: #ff9933;
-      --accent-2: #0f9d58;
-      --bg: #f4f6fb;
-      --text: #1d2939;
-      --muted: #667085;
-      --card: #ffffff;
-      --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.08);
-      --radius-lg: 14px;
-      --radius-md: 10px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.6;
-    }
-
-    a {
-      color: var(--primary);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* Layout */
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: #ffffffee;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 1px 0 rgba(148, 163, 184, 0.4);
-    }
-
-    .nav-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0.6rem 1.1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .brand-logo {
-      height: 52px;
-      width: auto;
-      border-radius: 8px;
-    }
-
-    .brand-text h1 {
-      margin: 0;
-      font-size: 1.1rem;
-      letter-spacing: 0.06em;
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .brand-text p {
-      margin: 0;
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .nav-contact {
-      text-align: right;
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .nav-contact strong {
-      color: var(--primary);
-      font-weight: 600;
-    }
-
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 1.4rem 1.1rem 4.5rem;
-    }
-
-    section {
-      margin-bottom: 2.2rem;
-    }
-
-    .section-card {
-      background: var(--card);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-soft);
-      padding: 1.7rem 1.4rem;
-    }
-
-    .section-title {
-      margin-top: 0;
-      margin-bottom: 0.6rem;
-      font-size: 1.4rem;
-      color: var(--primary);
-    }
-
-    .section-subtitle {
-      margin: 0;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    /* Hero */
-
-    .hero {
-      display: flex;
-      flex-direction: column;
-      gap: 1.4rem;
-      background: radial-gradient(circle at top left, #e6f2ff, #ffffff);
-    }
-
-    .hero-main h2 {
-      margin: 0 0 0.4rem;
-      font-size: 1.55rem;
-    }
-
-    .hero-main p {
-      margin: 0;
-      font-size: 0.98rem;
-      color: var(--muted);
-    }
-
-    .hero-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.8rem;
-    }
-
-    .pill {
-      font-size: 0.78rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-      background: var(--primary-soft);
-      color: var(--primary);
-    }
-
-    .hero-callouts {
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-      font-size: 0.86rem;
-    }
-
-    .hero-callouts div {
-      display: flex;
-      gap: 0.4rem;
-      align-items: center;
-      padding: 0.4rem 0.7rem;
-      border-radius: var(--radius-md);
-      background: #f9fafb;
-    }
-
-    .hero-callouts i {
-      color: var(--accent-2);
-    }
-
-    /* Offices */
-
-    .office-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 0.85rem;
-      font-size: 0.9rem;
-    }
-
-    .office-card {
-      border-radius: var(--radius-md);
-      padding: 0.85rem 0.9rem;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-    }
-
-    .office-card h3 {
-      margin: 0 0 0.25rem;
-      font-size: 1rem;
-      color: var(--primary);
-    }
-
-    .office-card p {
-      margin: 0.15rem 0;
-    }
-
-    .office-card a.map-link {
-      font-size: 0.8rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .office-card a.map-link i {
-      font-size: 0.8rem;
-    }
-
-    /* Services */
-
-    .service-list {
-      margin-top: 0.9rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-      font-size: 0.9rem;
-    }
-
-    .service-item {
-      display: flex;
-      gap: 0.6rem;
-      align-items: flex-start;
-      padding: 0.7rem 0.75rem;
-      border-radius: var(--radius-md);
-      background: #f8fafc;
-      border: 1px solid #e5ecf5;
-    }
-
-    .service-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--primary-soft);
-      color: var(--primary);
-      flex-shrink: 0;
-    }
-
-    .service-text h4 {
-      margin: 0 0 0.15rem;
-      font-size: 0.98rem;
-    }
-
-    .service-text p {
-      margin: 0;
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
-
-    .under-one-roof {
-      margin-top: 1.1rem;
-      padding: 0.7rem 0.8rem;
-      border-radius: var(--radius-md);
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
-      background: linear-gradient(
-        90deg,
-        rgba(0, 90, 156, 0.07),
-        rgba(15, 157, 88, 0.07)
-      );
-    }
-
-    .under-one-roof img {
-      height: 60px;
-      width: auto;
-      border-radius: 10px;
-      background: #ffffff;
-      padding: 4px 6px;
-      box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.3);
-    }
-
-    .under-one-roof p {
-      margin: 0;
-      font-size: 0.9rem;
-    }
-
-    /* Tools */
-
-    .tool-buttons {
-      margin-top: 0.8rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-
-    .tool-btn {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.8rem 1rem;
-      border-radius: var(--radius-md);
-      background: #f8fafc;
-      border: 1px solid #d0e2ff;
-      font-size: 0.92rem;
-      font-weight: 500;
-    }
-
-    .tool-btn span {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .tool-btn i {
-      color: var(--primary);
-    }
-
-    /* Updates */
-
-    .updates-grid {
-      margin-top: 0.8rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      font-size: 0.88rem;
-    }
-
-    .update-item {
-      background: #f9fafb;
-      border-radius: var(--radius-md);
-      padding: 0.65rem 0.8rem;
-      border-left: 3px solid var(--accent);
-    }
-
-    .update-item h4 {
-      margin: 0 0 0.15rem;
-      font-size: 0.92rem;
-    }
-
-    .update-item small {
-      display: block;
-      color: var(--muted);
-      margin-bottom: 0.15rem;
-    }
-
-    /* Team */
-
-    .team-grid {
-      margin-top: 0.9rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      font-size: 0.9rem;
-    }
-
-    .team-card {
-      border-radius: var(--radius-md);
-      padding: 0.8rem 0.9rem;
-      background: #f8fafc;
-      border: 1px solid #e5ecf5;
-    }
-
-    .team-name {
-      font-weight: 600;
-      color: var(--primary);
-    }
-
-    .team-role {
-      font-size: 0.84rem;
-      color: var(--muted);
-      margin-bottom: 0.35rem;
-    }
-
-    /* Clientele & testimonials */
-
-    .client-logos {
-      margin-top: 0.9rem;
-      text-align: center;
-    }
-
-    .client-logos img {
-      max-width: 100%;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-soft);
-      background: #ffffff;
-    }
-
-    .testimonial-list {
-      margin-top: 0.8rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      font-size: 0.9rem;
-    }
-
-    .testimonial {
-      padding: 0.75rem 0.85rem;
-      border-radius: var(--radius-md);
-      background: #f9fafb;
-      border-left: 3px solid var(--primary);
-    }
-
-    .testimonial strong {
-      display: block;
-      margin-top: 0.25rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    /* Videos */
-
-    .video-wrapper {
-      margin-top: 0.9rem;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      position: relative;
-      padding-top: 56.25%;
-      background: #000;
-    }
-
-    .video-wrapper iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    /* Contact */
-
-    .contact-details {
-      margin-top: 0.6rem;
-      font-size: 0.9rem;
-    }
-
-    .contact-details p {
-      margin: 0.15rem 0;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--muted);
-      padding: 0.9rem 1rem 1.7rem;
-      background: #ffffff;
-      border-top: 1px solid #e2e8f0;
-    }
-
-    /* WhatsApp chat widget */
-
-    .chat-widget {
-      position: fixed;
-      right: 1rem;
-      bottom: 1.1rem;
-      z-index: 30;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.4rem;
-    }
-
-    .chat-button-main {
-      border: none;
-      border-radius: 999px;
-      padding: 0.6rem 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: #25d366;
-      color: #ffffff;
-      font-weight: 600;
-      font-size: 0.9rem;
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-      cursor: pointer;
-    }
-
-    .chat-button-main i {
-      font-size: 1.1rem;
-    }
-
-    .chat-panel {
-      width: 260px;
-      padding: 0.9rem;
-      border-radius: var(--radius-md);
-      background: #ffffff;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid #e2e8f0;
-      font-size: 0.85rem;
-    }
-
-    .chat-panel h4 {
-      margin: 0 0 0.25rem;
-      font-size: 0.9rem;
-      color: var(--primary);
-    }
-
-    .chat-panel small {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: var(--muted);
-    }
-
-    .chat-panel label {
-      display: block;
-      margin-top: 0.25rem;
-      margin-bottom: 0.1rem;
-    }
-
-    .chat-panel input {
-      width: 100%;
-      padding: 0.34rem 0.4rem;
-      border-radius: 6px;
-      border: 1px solid #d0d5dd;
-      font-size: 0.84rem;
-    }
-
-    .chat-panel button {
-      margin-top: 0.55rem;
-      width: 100%;
-      border-radius: 7px;
-      border: none;
-      padding: 0.45rem 0.6rem;
-      background: var(--primary);
-      color: #ffffff;
-      font-size: 0.87rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .chat-panel button:hover {
-      background: #004377;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    /* Responsive */
-
-    @media (min-width: 720px) {
-      .hero {
-        flex-direction: row;
-        justify-content: space-between;
-      }
-
-      .hero-main {
-        flex: 2;
-        padding-right: 1rem;
-      }
-
-      .hero-callouts {
-        flex: 1.2;
-      }
-
-      .section-card {
-        padding: 2rem 2rem 1.8rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <!-- HEADER -->
-  <header>
-    <div class="nav-inner">
-      <div class="brand">
-        <!-- CA logo -->
-        <img src="IMG_4331.png" alt="CA India logo" class="brand-logo" />
-        <div class="brand-text">
-          <h1>SSARP &amp; ASSOCIATES</h1>
-          <p>Chartered Accountants – Since 2012</p>
-        </div>
-      </div>
-      <div class="nav-contact">
-        <div><strong>Call:</strong> +91&nbsp;8709348748</div>
-        <div><strong>Email:</strong> srezaco@gmail.com</div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <!-- HERO -->
-    <section id="hero">
-      <div class="section-card hero">
-        <div class="hero-main">
-          <h2>End-to-end tax, audit &amp; advisory support under one roof</h2>
-          <p>
-            We partner with entrepreneurs, corporates, NGOs and overseas
-            entities for Income-tax, GST, audit, structuring and virtual CFO
-            solutions – with execution support till the last filing.
-          </p>
-          <div class="hero-pills">
-            <span class="pill">Direct &amp; Indirect Tax</span>
-            <span class="pill">Audit &amp; Assurance</span>
-            <span class="pill">Business Advisory</span>
-            <span class="pill">Virtual CFO</span>
-          </div>
-        </div>
-        <div class="hero-callouts">
-          <div>
-            <i class="fa-solid fa-user-check"></i>
-            <span>Led by practising CA with 12+ years of experience.</span>
-          </div>
-          <div>
-            <i class="fa-solid fa-building-columns"></i>
-            <span>Work experience with IIT Patna, DFS (Germany),
-              Daewoo E&amp;C and leading Indian corporates.</span>
-          </div>
-          <div>
-            <i class="fa-solid fa-shield-halved"></i>
-            <span>Strong focus on documentation, litigation support and
-              technology-enabled compliance.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT / OFFICES -->
-    <section id="about">
-      <div class="section-card">
-        <h2 class="section-title">About SSARP &amp; Associates</h2>
-        <p class="section-subtitle">
-          A tech-enabled, client-centric CA firm based in Patna &amp; Araria.
-        </p>
-        <p>
-          We serve manufacturing, trading, financial and service sector
-          clients, including Indian and overseas companies, banking
-          institutions, NGOs and start-ups. Our core value pillars are:
-        </p>
-        <ul>
-          <li>Professional excellence and strong technical depth</li>
-          <li>Integrity, confidentiality and compliance-first approach</li>
-          <li>Client-centric, practical and time-bound execution</li>
-          <li>Use of technology for real-time tracking and collaboration</li>
-        </ul>
-
-        <div class="office-grid">
-          <div class="office-card">
-            <h3>Head Office – Patna</h3>
-            <p>
-              301A, The Orchid Mall, Boring Road, Opp. A.N. College,<br />
-              Patna – 800013, Bihar
-            </p>
-            <p><strong>Phone:</strong> +91&nbsp;9955778451</p>
-            <a
-              class="map-link"
-              href="https://maps.google.com/?q=The+Orchid+Mall+Boring+Road+Patna"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="fa-solid fa-location-dot"></i> View on Google Maps
-            </a>
-          </div>
-
-          <div class="office-card">
-            <h3>Branch Office – Araria</h3>
-            <p>
-              65, Jahangir Nagar, on NH-27 (earlier NH-57),<br />
-              Near ARG Hotel, Araria – 854311, Bihar
-            </p>
-            <p><strong>Phone:</strong> +91&nbsp;9955778482</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services">
-      <div class="section-card">
-        <h2 class="section-title">Our Core Services</h2>
-        <p class="section-subtitle">
-          Practical, execution-oriented support across Direct Tax, GST, audit
-          and business advisory.
-        </p>
-
-        <div class="service-list">
-          <div class="service-item">
-            <div class="service-icon">
-              <i class="fa-solid fa-scale-balanced"></i>
-            </div>
-            <div class="service-text">
-              <h4>Direct Tax – Individuals &amp; Corporates</h4>
-              <p>
-                Tax planning, return filing, TDS, capital gains, assessments,
-                rectifications and representation before Income-tax authorities.
-              </p>
-            </div>
-          </div>
-
-          <div class="service-item">
-            <div class="service-icon">
-              <i class="fa-solid fa-receipt"></i>
-            </div>
-            <div class="service-text">
-              <h4>GST &amp; Indirect Taxes</h4>
-              <p>
-                GST registration, returns, e-invoicing, refunds, audits and
-                litigation support with a focus on documentation and reconciliations.
-              </p>
-            </div>
-          </div>
-
-          <div class="service-item">
-            <div class="service-icon">
-              <i class="fa-solid fa-clipboard-check"></i>
-            </div>
-            <div class="service-text">
-              <h4>Audit &amp; Assurance</h4>
-              <p>
-                Statutory, tax, internal and special audits for companies, firms,
-                trusts and societies with strong emphasis on controls and
-                compliance.
-              </p>
-            </div>
-          </div>
-
-          <div class="service-item">
-            <div class="service-icon">
-              <i class="fa-solid fa-chart-line"></i>
-            </div>
-            <div class="service-text">
-              <h4>Business Advisory &amp; Virtual CFO</h4>
-              <p>
-                Business structuring, projections, project reports, CMA data,
-                funding support, MIS and board-level financial decision support.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="under-one-roof">
-          <img src="IMG_4331.png" alt="CA logo" />
-          <p>
-            <strong>Under one roof, multiple services:</strong> from registrations
-            and routine compliances to complex advisory, assessments and
-            litigation, our team stays involved till the matter is closed.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- TOOLS -->
-    <section id="tools">
-      <div class="section-card">
-        <h2 class="section-title">Tools &amp; Calculators</h2>
-        <p class="section-subtitle">
-          Simple, browser-based utilities prepared by our firm.
-        </p>
-
-        <div class="tool-buttons">
-          <a class="tool-btn" href="emi-calculator.html" target="_blank">
-            <span>
-              <i class="fa-solid fa-calculator"></i>
-              EMI Calculator
-            </span>
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          </a>
-
-          <a class="tool-btn" href="tds-calculator.html" target="_blank">
-            <span>
-              <i class="fa-solid fa-percent"></i>
-              TDS on Salary Calculator
-            </span>
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- TAX UPDATES -->
-    <section id="updates">
-      <div class="section-card">
-        <h2 class="section-title">Tax &amp; GST Updates</h2>
-        <p class="section-subtitle">
-          A quick flavour of recent changes – talk to us for impact analysis on
-          your business.
-        </p>
-
-        <div class="updates-grid">
-          <div class="update-item">
-            <h4>Income-tax – New Bill to replace 1961 Act</h4>
-            <small>Finance Ministry – 2025 draft</small>
-            <p>
-              The government has proposed a new Income-tax Bill to eventually
-              replace the 1961 Act, with simplification of sections, more
-              digital processes and faceless assessments. Businesses should
-              expect higher reliance on documentation and e-proceedings in the
-              coming years.
-            </p>
-          </div>
-
-          <div class="update-item">
-            <h4>GST – Focus on invoice matching &amp; GSTR-2B</h4>
-            <small>GST portal updates</small>
-            <p>
-              Authorities continue to emphasise invoice-wise reconciliation of
-              ITC with GSTR-2B. Mismatches and ineligible ITC are a key area in
-              departmental audits – ensure vendor compliances and monthly checks.
-            </p>
-          </div>
-
-          <div class="update-item">
-            <h4>Compliance trend – Data-driven scrutiny</h4>
-            <small>Across Direct &amp; Indirect Tax</small>
-            <p>
-              Returns, TDS/TCS, AIS/TIS data, e-way bills and bank information
-              are being cross-linked. Clean bookkeeping, reconciliations and
-              timely replies to notices are now more important than ever.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TEAM -->
-    <section id="team">
-      <div class="section-card">
-        <h2 class="section-title">Our Core Team</h2>
-        <p class="section-subtitle">
-          A small, hands-on team – you work directly with decision makers.
-        </p>
-
-        <div class="team-grid">
-          <div class="team-card">
-            <div class="team-name">CA Mohammad Saem Reza</div>
-            <div class="team-role">Founder Partner</div>
-            <p>
-              Practising Chartered Accountant since 2013 with strong exposure
-              to Direct Tax, GST, audit and cross-border assignments. Leads
-              planning, representation, litigation and high-value advisory.
-            </p>
-          </div>
-
-          <div class="team-card">
-            <div class="team-name">SSARP Team</div>
-            <div class="team-role">Compliance, Documentation &amp; Analytics</div>
-            <p>
-              A dedicated in-house team managing bookkeeping, GST, TDS,
-              incorporation, ROC and day-to-day compliances with technology-based
-              tracking, dashboards and documentation.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CLIENTELE -->
-    <section id="clientele">
-      <div class="section-card">
-        <h2 class="section-title">Clientele Snapshot</h2>
-        <p class="section-subtitle">
-          Trusted by leading corporates, institutions, banks, NGOs and
-          entrepreneurs.
-        </p>
-
-        <div class="client-logos">
-          <img
-            src="IMG_4330.jpeg"
-            alt="Logos of some clients served by SSARP & Associates"
-          />
-          <p style="font-size:0.8rem;color:var(--muted);margin-top:0.5rem;">
-            *Logos are for representation of clients served / assignments
-            handled by the firm or partners.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section id="testimonials">
-      <div class="section-card">
-        <h2 class="section-title">What Clients Appreciate</h2>
-        <p class="section-subtitle">
-          Short summary of feedback we regularly hear from our clients.
-        </p>
-
-        <div class="testimonial-list">
-          <div class="testimonial">
-            “Practical advice, clear documentation and proactive follow-up with
-            departments – we don’t have to chase for status.”
-            <strong>– Corporate &amp; NGO clients</strong>
-          </div>
-          <div class="testimonial">
-            “Detailed working papers and reconciliations make statutory and tax
-            audits smooth for us.”
-            <strong>– Audit stakeholders</strong>
-          </div>
-          <div class="testimonial">
-            “Availability on call and WhatsApp, along with structured reports,
-            helps us take faster decisions.”
-            <strong>– Promoters &amp; business owners</strong>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- VIDEOS -->
-    <section id="videos">
-      <div class="section-card">
-        <h2 class="section-title">Office Glimpse</h2>
-        <p class="section-subtitle">
-          Short video from our office – more explainer content coming soon.
-        </p>
-
-        <div class="video-wrapper">
-          <iframe
-            src="https://www.youtube.com/embed/BV9BPIKqNYY"
-            title="SSARP & Associates office video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="section-card">
-        <h2 class="section-title">Connect With Us</h2>
-        <p class="section-subtitle">
-          Share your requirement on call, email or WhatsApp – we will respond
-          with a clear action plan.
-        </p>
-
-        <div class="contact-details">
-          <p><strong>Primary mobile:</strong> +91&nbsp;8709348748</p>
-          <p><strong>WhatsApp (chat/video):</strong> +91&nbsp;9955778482</p>
-          <p><strong>Email (primary):</strong> srezaco@gmail.com</p>
-          <p><strong>Email (firm):</strong> info@ssarpca.com</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    © SSARP &amp; ASSOCIATES, Chartered Accountants. All rights reserved.
-  </footer>
-
-  <!-- SIMPLE WHATSAPP "CHATBOT" -->
-  <div class="chat-widget">
-    <div class="chat-panel hidden" id="chatPanel">
-      <h4>Chat with SSARP on WhatsApp</h4>
-      <small>Kindly share your name and mobile number before we connect.</small>
-      <label for="chatName">Name</label>
-      <input id="chatName" type="text" placeholder="Your name (optional)" />
-      <label for="chatPhone">Mobile number *</label>
-      <input
-        id="chatPhone"
-        type="tel"
-        placeholder="e.g. 9876543210"
-        inputmode="tel"
-      />
-      <button id="startChatBtn">Start WhatsApp Chat</button>
+<section id="team" class="section team-section">
+  <div class="container">
+    <h2 class="section-title">Our Leadership & Core Team</h2>
+    <p class="section-subtitle">
+      Under one roof, SSARP & ASSOCIATES brings together Chartered Accountants, Company Secretaries
+      and trained professionals to deliver integrated Tax, Audit, Accounting and Corporate Compliance services.
+    </p>
+
+    <!-- 1. CA MOHAMMAD SAEM REZA -->
+    <div class="team-member">
+      <h3>CA Mohammad Saem Reza</h3>
+      <h4>Founder & Managing Partner – SSARP & ASSOCIATES</h4>
+      <p class="team-tags">
+        Direct Tax • International Tax • GST • Valuations • Business Advisory
+      </p>
+      <p class="team-bio">
+        A Chartered Accountant in full–time practice, leading SSARP & ASSOCIATES since 2012, 
+        Mr. Reza primarily handles complex Income Tax and GST matters – including scrutiny, assessments, appeals,
+        search / survey representations and high–value transaction advisory. He is also involved in business
+        structuring, valuations, financial modelling and strategic advice for corporates, start–ups and SMEs,
+        with a strong focus on practical, compliant, and tax–efficient solutions.  [oai_citation:0‡SSARP-Overview.docx](sediment://file_0000000044787206bd774aa59e4dae94)
+      </p>
     </div>
 
-    <button class="chat-button-main" id="openChatBtn">
-      <i class="fa-brands fa-whatsapp"></i>
-      Chat with SSARP
-    </button>
+    <!-- 2. S EMAM -->
+    <div class="team-member">
+      <h3>S Emam (CS, LLB, B.Com)</h3>
+      <h4>Head – Corporate Compliance & Legal Drafting</h4>
+      <p class="team-tags">
+        Company Law • ROC Filings • Corporate Governance • Legal Drafting
+      </p>
+      <p class="team-bio">
+        As the core Corporate Compliance and Legal Drafting specialist, Ms. Emam looks after the entire 
+        corporate law and secretarial compliance vertical. This includes incorporation of companies and LLPs,
+        event–based ROC filings, annual returns, XBRL, director KYC, search reports, due diligence and 
+        corporate governance support. She also drafts commercial agreements, MOUs, shareholder / investment 
+        documents and other legal documentation, ensuring that regulatory, contractual and procedural requirements 
+        are fully aligned for every client assignment.  [oai_citation:1‡SSARP-Overview.docx](sediment://file_0000000044787206bd774aa59e4dae94)
+      </p>
+    </div>
+
+    <!-- 3. CA SHAH ALAM -->
+    <div class="team-member">
+      <h3>CA Shah Alam</h3>
+      <h4>Partner – Audit, Assurance & Indirect Tax</h4>
+      <p class="team-tags">
+        Statutory Audit • Tax Audit • GST Audit • Internal Controls
+      </p>
+      <p class="team-bio">
+        CA Shah Alam leads the Audit & Assurance practice of the firm, overseeing statutory audits under 
+        the Companies Act, tax audits under the Income Tax Act, GST audits, internal audits, stock audits and
+        branch audits of banks and institutions. He focuses on building robust systems, internal controls and
+        documentation so that clients remain fully compliant while also strengthening their financial reporting 
+        and governance frameworks.  [oai_citation:2‡SSARP-Overview.docx](sediment://file_0000000044787206bd774aa59e4dae94)
+      </p>
+    </div>
+
+    <!-- 4. OTHER TEAM MEMBERS (VERTICAL CARDS) -->
+    <h3 class="team-subheading">Core Execution Team</h3>
+
+    <div class="team-member">
+      <h3>Priyanshu Bhagat (B.Com)</h3>
+      <h4>GST Executive</h4>
+      <p class="team-tags">GST Returns • Reconciliation • Practical Compliance</p>
+      <p class="team-bio">
+        Handles end–to–end GST assignments – registrations, monthly/quarterly returns, reconciliations,
+        input tax credit working, and day–to–day practical compliance support for trading, service and industrial clients.
+      </p>
+    </div>
+
+    <div class="team-member">
+      <h3>Harsh Kabeer</h3>
+      <h4>Accounts Executive</h4>
+      <p class="team-tags">Bookkeeping • Tally • MIS Support</p>
+      <p class="team-bio">
+        Responsible for day–to–day accounting, ledger scrutiny, basic reconciliations and preparation of MIS
+        so that management and partners can rely on clean, updated books of account.
+      </p>
+    </div>
+
+    <div class="team-member">
+      <h3>Ravi Kumar (CA Final)</h3>
+      <h4>Audit & Direct Tax Team</h4>
+      <p class="team-tags">Tax Working • Audit Support • Compliance</p>
+      <p class="team-bio">
+        Actively supports audits, tax computations and compliance workings relating to Income Tax and GST,
+        assisting partners in handling detailed scrutiny and assessments.
+      </p>
+    </div>
+
+    <div class="team-member">
+      <h3>Rashid Ansari</h3>
+      <h4>Accounts & Compliance Support</h4>
+      <p class="team-tags">Data Compilation • Return Support</p>
+      <p class="team-bio">
+        Assists in data compilation, backend coordination and follow–ups required for smooth filing of 
+        various statutory returns and reports across clients.
+      </p>
+    </div>
+
+    <div class="team-member">
+      <h3>Fatima</h3>
+      <h4>Administration & Client Coordination</h4>
+      <p class="team-tags">Client Communication • Office Administration</p>
+      <p class="team-bio">
+        Manages client communication, meeting scheduling, documentation coordination and overall front–office
+        administration to ensure a smooth experience for visitors and clients.
+      </p>
+    </div>
+
+    <p class="team-note">
+      Along with the above core team, SSARP & ASSOCIATES also collaborates with a wider network of professionals
+      on specialised assignments, ensuring that clients get comprehensive solutions under one roof.  [oai_citation:3‡SSARP-Overview.docx](sediment://file_0000000044787206bd774aa59e4dae94)
+    </p>
   </div>
-
-  <script>
-    // WhatsApp widget logic
-    (function () {
-      const openBtn = document.getElementById("openChatBtn");
-      const panel = document.getElementById("chatPanel");
-      const startBtn = document.getElementById("startChatBtn");
-      const nameInput = document.getElementById("chatName");
-      const phoneInput = document.getElementById("chatPhone");
-
-      openBtn.addEventListener("click", () => {
-        panel.classList.toggle("hidden");
-      });
-
-      startBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        const name = (nameInput.value || "").trim();
-        const phone = (phoneInput.value || "").trim();
-
-        if (!phone) {
-          alert("Please enter your mobile number before starting chat.");
-          phoneInput.focus();
-          return;
-        }
-
-        const message =
-          "Hi, I am " +
-          (name || "a new client") +
-          " and my mobile number is " +
-          phone +
-          ". I am contacting you from ssarpca.com.";
-
-        // Change this number if you want another WhatsApp:
-        const whatsappNumber = "918709348748"; // 91 + 8709348748
-
-        const url =
-          "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message);
-        window.open(url, "_blank");
-      });
-    })();
-  </script>
-</body>
-</html>
+</section>
