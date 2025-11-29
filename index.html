@@ -2,642 +2,830 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SSARP & ASSOCIATES | Chartered Accountants</title>
+  <title>SSARP & Associates | Chartered Accountants</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content="SSARP & ASSOCIATES – Chartered Accountants in Patna & Araria providing services in Direct Tax, GST, Corporate Law, Audit, Compliance and Business Advisory."
-  />
 
-  <!-- Optional external CSS if you already have style.css -->
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Page specific styles (ye style.css ke upar override karega) -->
   <style>
     :root {
-      --primary:#003366;
-      --primary-light:#0056a3;
-      --accent:#f5b700;
-      --bg:#f5f7fb;
-      --text:#222;
-    }
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.6;
-    }
-    a{text-decoration:none;color:var(--primary-light);}
-    header{
-      background:var(--primary);
-      color:#fff;
-      position:sticky;
-      top:0;
-      z-index:100;
-    }
-    .nav{
-      max-width:1100px;
-      margin:0 auto;
-      padding:0.6rem 1rem;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:1rem;
-    }
-    .brand{
-      font-weight:700;
-      letter-spacing:0.04em;
-      font-size:0.95rem;
-    }
-    .brand span{display:block;font-size:0.75rem;font-weight:400;opacity:.85;}
-    .nav-links{
-      display:flex;
-      flex-wrap:wrap;
-      gap:0.75rem;
-      font-size:0.85rem;
-    }
-    .nav-links a{
-      color:#e9f3ff;
-      padding:0.25rem 0.5rem;
-      border-radius:999px;
-    }
-    .nav-links a:hover{
-      background:rgba(255,255,255,0.12);
+      --primary: #083d77;
+      --primary-light: #0b5fb3;
+      --accent: #f4a261;
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --card: #020617;
+      --border: #1f2933;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --danger: #ef4444;
+      --success: #22c55e;
     }
 
-    .hero{
-      background:linear-gradient(135deg,#003366,#001a33);
-      color:#fff;
-      padding:2.5rem 1.25rem 2rem;
-    }
-    .hero-inner{
-      max-width:1100px;
-      margin:0 auto;
-      display:grid;
-      grid-template-columns:minmax(0,2fr) minmax(0,1.4fr);
-      gap:2rem;
-      align-items:center;
-    }
-    .badge{
-      display:inline-block;
-      padding:0.2rem 0.75rem;
-      border-radius:999px;
-      background:rgba(255,255,255,0.12);
-      font-size:0.75rem;
-      margin-bottom:0.75rem;
-    }
-    .hero h1{
-      font-size:1.9rem;
-      margin-bottom:0.75rem;
-    }
-    .hero p{
-      font-size:0.95rem;
-      max-width:32rem;
-      opacity:0.95;
-    }
-    .hero-actions{
-      margin-top:1.25rem;
-      display:flex;
-      flex-wrap:wrap;
-      gap:0.75rem;
-    }
-    .btn{
-      border-radius:999px;
-      border:none;
-      cursor:pointer;
-      padding:0.55rem 1.2rem;
-      font-size:0.85rem;
-      display:inline-flex;
-      align-items:center;
-      gap:0.4rem;
-      text-decoration:none;
-      transition:transform .1s ease,box-shadow .1s ease;
-      white-space:nowrap;
-    }
-    .btn-primary{
-      background:var(--accent);
-      color:#222;
-      box-shadow:0 4px 10px rgba(0,0,0,.25);
-    }
-    .btn-outline{
-      background:transparent;
-      color:#fff;
-      border:1px solid rgba(255,255,255,.4);
-    }
-    .btn:hover{
-      transform:translateY(-1px);
-      box-shadow:0 6px 16px rgba(0,0,0,.25);
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    main{
-      max-width:1100px;
-      margin:0 auto;
-      padding:1.5rem 1rem 2.5rem;
-    }
-    section{
-      margin-bottom:2rem;
-      background:#fff;
-      border-radius:14px;
-      padding:1.4rem 1.25rem;
-      box-shadow:0 8px 22px rgba(15,23,42,0.06);
-    }
-    section h2{
-      font-size:1.1rem;
-      margin-bottom:0.75rem;
-      color:var(--primary);
-    }
-    .two-col{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:1.25rem;
-    }
-    .card{
-      border-radius:12px;
-      border:1px solid #e2e8f0;
-      padding:0.9rem 0.9rem;
-      background:#fdfefe;
-    }
-    .card h3{
-      font-size:0.98rem;
-      margin-bottom:0.35rem;
-      color:var(--primary);
-    }
-    .card p{font-size:0.85rem;margin-bottom:0.25rem;}
-    .office-meta{
-      font-size:0.8rem;
-      margin-top:0.35rem;
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #020617 100%);
+      color: var(--text);
+      line-height: 1.6;
     }
 
-    .contact-grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:1rem;
-      font-size:0.85rem;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .list-columns{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:0.5rem 1.5rem;
-      font-size:0.85rem;
-    }
-    .list-columns li{margin-bottom:0.2rem;}
-
-    .team-grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:0.9rem;
-    }
-    .team-card h3{
-      font-size:0.9rem;
-      margin-bottom:0.1rem;
-    }
-    .team-card span{
-      font-size:0.78rem;
-      opacity:0.75;
+    img {
+      max-width: 100%;
+      display: block;
     }
 
-    .updates-list article{
-      padding:0.6rem 0;
-      border-top:1px dashed #e2e8f0;
-      font-size:0.85rem;
-    }
-    .updates-list article:first-child{border-top:none;}
-    .updates-list h3{
-      font-size:0.9rem;
-      margin-bottom:0.2rem;
-      color:var(--primary);
-    }
-    .updates-list time{
-      font-size:0.75rem;
-      opacity:.7;
-      display:block;
-      margin-bottom:0.25rem;
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    .video-note{
-      font-size:0.8rem;
-      opacity:.8;
-      margin-top:0.35rem;
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to right, rgba(15,23,42,0.95), rgba(8,47,73,0.95));
+      border-bottom: 1px solid rgba(148,163,184,0.25);
     }
 
-    .tools-list li{
-      font-size:0.85rem;
-      margin-bottom:0.4rem;
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.6rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
     }
 
-    form.appointment-form{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:0.75rem;
-      font-size:0.85rem;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
     }
-    form.appointment-form label{
-      display:block;
-      margin-bottom:0.15rem;
-      font-weight:500;
-    }
-    form.appointment-form input,
-    form.appointment-form select,
-    form.appointment-form textarea{
-      width:100%;
-      padding:0.4rem 0.45rem;
-      border-radius:6px;
-      border:1px solid #cbd5e1;
-      font-size:0.85rem;
-    }
-    form.appointment-form textarea{
-      min-height:80px;
-      resize:vertical;
-    }
-    form .full-row{grid-column:1 / -1;}
 
-    footer{
-      background:#020617;
-      color:#cbd5f5;
-      padding:1.4rem 1rem 1rem;
-      font-size:0.8rem;
-      margin-top:0.5rem;
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 10% 0, #38bdf8, #0f172a);
+      color: #e0f2fe;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 0 0 1px rgba(56,189,248,0.5);
     }
-    .footer-inner{
-      max-width:1100px;
-      margin:0 auto;
-      display:grid;
-      grid-template-columns:2fr 1.4fr;
-      gap:1.25rem;
+
+    .brand-text-main {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
     }
-    .footer-inner a{color:#e5f0ff;}
-    .footer-meta{margin-top:0.4rem;font-size:0.78rem;opacity:.8;}
+
+    .brand-text-sub {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+
+    .nav-links a {
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: #e5e7eb;
+      border-color: rgba(148,163,184,0.5);
+      background: radial-gradient(circle at top, rgba(51,65,85,0.6), rgba(15,23,42,0.9));
+    }
+
+    .nav-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.25rem;
+      font-size: 0.78rem;
+    }
+
+    .nav-cta-primary {
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      background: linear-gradient(to right, #16a34a, #22c55e);
+      color: #052e16;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .nav-cta-secondary {
+      color: var(--muted);
+      display: flex;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    /* Layout */
+    main {
+      flex: 1;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.8rem 1.2rem;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
+      padding-top: 1.8rem;
+    }
+
+    .hero-tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15,118,110,0.2);
+      color: #6ee7b7;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(45,212,191,0.5);
+    }
+
+    .ca-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.55);
+      background: radial-gradient(circle at 0 0, rgba(59,130,246,0.9), rgba(15,23,42,0.92));
+      box-shadow: 0 0 0 1px rgba(30,64,175,0.7);
+    }
+
+    .ca-pill-logo {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 2px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: #0b1120;
+    }
+
+    .ca-pill-text {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #c7d2fe;
+    }
+
+    .hero-title {
+      margin-top: 1rem;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-title span {
+      color: #93c5fd;
+    }
+
+    .hero-sub {
+      margin-top: 0.75rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 520px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+    }
+
+    .badge {
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.4);
+      color: #e5e7eb;
+      background: rgba(15,23,42,0.9);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1.4rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #22c55e, #4ade80);
+      color: #052e16;
+      font-weight: 600;
+      font-size: 0.88rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+    }
+
+    .btn-secondary {
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.9);
+      color: #e5e7eb;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+    }
+
+    .hero-contact-line {
+      margin-top: 0.9rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-contact-line strong {
+      color: #e5e7eb;
+    }
+
+    .hero-right {
+      background: radial-gradient(circle at 0 0, rgba(56,189,248,0.3), rgba(15,23,42,0.95));
+      border-radius: 18px;
+      padding: 1rem;
+      border: 1px solid rgba(148,163,184,0.3);
+      box-shadow: 0 25px 60px rgba(15,23,42,0.9);
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .offices-card {
+      background: rgba(15,23,42,0.9);
+      border-radius: 12px;
+      padding: 0.85rem;
+      border: 1px solid rgba(148,163,184,0.35);
+      display: grid;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+    }
+
+    .offices-card h3 {
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .office-list {
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .office-item {
+      padding: 0.45rem 0.55rem;
+      border-radius: 10px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(55,65,81,0.7);
+    }
+
+    .office-title {
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    .office-meta {
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .office-phone {
+      margin-top: 0.16rem;
+      font-size: 0.78rem;
+    }
+
+    .video-card {
+      border-radius: 12px;
+      border: 1px dashed rgba(148,163,184,0.6);
+      padding: 0.7rem;
+      background: radial-gradient(circle at 0 0, rgba(59,130,246,0.35), rgba(15,23,42,0.98));
+    }
+
+    .video-title {
+      font-size: 0.82rem;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+
+    .video-frame {
+      position: relative;
+      padding-top: 56.25%;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #020617;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Sections below Hero */
+    .section-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      max-width: 640px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .two-col {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      background: rgba(15,23,42,0.95);
+      border-radius: 14px;
+      padding: 1rem;
+      border: 1px solid rgba(148,163,184,0.35);
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    }
+
+    .service-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .service-name {
+      margin-top: 0.3rem;
+      font-size: 0.96rem;
+      font-weight: 600;
+    }
+
+    .service-desc {
+      margin-top: 0.35rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .tools-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.6rem;
+      font-size: 0.82rem;
+    }
+
+    .tag-link {
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.9);
+      color: #e5e7eb;
+    }
+
+    .contact-grid {
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    }
+
+    .contact-line {
+      font-size: 0.85rem;
+    }
+
+    .contact-highlight {
+      font-weight: 600;
+      color: #93c5fd;
+    }
+
+    .contact-box {
+      background: radial-gradient(circle at 0 0, rgba(52,211,153,0.3), rgba(15,23,42,0.98));
+      border-radius: 14px;
+      padding: 0.9rem;
+      border: 1px solid rgba(74,222,128,0.6);
+      font-size: 0.82rem;
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .contact-mini-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #a7f3d0;
+    }
+
+    .contact-mini-main {
+      font-weight: 600;
+    }
+
+    .whatsapp-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      background: #22c55e;
+      color: #052e16;
+      font-weight: 600;
+      margin-top: 0.4rem;
+    }
+
+    footer {
+      border-top: 1px solid rgba(51,65,85,0.9);
+      margin-top: 2rem;
+      background: #020617;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1.2rem 1.5rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
 
     /* Responsive */
-    @media (max-width:900px){
-      .hero-inner{
-        grid-template-columns:minmax(0,1fr);
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
       }
-      .contact-grid,
+
+      .hero-right {
+        order: -1;
+      }
+
       .two-col,
-      .team-grid,
-      form.appointment-form{
-        grid-template-columns:minmax(0,1fr);
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
       }
-      .footer-inner{
-        grid-template-columns:minmax(0,1fr);
+
+      .nav {
+        flex-wrap: wrap;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .nav-cta {
+        align-items: flex-start;
       }
     }
   </style>
 </head>
 <body>
+<div class="page">
+  <header>
+    <div class="nav">
+      <a href="index.html" class="brand">
+        <div class="brand-mark">CA</div>
+        <div>
+          <div class="brand-text-main">SSARP &amp; ASSOCIATES</div>
+          <div class="brand-text-sub">Chartered Accountants • Since 2012</div>
+        </div>
+      </a>
 
-<header>
-  <nav class="nav">
-    <div class="brand">
-      SSARP & ASSOCIATES
-      <span>Chartered Accountants</span>
-    </div>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#offices">Offices</a>
-      <a href="#team">Team</a>
-      <a href="#updates">Updates</a>
-      <a href="#tools">Tools</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-</header>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="team.html">Team</a>
+        <a href="#services">Services</a>
+        <a href="updates.html">Updates</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-<section class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="badge">Patna • Araria • Integrated Tax & Corporate Compliance</div>
-      <h1>Integrated CA, Tax & Corporate Compliance Partner for Your Business</h1>
-      <p>
-        SSARP & ASSOCIATES is a Patna-based CA firm helping businesses with Direct Tax,
-        GST, Corporate Law, Audit, Valuation, Documentation and ongoing compliance – so
-        you can focus on growth while we handle the regulations.
+      <div class="nav-cta">
+        <a class="nav-cta-primary" href="tel:+918709348748">Call: 87093 48748</a>
+        <div class="nav-cta-secondary">
+          <span>Email: srezaco@gmail.com</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="section hero">
+      <div>
+        <div class="hero-tagline">
+          <span>End-to-End Financial &amp; Corporate Services</span>
+        </div>
+
+        <div style="margin-top:0.5rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <div class="ca-pill">
+            <div class="ca-pill-logo">CA</div>
+            <div class="ca-pill-text">Under One Roof – Multiple Services</div>
+          </div>
+        </div>
+
+        <h1 class="hero-title">
+          Strategic <span>Tax, Audit &amp; Corporate Law</span> support for growing businesses.
+        </h1>
+
+        <p class="hero-sub">
+          We help entrepreneurs, corporates and professionals stay compliant and future-ready –
+          from business setup and digital accounting to complex Income Tax / GST litigation,
+          corporate restructuring and cross-border advisory.
+        </p>
+
+        <div class="hero-badges">
+          <span class="badge">Direct Tax &amp; International Tax</span>
+          <span class="badge">GST Advisory &amp; Litigation</span>
+          <span class="badge">Corporate Compliance &amp; ROC</span>
+          <span class="badge">Virtual CFO &amp; Valuation</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="https://wa.me/919955778482" class="btn-primary">
+            WhatsApp Video Consult
+          </a>
+          <a href="#contact" class="btn-secondary">
+            Book an Appointment
+          </a>
+        </div>
+
+        <p class="hero-contact-line">
+          Primary contact: <strong>+91 87093 48748</strong> •
+          Email: <strong>srezaco@gmail.com</strong>
+        </p>
+      </div>
+
+      <aside class="hero-right">
+        <div class="offices-card">
+          <h3>Our Offices</h3>
+          <div class="office-list">
+            <div class="office-item">
+              <div class="office-title">Head Office – Patna</div>
+              <div class="office-meta">
+                301A, The Orchid Mall, Boring Road, Patna – 800013<br/>
+                (Opposite A.N. College)
+              </div>
+              <div class="office-phone">
+                📞 +91 99557 78451
+              </div>
+            </div>
+            <div class="office-item">
+              <div class="office-title">Branch Office – Araria</div>
+              <div class="office-meta">
+                65, Jahangir Nagar, NH-27/57, near ARG Hotel,<br/>
+                Araria – 854311
+              </div>
+              <div class="office-phone">
+                📞 +91 99557 78482
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-title">Inside SSARP – 30 second glimpse</div>
+          <div class="video-frame">
+            <!-- YouTube Shorts embed -->
+            <iframe
+              src="https://www.youtube.com/embed/BV9BPIKqNYY"
+              title="SSARP & Associates Office"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Core Services -->
+    <section id="services" class="section">
+      <h2 class="section-title">Core Services</h2>
+      <p class="section-sub">
+        We operate as an integrated <strong>Financial, Tax &amp; Corporate Compliance</strong>
+        platform – so that you focus on business growth while we handle the statutory, legal and reporting layer.
       </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="tel:+918709348748">📞 Call Primary: 8709348748</a>
-        <a class="btn btn-outline" href="mailto:srezaco@gmail.com">✉️ Email: srezaco@gmail.com</a>
-        <a class="btn btn-outline"
-           href="https://wa.me/919955778482?text=I%20would%20like%20to%20book%20a%20video%20consultation"
-           target="_blank">📹 WhatsApp Video Consult</a>
-      </div>
-    </div>
-    <div>
-      <div class="card">
-        <h3>Same Roof. Multiple Services.</h3>
-        <p>• Direct Tax, Assessments & Appeals</p>
-        <p>• GST Advisory, Returns & Litigation</p>
-        <p>• Company Law & ROC Compliance</p>
-        <p>• Statutory / Tax / Internal Audits</p>
-        <p>• Business Structuring & Valuation</p>
-        <p>• Project Reports & Virtual CFO</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<main>
+      <div class="grid services-grid">
+        <article class="card">
+          <div class="service-label">Business Launch</div>
+          <div class="service-name">Incorporation &amp; Registration</div>
+          <p class="service-desc">
+            Company, LLP, Section-8, Trust, Society, 12AA &amp; 80G, GST, MSME, FSSAI,
+            IEC and allied registrations – including advisory on optimum structure.
+          </p>
+        </article>
 
-  <!-- OFFICES -->
-  <section id="offices">
-    <h2>Our Offices</h2>
-    <div class="two-col">
+        <article class="card">
+          <div class="service-label">Accounting &amp; Tax</div>
+          <div class="service-name">Digital Accounting, GST &amp; Income Tax</div>
+          <p class="service-desc">
+            Cloud-ready bookkeeping, GST returns and reconciliations, TDS, advance tax,
+            tax planning, scrutiny handling and representation before authorities.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="service-label">Audit &amp; Assurance</div>
+          <div class="service-name">Statutory, Tax &amp; Internal Audit</div>
+          <p class="service-desc">
+            Statutory audits under Companies Act, Tax audits, bank &amp; stock audits, trust and society audits,
+            and internal controls review for process improvement.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="service-label">Corporate Law</div>
+          <div class="service-name">ROC Compliance &amp; Legal Drafting</div>
+          <p class="service-desc">
+            Annual filings, XBRL, event-based ROC work, search reports and
+            drafting of MOUs, shareholder agreements, JV agreements, employment &amp; commercial contracts.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="service-label">Strategic</div>
+          <div class="service-name">Virtual CFO &amp; Transaction Support</div>
+          <p class="service-desc">
+            MIS, budgeting, valuations, deal structuring, financial models for banks/investors
+            and hand-holding during due diligence or funding rounds.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="service-label">Certificates</div>
+          <div class="service-name">All Regulatory Certifications</div>
+          <p class="service-desc">
+            15CA/CB, net worth, turnover, export/import related certificates and documentation support
+            for banks, visa and regulatory submissions.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Tools / Calculators -->
+    <section class="section">
+      <h2 class="section-title">Smart Tools &amp; Calculators</h2>
+      <p class="section-sub">
+        Use our in-house calculators to quickly estimate tax impact and loan EMIs.
+        These are for guidance only – for final planning, speak to us.
+      </p>
+
       <div class="card">
-        <h3>Head Office – Patna</h3>
-        <p><strong>SSARP & ASSOCIATES</strong></p>
-        <p>301A, The Orchid Mall, Boring Road,</p>
-        <p>Opp. A.N. College, Patna – 800013</p>
-        <p class="office-meta">📞 <a href="tel:+919955778451">9955778451</a></p>
-        <p class="office-meta">
-          📍
-          <!-- Yahan apna exact Google Maps link paste kar sakte hain -->
-          <a href="#" target="_blank">View on Google Maps</a>
+        <p style="font-size:0.85rem;">
+          👉 Click below to open the tools:
         </p>
+        <div class="tools-links">
+          <a href="tds-calculator.html" class="tag-link">TDS Calculator (Income Tax)</a>
+          <a href="emi-calculator.html" class="tag-link">EMI &amp; Pre-payment Calculator</a>
+          <a href="updates.html#videos" class="tag-link">Knowledge Videos &amp; Tax Updates</a>
+        </div>
       </div>
-      <div class="card">
-        <h3>Branch Office – Araria</h3>
-        <p>65, Jahangir Nagar, on NH-27/57,</p>
-        <p>Near ARG Hotel, Araria – 854311</p>
-        <p class="office-meta">📞 <a href="tel:+919955778482">9955778482</a></p>
-        <p class="office-meta">
-          📍
-          <a href="#" target="_blank">View on Google Maps</a>
-        </p>
-      </div>
-    </div>
+    </section>
 
-    <div style="margin-top:1rem" class="contact-grid">
-      <div class="card">
-        <h3>Primary Contact</h3>
-        <p>📞 <strong><a href="tel:+918709348748">8709348748</a></strong></p>
-        <p>✉️ <a href="mailto:srezaco@gmail.com">srezaco@gmail.com</a></p>
-      </div>
-      <div class="card">
-        <h3>Firm Email</h3>
-        <p>✉️ <a href="mailto:info@ssarpca.com">info@ssarpca.com</a></p>
-        <p>Use for invoices, documents and formal communication.</p>
-      </div>
-      <div class="card">
-        <h3>WhatsApp Video Consultation</h3>
-        <p>📱 WhatsApp: <strong>9955778482</strong></p>
-        <p><a href="https://wa.me/919955778482?text=I%20would%20like%20to%20book%20a%20video%20consultation"
-              target="_blank">Click here to start chat</a> and then tap the video icon.</p>
-      </div>
-    </div>
-  </section>
+    <!-- Contact / Appointment -->
+    <section id="contact" class="section">
+      <h2 class="section-title">Book an Appointment</h2>
+      <p class="section-sub">
+        Share basic details and preferred slot; our team will confirm the appointment over WhatsApp or call.
+      </p>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <h2>About SSARP & ASSOCIATES</h2>
-    <p style="font-size:0.9rem;">
-      Founded in 2012 by CA Mohammad Saem Reza, SSARP & ASSOCIATES is a professionally
-      managed Chartered Accountancy firm based in Patna, Bihar. Over the years we have grown
-      into an integrated service platform providing Accounting, Taxation, Audit, Company Law,
-      Management Consultancy and Documentation services to manufacturing, trading, financial
-      and service sector clients – including Indian entities and international corporations.
-    </p>
-    <p style="font-size:0.9rem;margin-top:0.4rem;">
-      Our aim is simple – <strong>timely, practical and compliant solutions</strong> with
-      a strong focus on documentation, representation and long-term relationships.
-    </p>
-  </section>
+      <div class="grid contact-grid">
+        <div class="card">
+          <p class="contact-line">
+            📞 <span class="contact-highlight">Primary Helpline:</span> +91 87093 48748
+          </p>
+          <p class="contact-line">
+            ✉️ <span class="contact-highlight">Email:</span> srezaco@gmail.com
+          </p>
+          <p class="contact-line">
+            📍 <span class="contact-highlight">Patna HO:</span>
+            301A, The Orchid Mall, Boring Road, Patna – 800013 (Opp. A.N. College)
+          </p>
+          <p class="contact-line">
+            📍 <span class="contact-highlight">Araria BO:</span>
+            65, Jahangir Nagar, NH-27/57, near ARG Hotel, Araria – 854311
+          </p>
 
-  <!-- SERVICES -->
-  <section id="services">
-    <h2>Core Services</h2>
-    <div class="list-columns">
-      <ul>
-        <li>Income Tax planning, return filing & assessments</li>
-        <li>Representation before Income Tax & GST authorities</li>
-        <li>GST registration, returns, refund & litigation support</li>
-        <li>Statutory, Tax, Internal & Management Audits</li>
-        <li>Accounting system design & Virtual CFO services</li>
-      </ul>
-      <ul>
-        <li>Company/LLP/NGO registration & ROC compliance</li>
-        <li>FEMA, foreign remittance & 15CA/15CB certifications</li>
-        <li>Project report & financial modelling for funding</li>
-        <li>Business valuation & transaction support</li>
-        <li>Commercial & legal agreements drafting</li>
-      </ul>
-    </div>
-  </section>
+          <p style="margin-top:0.75rem; font-size:0.8rem; color:var(--muted);">
+            For a quick consultation, you can also directly start a WhatsApp video call to our Araria office line:
+          </p>
+          <a href="https://wa.me/919955778482?text=Hi%20CA%20Saem%2C%20I%20would%20like%20to%20book%20a%20consultation."
+             class="whatsapp-link">
+            WhatsApp Video: +91 99557 78482
+          </a>
+        </div>
 
-  <!-- TEAM -->
-  <section id="team">
-    <h2>Our Team</h2>
-    <div class="team-grid">
-      <div class="card team-card">
-        <h3>CA Mohammad Saem Reza</h3>
-        <span>Founder & Managing Partner</span>
-        <p>Direct Tax, GST, International Tax, Valuation & High-value litigation.</p>
+        <div class="contact-box">
+          <div class="contact-mini-label">Simple appointment form (manual email)</div>
+          <div class="contact-mini-main">
+            Send us an email with these fields:
+          </div>
+          <ul style="margin-left:1rem; margin-top:0.35rem; padding-left:0.4rem;">
+            <li>Name &amp; Organisation</li>
+            <li>Mobile number</li>
+            <li>Service required (IT, GST, ROC, Audit, Other)</li>
+            <li>Preferred date &amp; time (with time-zone)</li>
+          </ul>
+          <p style="margin-top:0.35rem;">
+            ✉️ Email to: <strong>srezaco@gmail.com</strong> or
+            <strong>info@ssarpca.com</strong>
+          </p>
+          <p style="font-size:0.75rem; color:#bbf7d0;">
+            (Future version: we can connect this with Google Form / Calendly for auto calendar booking.)
+          </p>
+        </div>
       </div>
-      <div class="card team-card">
-        <h3>S. Emam</h3>
-        <span>CS, LLB, B.Com – Head: Corporate Compliance & Legal Drafting</span>
-        <p>Company law, ROC filings, corporate governance, agreements and legal documentation.</p>
-      </div>
-      <div class="card team-card">
-        <h3>CA Shah Alam</h3>
-        <span>Partner – Direct Tax, Audit & GST</span>
-        <p>Statutory, tax & internal audits, tax advisory and GST matters.</p>
-      </div>
-      <div class="card team-card">
-        <h3>Priyanshu Bhagat</h3>
-        <span>B.Com – GST Expert</span>
-        <p>GST registrations, returns, reconciliations and advisory.</p>
-      </div>
-      <div class="card team-card">
-        <h3>Harsh Kabeer</h3>
-        <span>Accountant</span>
-        <p>Day-to-day accounting and compliance support.</p>
-      </div>
-      <div class="card team-card">
-        <h3>Ravi Kumar</h3>
-        <span>CA Final – Audit & Tax</span>
-        <p>Audit support, direct tax working and documentation.</p>
-      </div>
-      <div class="card team-card">
-        <h3>Rashid Ansari</h3>
-        <span>Accounts & Compliance</span>
-        <p>Books, reconciliations and backend compliance.</p>
-      </div>
-      <div class="card team-card">
-        <h3>Fatima</h3>
-        <span>Admin & Client Coordination</span>
-        <p>Scheduling, documentation and client support.</p>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- VIDEO CONSULTATION -->
-  <section id="video">
-    <h2>Video Consultation</h2>
-    <p style="font-size:0.9rem;">
-      For out-station or busy clients, we offer consultation via WhatsApp video call.
-    </p>
-    <p style="margin-top:0.3rem;">
-      📱 WhatsApp: <strong>9955778482</strong>
-    </p>
-    <p class="video-note">
-      Click the button below – chat window open hoga, wahan se aap video icon dabaa sakte hain.
-    </p>
-    <div style="margin-top:0.75rem;">
-      <a class="btn btn-primary"
-         href="https://wa.me/919955778482?text=I%20would%20like%20to%20book%20a%20video%20consultation"
-         target="_blank">Start WhatsApp Chat</a>
-    </div>
-  </section>
-
-  <!-- APPOINTMENT FORM -->
-  <section id="appointment">
-    <h2>Book an Appointment</h2>
-    <p style="font-size:0.85rem;margin-bottom:0.6rem;">
-      Fill this basic form – a mail draft will open with the details and we will confirm time
-      over call / WhatsApp. (Later agar aap chahein to hum isko Formspree / backend se integrate bhi kar sakte hain.)
-    </p>
-
-    <form class="appointment-form"
-      action="mailto:srezaco@gmail.com"
-      method="POST"
-      enctype="text/plain">
+  <footer>
+    <div class="footer-inner">
       <div>
-        <label for="name">Full Name</label>
-        <input id="name" name="Name" required />
+        © <span id="year"></span> SSARP &amp; Associates, Chartered Accountants. All rights reserved.
       </div>
-      <div>
-        <label for="phone">Mobile</label>
-        <input id="phone" name="Mobile" required />
-      </div>
-      <div>
-        <label for="email">Email</label>
-        <input id="email" name="Email" />
-      </div>
-      <div>
-        <label for="office">Preferred Office</label>
-        <select id="office" name="Preferred Office">
-          <option value="Patna">Patna</option>
-          <option value="Araria">Araria</option>
-          <option value="Video">Video Consultation</option>
-        </select>
-      </div>
-      <div class="full-row">
-        <label for="service">Service / Issue</label>
-        <input id="service" name="Service / Issue" placeholder="Income Tax Scrutiny, GST, ROC, Audit, Project Report, etc." />
-      </div>
-      <div class="full-row">
-        <label for="message">Brief Background</label>
-        <textarea id="message" name="Details"></textarea>
-      </div>
-      <div class="full-row" style="margin-top:0.4rem;">
-        <button class="btn btn-primary" type="submit">Send Appointment Request</button>
-      </div>
-    </form>
-  </section>
-
-  <!-- UPDATES / BLOG -->
-  <section id="updates">
-    <h2>Income Tax & GST Updates</h2>
-    <p style="font-size:0.8rem;margin-bottom:0.6rem;">
-      Naya update add karne ke liye, sirf ek <code>&lt;article&gt;</code> block copy karke niche paste kar dijiye
-      aur heading + date + text change kar dijiye.
-    </p>
-    <div class="updates-list">
-      <article>
-        <h3>Coming Soon – Latest Direct Tax & GST Notes</h3>
-        <time>—</time>
-        <p>Yahan par aap apne short notes, FAQs, compliance checklist ya client circulars daal sakte hain.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- VIDEOS -->
-  <section id="videos">
-    <h2>Office / Knowledge Videos</h2>
-    <p style="font-size:0.85rem;margin-bottom:0.4rem;">
-      Aap apne office tour, explainer ya seminar videos ko YouTube pe upload karke yahan embed kar sakte hain.
-    </p>
-    <p style="font-size:0.8rem;">
-      Example (YouTube embed placeholder):
-    </p>
-    <div style="margin-top:0.6rem;">
-      <!-- Yahan apna YouTube video link ka embed code paste karein -->
-      <iframe width="100%" height="220"
-        src="https://www.youtube.com/embed/VIDEO_ID_HERE"
-        title="YouTube video"
-        frameborder="0"
-        allowfullscreen></iframe>
-    </div>
-  </section>
-
-  <!-- TOOLS / CALCULATORS -->
-  <section id="tools">
-    <h2>Online Tools & Calculators</h2>
-    <p style="font-size:0.85rem;margin-bottom:0.5rem;">
-      Agar aap HTML based EMI / TDS / Tax calculators banate hain, unke liye ek-ek alag HTML
-      file (e.g. <code>emi-calculator.html</code>) bana kar repo me add karein. Fir unke link
-      yahan list kar sakte hain.
-    </p>
-    <ul class="tools-list">
-      <li><a href="emi-calculator.html">EMI Calculator (sample link)</a> – create this file later.</li>
-      <li><a href="tds-calculator.html">TDS Calculator (sample link)</a></li>
-      <li><a href="tax-planner.html">Basic Tax Planner (sample link)</a></li>
-    </ul>
-  </section>
-
-  <!-- CONTACT SUMMARY -->
-  <section id="contact">
-    <h2>Quick Contact</h2>
-    <div class="contact-grid">
-      <div class="card">
-        <h3>Primary</h3>
-        <p>📞 <strong><a href="tel:+918709348748">8709348748</a></strong></p>
-        <p>✉️ <a href="mailto:srezaco@gmail.com">srezaco@gmail.com</a></p>
-      </div>
-      <div class="card">
-        <h3>Head Office – Patna</h3>
-        <p>301A, The Orchid Mall, Boring Road,</p>
-        <p>Opp. A.N. College, Patna – 800013</p>
-        <p>📞 <a href="tel:+919955778451">9955778451</a></p>
-      </div>
-      <div class="card">
-        <h3>Branch Office – Araria</h3>
-        <p>65, Jahangir Nagar, NH-27/57,</p>
-        <p>Near ARG Hotel, Araria – 854311</p>
-        <p>📞 <a href="tel:+919955778482">9955778482</a></p>
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="team.html">Team</a>
+        <a href="updates.html">Updates</a>
+        <a href="#top">Back to top</a>
       </div>
     </div>
-  </section>
+  </footer>
+</div>
 
-</main>
-
-<footer>
-  <div class="footer-inner">
-    <div>
-      <strong>SSARP & ASSOCIATES – Chartered Accountants</strong>
-      <div class="footer-meta">
-        Integrated services in Direct Tax, GST, Corporate Law, Audit, Valuation & Compliance.
-        This website is for information only and does not constitute professional advice.
-      </div>
-    </div>
-    <div>
-      <div>Primary: <a href="tel:+918709348748">+91-8709348748</a></div>
-      <div>Email: <a href="mailto:srezaco@gmail.com">srezaco@gmail.com</a></div>
-      <div>Firm Email: <a href="mailto:info@ssarpca.com">info@ssarpca.com</a></div>
-      <div>WhatsApp Video: 9955778482</div>
-    </div>
-  </div>
-  <div style="margin-top:0.7rem;text-align:center;font-size:0.75rem;opacity:.7;">
-    © <span id="year"></span> SSARP & ASSOCIATES. All rights reserved.
-  </div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</footer>
-
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
