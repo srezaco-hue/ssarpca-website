@@ -1,71 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <head>
-    <meta charset="UTF-8" />
-    <title>TDS Calculator Online | Income Tax TDS Calculator 2025-26</title>
-    <meta name="description" content="TDS Calculator for FY 2025-26 & AY 2026-27. Calculate monthly and yearly TDS as per Income Tax Act Section 192 for salaried employees."/>
-    <meta name="keywords" content="TDS calculator, Income tax calculator India, TDS deduction calculator, salary tds calculator, section 192 calculator"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="index, follow"/>
-
-    <!-- Canonical -->
-    <link rel="canonical" href="https://www.ssarpca.com/tds-calculator.html"/>
-
-    <!-- FAQ Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [{
-            "@type": "Question",
-            "name": "What is TDS?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "TDS means Tax Deducted at Source. This calculator helps you compute TDS under Section 192."
-            }
-        },{
-            "@type": "Question",
-            "name": "How to calculate TDS?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Enter your salary details in this calculator to compute TDS automatically as per the Income Tax Act."
-            }
-        }]
-    }
-    </script>
-</head>
-  <meta name="description" content="TDS Calculator AY 2025-26, AY 2026-27 | Auto Calculate Monthly TDS as per Section 192">
-<meta name="keywords" content="TDS calculator, Salary TDS, Section 192 TDS, Income Tax calculator">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.ssarpca.com/tds-calculator.html" />
-  <a href="tds-calculator.html" class="btn">TDS Calculator</a>
-<a href="emi-calculator.html" class="btn">EMI Calculator</a>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [{
-    "@type": "Question",
-    "name": "What is TDS?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "TDS means Tax Deducted at Source as per Income Tax Act. It is deducted on salary, interest, contract etc."
-    }
-  },{
-    "@type": "Question",
-    "name": "How to calculate TDS?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "You can use our free TDS calculator to calculate your accurate TDS instantly: https://www.ssarpca.com/tds-calculator.html"
-    }
-  }]
-}
-</script>
+  <!-- BASIC SEO -->
   <meta charset="UTF-8" />
-  <title>Smart TDS Calculator - Income Tax Act, 1961</title>
+  <title>TDS Calculator Online | Income Tax TDS Calculator 2025-26</title>
+  <meta name="description" content="Smart TDS Calculator for FY 2025-26 & AY 2026-27. Calculate TDS section-wise as per the Income Tax Act, 1961 with rates, thresholds, interest, surcharge, cess and late-fee estimates." />
+  <meta name="keywords" content="TDS calculator, Income tax TDS calculator India, TDS deduction calculator, salary TDS calculator, section 192 calculator, section 194C calculator, section 194J calculator, online TDS calculator" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.ssarpca.com/tds-calculator.html" />
 
+  <!-- FAQ SCHEMA FOR RICH RESULTS -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "What is TDS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TDS means Tax Deducted at Source as per Income Tax Act. It is deducted on salary, interest, contract payments and other specified transactions. This tool helps you compute TDS section-wise."
+      }
+    },{
+      "@type": "Question",
+      "name": "How to calculate TDS using this calculator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Select the relevant TDS section, nature of payment, enter payment amount and dates. The calculator automatically applies the applicable rate, higher rate checks under sections 206AA and 206AB, and computes interest and late fee estimates as per the Income Tax Act, 1961."
+      }
+    }]
+  }
+  </script>
+
+  <!-- PAGE STYLES -->
   <style>
     :root {
       --primary: #0f4c81;
@@ -472,7 +440,7 @@
   <header>
     <div>
       <h1>Smart TDS Calculator</h1>
-      <p>Section-wise TDS with nature-based rate selection, higher rate checks & due date calculation.</p>
+      <p>Section-wise TDS with nature-based rate selection, higher rate checks &amp; due date calculation.</p>
     </div>
     <span class="badge">TDS • Sections • 206AA • 206AB</span>
   </header>
@@ -613,7 +581,7 @@
 
         <div>
           <label>
-            Apply 4% Health & Education Cess?
+            Apply 4% Health &amp; Education Cess?
             <span class="info-icon" title="Generally on non-resident TDS; depends on facts.">i</span>
           </label>
           <div class="inline-group radio-group">
@@ -668,7 +636,7 @@
           <div class="stat-sub" id="dueDateInfoDisplay">Days remaining: –</div>
         </div>
         <div class="stat">
-          <div class="stat-title">Interest & Late Fee (Estimate)</div>
+          <div class="stat-title">Interest &amp; Late Fee (Estimate)</div>
           <div class="stat-value" id="interestDisplay">Interest: ₹ 0.00</div>
           <div class="stat-sub" id="penaltyDisplay">Late fee (234E) est.: ₹ 0.00</div>
         </div>
@@ -687,7 +655,7 @@
           <tr><td>Final Effective Rate</td><td id="finalRateRow">0.00%</td></tr>
           <tr><td>Basic TDS Amount</td><td id="basicTdsRow">₹ 0.00</td></tr>
           <tr><td>Surcharge Amount</td><td id="surchargeRow">₹ 0.00</td></tr>
-          <tr><td>Health & Education Cess</td><td id="cessRow">₹ 0.00</td></tr>
+          <tr><td>Health &amp; Education Cess</td><td id="cessRow">₹ 0.00</td></tr>
           <tr><td>Total TDS</td><td id="totalTdsRow">₹ 0.00</td></tr>
           <tr><td>Threshold Check</td><td id="thresholdRow">–</td></tr>
           <tr><td>Remark</td><td id="remarkRow">–</td></tr>
@@ -704,15 +672,15 @@
   <!-- Section Info & Due Dates -->
   <section class="card" style="margin-top:16px;">
     <div class="card-header">
-      <h2>Section Information & Compliance</h2>
-      <small>Nature-wise rates, thresholds & quarterly due dates</small>
+      <h2>Section Information &amp; Compliance</h2>
+      <small>Nature-wise rates, thresholds &amp; quarterly due dates</small>
     </div>
 
     <div class="form-grid" style="margin-bottom:8px;">
       <div>
         <div class="section-title">Selected Section Details</div>
         <div id="sectionInfoBox" class="alert info" style="min-height:90px;">
-          Select a TDS section to view description, nature-wise rate options & thresholds.
+          Select a TDS section to view description, nature-wise rate options &amp; thresholds.
         </div>
       </div>
       <div>
@@ -726,7 +694,7 @@
           </table>
         </div>
         <p class="muted" style="margin-top:4px;">
-          Q1: 31 July • Q2: 31 October • Q3: 31 January • Q4: 31 May (subject to changes/ extensions by CBDT).
+          Q1: 31 July • Q2: 31 October • Q3: 31 January • Q4: 31 May (subject to changes / extensions by CBDT).
         </p>
       </div>
     </div>
@@ -757,7 +725,7 @@
 
     <details>
       <summary>
-        Disclaimer & Guidance
+        Disclaimer &amp; Guidance
         <span class="summary-chevron">▼</span>
       </summary>
       <div style="margin-top:6px;">
@@ -765,7 +733,7 @@
           • This tool uses broadly indicative TDS rates and thresholds based on common understanding of Finance Act 2024-25.<br>
           • DTAA relief, special rates, exemptions, declarations (Form 15G/15H), lower/nil deduction certificates (197) etc. are not fully captured.<br>
           • Please treat this as a working / planning tool only. Always consult your Chartered Accountant / tax advisor
-            and refer to the Income Tax Act, 1961, Rules & latest CBDT notifications before finalising decisions.
+            and refer to the Income Tax Act, 1961, Rules &amp; latest CBDT notifications before finalising decisions.
         </p>
       </div>
     </details>
