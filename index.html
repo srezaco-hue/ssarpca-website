@@ -440,20 +440,22 @@
 .services-cta{margin-top:1.5rem;padding:1.2rem 1.3rem;border-radius:18px;background:radial-gradient(circle at top left,#e5f0ff,#fff);border:1px solid rgba(148,163,184,.4);display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
 @media(max-width:900px){.services-grid{grid-template-columns:1fr}}
 
-/* ===== Updates Moving (Vertical Ticker) ===== */
+/* ===== Updates Moving Ticker ===== */
 .updates-ticker{
   position:relative;
   overflow:hidden;
   border-left: 3px solid var(--secondary);
   padding-left: 0.9rem;
-  max-height: 220px;
+  max-height: 230px;
 }
-.updates-ticker ul{list-style:none;margin:0;padding:0}
 .updates-track{
+  list-style:none;
+  margin:0;
+  padding:0;
   display:flex;
   flex-direction:column;
   gap:.85rem;
-  animation: updatesScroll 16s linear infinite;
+  animation: updatesScroll 18s linear infinite;
 }
 .updates-ticker:hover .updates-track{animation-play-state:paused}
 @keyframes updatesScroll{
@@ -596,7 +598,6 @@
   <div class="services-wrap">
     <div class="services-grid">
 
-      <!-- Virtual CFO -->
       <details class="service-acc">
         <summary>
           <div class="service-icon">📈</div>
@@ -623,7 +624,6 @@
         </div>
       </details>
 
-      <!-- International Tax -->
       <details class="service-acc">
         <summary>
           <div class="service-icon">🌍</div>
@@ -650,7 +650,6 @@
         </div>
       </details>
 
-      <!-- Tax Consultancy -->
       <details class="service-acc">
         <summary>
           <div class="service-icon">🧠</div>
@@ -671,7 +670,6 @@
         </div>
       </details>
 
-      <!-- Accounting -->
       <details class="service-acc">
         <summary>
           <div class="service-icon">🧾</div>
@@ -692,7 +690,6 @@
         </div>
       </details>
 
-      <!-- Audit -->
       <details class="service-acc">
         <summary>
           <div class="service-icon">📘</div>
@@ -713,7 +710,6 @@
         </div>
       </details>
 
-      <!-- Corporate Advisory -->
       <details class="service-acc">
         <summary>
           <div class="service-icon">🏛️</div>
@@ -748,10 +744,243 @@
   </div>
 </section>
 
-    <!-- TEAM (aapka same content) -->
-    <!-- (Main body ka baaki content aap as-it-is paste kar sakte ho; ye cleaned head+css ke saath chalega) -->
+    <section id="team">
+  <span class="badge">Our Leadership &amp; Core Team</span>
+  <h2>Meet the team</h2>
+  <p class="team-intro">
+    SSARP &amp; ASSOCIATES brings together Chartered Accountants, Company
+    Secretaries and trained executives to deliver integrated services.
+  </p>
 
-    <!-- CLIENTELE IMAGE -->
+  <div class="leader">
+    <h3>CA Mohammad Saem Reza</h3>
+    <div class="leader-role">Founder &amp; Managing Partner – SSARP &amp; ASSOCIATES</div>
+    <div class="leader-tags">Direct Tax • International Tax • GST • Valuations • Business Advisory</div>
+    <p>
+      A Chartered Accountant in full-time practice since 2012, Mr. Reza leads the firm’s tax and advisory practice.
+      He focuses on complex Income Tax and GST matters including scrutiny, assessments, appeals, survey
+      representations and high-value transaction advisory. He is actively involved in business structuring,
+      valuations, financial modelling and strategic advice for corporates, start-ups and SMEs, with a strong
+      emphasis on compliant, tax-efficient solutions.
+    </p>
+  </div>
+
+  <div class="leader">
+    <h3>S Emam (CS, LLB, B.Com)</h3>
+    <div class="leader-role">Head – Corporate Compliance &amp; Legal Drafting</div>
+    <div class="leader-tags">Company Law • ROC Filings • Corporate Governance • Legal Drafting</div>
+    <p>
+      As the core Corporate Compliance and Legal Drafting specialist, Ms. Emam oversees the corporate law and
+      secretarial compliance vertical. Her work includes incorporation of companies and LLPs, event-based ROC
+      filings, annual returns, director KYC, due-diligence and governance support. She also drafts commercial
+      agreements, MOUs, shareholder / investment documents and other legal documentation.
+    </p>
+  </div>
+
+  <div class="leader">
+    <h3>CA Shah Alam</h3>
+    <div class="leader-role">Partner – Audit, Assurance &amp; Indirect Tax</div>
+    <div class="leader-tags">Statutory Audit • Tax Audit • GST Audit • Internal Controls</div>
+    <p>
+      CA Shah Alam leads the Audit &amp; Assurance practice, handling statutory audits, tax audits, internal audits,
+      stock audits and branch audits for banks and institutions. He focuses on building robust systems, internal
+      controls and documentation so clients remain compliant while strengthening their reporting and governance.
+    </p>
+  </div>
+
+  <div class="team-subheading">Core Execution Team</div>
+
+  <div class="exec">
+    <h4>Priyanshu Bhagat (B.Com)</h4>
+    <div class="exec-role">GST Executive</div>
+    <div class="exec-tags">GST Returns • Reconciliation • Practical Compliance</div>
+    <p>
+      Handles end-to-end GST assignments – registrations, monthly / quarterly returns, reconciliations,
+      input-tax credit working and day-to-day practical compliance support.
+    </p>
+  </div>
+
+  <div class="exec">
+    <h4>Harsh Kabeer</h4>
+    <div class="exec-role">Accounts Executive</div>
+    <div class="exec-tags">Book-keeping • Tally • MIS Support</div>
+    <p>
+      Responsible for day-to-day accounting, ledger scrutiny, basic reconciliations and preparation of MIS.
+    </p>
+  </div>
+
+  <div class="exec">
+    <h4>Rashid Ansari</h4>
+    <div class="exec-role">Accounts &amp; Compliance Support</div>
+    <div class="exec-tags">Data Compilation • Return Support</div>
+    <p>
+      Assists in data compilation, backend coordination and follow-ups required for smooth filing of statutory returns.
+    </p>
+  </div>
+
+  <div class="exec">
+    <h4>Ravi Kumar (CA Final)</h4>
+    <div class="exec-role">Audit &amp; Direct Tax Team</div>
+    <div class="exec-tags">Tax Working • Audit Support • Compliance</div>
+    <p>
+      Supports audits, tax computations and compliance workings relating to Income-tax and GST.
+    </p>
+  </div>
+
+  <div class="exec">
+    <h4>Fatima</h4>
+    <div class="exec-role">Administration &amp; Client Coordination</div>
+    <div class="exec-tags">Client Communication • Office Administration</div>
+    <p>
+      Manages client communication, meeting scheduling, documentation flow and overall front-office administration.
+    </p>
+  </div>
+
+  <p class="team-intro" style="margin-top:0.4rem;">
+    Along with the above core team, SSARP &amp; ASSOCIATES also collaborates with a wider network of professionals
+    on specialised assignments, so clients get comprehensive solutions under one roof.
+  </p>
+</section>
+
+<section id="tools">
+  <span class="badge">Useful Online Tools</span>
+  <h2>Tax &amp; finance calculators</h2>
+  <p class="section-subtitle">
+    Simple browser-based utilities hosted on our website – no download required.
+  </p>
+
+  <div class="tool-grid">
+    <article class="tool-card">
+      <h3>EMI Calculator</h3>
+      <p>
+        Estimate monthly instalments, interest outflow and total cost for loan
+        planning and quick discussions with bankers.
+      </p>
+      <a href="emi-calculator.html" class="btn btn-primary" target="_blank" rel="noopener">
+        Open EMI Calculator
+      </a>
+    </article>
+
+    <article class="tool-card">
+      <h3>TDS Calculator</h3>
+      <p>
+        Quickly compute TDS liability on common payments – helpful for quick
+        checking before releasing payments or booking expenses.
+      </p>
+      <a href="tds-calculator.html" class="btn btn-primary" target="_blank" rel="noopener">
+        Open TDS Calculator
+      </a>
+    </article>
+  </div>
+</section>
+
+<section id="updates">
+  <span class="badge">Updates Corner</span>
+  <h2>Income-tax &amp; GST updates</h2>
+  <p class="section-subtitle">
+    A quick flavour of key changes – for detailed analysis and impact study,
+    please reach out to us.
+  </p>
+
+  <div class="updates-ticker" aria-label="Updates ticker">
+    <ul class="updates-track">
+      <li>
+        <h4>Faceless assessments &amp; e-proceedings</h4>
+        <div class="updates-meta">Income-tax • Assessments &amp; appeals</div>
+        <p>
+          Increasingly, scrutiny and appellate proceedings are being handled
+          through online portals and video-conferencing. We assist clients in
+          strategy, drafting, documentation and representation for such
+          e-proceedings.
+        </p>
+      </li>
+
+      <li>
+        <h4>Enhanced focus on TDS / TCS compliance</h4>
+        <div class="updates-meta">Income-tax • TDS returns &amp; reconciliations</div>
+        <p>
+          Mismatches between books, Form 26AS and AIS / TIS are a major trigger
+          for notices. We help organisations design processes so that TDS, TCS
+          and related reconciliations are clean and defensible.
+        </p>
+      </li>
+
+      <li>
+        <h4>GST reconciliations &amp; input-tax credit discipline</h4>
+        <div class="updates-meta">GST • Returns, audits &amp; departmental queries</div>
+        <p>
+          GST departments are closely reviewing GSTR-2B vs 3B vs books and
+          e-invoicing adoption. Our team supports clients with reconciliations,
+          reply drafting, audits and ongoing advisory to minimise disputes.
+        </p>
+      </li>
+
+      <!-- duplicate for seamless scroll -->
+      <li>
+        <h4>Faceless assessments &amp; e-proceedings</h4>
+        <div class="updates-meta">Income-tax • Assessments &amp; appeals</div>
+        <p>
+          Increasingly, scrutiny and appellate proceedings are being handled
+          through online portals and video-conferencing. We assist clients in
+          strategy, drafting, documentation and representation for such
+          e-proceedings.
+        </p>
+      </li>
+
+      <li>
+        <h4>Enhanced focus on TDS / TCS compliance</h4>
+        <div class="updates-meta">Income-tax • TDS returns &amp; reconciliations</div>
+        <p>
+          Mismatches between books, Form 26AS and AIS / TIS are a major trigger
+          for notices. We help organisations design processes so that TDS, TCS
+          and related reconciliations are clean and defensible.
+        </p>
+      </li>
+
+      <li>
+        <h4>GST reconciliations &amp; input-tax credit discipline</h4>
+        <div class="updates-meta">GST • Returns, audits &amp; departmental queries</div>
+        <p>
+          GST departments are closely reviewing GSTR-2B vs 3B vs books and
+          e-invoicing adoption. Our team supports clients with reconciliations,
+          reply drafting, audits and ongoing advisory to minimise disputes.
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="videos">
+  <span class="badge">Videos</span>
+  <h2>Office glimpse &amp; explainers</h2>
+  <p class="section-subtitle">
+    Short clips to give you a feel of who we are and how we work.
+  </p>
+
+  <div class="video-grid">
+    <div>
+      <div style="font-size:0.86rem; margin-bottom:0.25rem;">
+        Office glimpse — SSARP &amp; ASSOCIATES
+      </div>
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/BV9BPIKqNYY"
+          title="SSARP &amp; Associates office glimpse"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:0.82rem; color:#6b7280; margin-top:0.6rem;">
+    Naya video add karna ho to sirf upar &lt;iframe&gt; ka
+    <code>src="https://www.youtube.com/embed/VIDEO_ID"</code> change karein –
+    YouTube <strong>shorts</strong> link ka ID use karke embed kar sakte hain.
+  </p>
+</section>
+
+<!-- CLIENTELE IMAGE -->
     <section id="clients">
       <span class="badge">Our Clientele</span>
       <h2>Who trusted us</h2>
