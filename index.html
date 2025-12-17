@@ -420,116 +420,45 @@
   
 /* ===== Enhanced Services Accordion ===== */
 .services-wrap{margin-top:1rem}
-
-.services-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:1.2rem;
-  margin-top:1rem
-}
-
-.service-acc{
-  background:#fff;
-  border:1px solid #e5e7eb;
-  border-radius:18px;
-  box-shadow:0 12px 28px rgba(15,23,42,.08);
-  overflow:hidden;
-  transition:transform .18s ease,box-shadow .18s ease
-}
-.service-acc:hover{
-  transform:translateY(-3px);
-  box-shadow:0 18px 38px rgba(15,23,42,.12)
-}
-
-.service-acc summary{
-  list-style:none;
-  cursor:pointer;
-  padding:1.1rem 1.2rem;
-  display:flex;
-  gap:.9rem;
-  align-items:flex-start
-}
+.services-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem;margin-top:1rem}
+.service-acc{background:#fff;border:1px solid #e5e7eb;border-radius:18px;box-shadow:0 12px 28px rgba(15,23,42,.08);overflow:hidden;transition:transform .18s ease,box-shadow .18s ease}
+.service-acc:hover{transform:translateY(-3px);box-shadow:0 18px 38px rgba(15,23,42,.12)}
+.service-acc summary{list-style:none;cursor:pointer;padding:1.1rem 1.2rem;display:flex;gap:.9rem;align-items:flex-start}
 .service-acc summary::-webkit-details-marker{display:none}
-
-.service-icon{
-  width:46px;height:46px;
-  border-radius:14px;
-  display:grid;place-items:center;
-  background:rgba(0,163,196,.14);
-  font-size:1.2rem;
-  flex:0 0 46px
-}
-
-.service-head h3{
-  margin:0 0 .2rem;
-  font-size:1.05rem
-}
-.service-head p{
-  margin:0;
-  font-size:.88rem;
-  color:#4b5563
-}
-
-.service-tag{
-  display:inline-block;
-  margin-top:.45rem;
-  font-size:.72rem;
-  font-weight:600;
-  padding:.18rem .65rem;
-  border-radius:999px;
-  background:rgba(0,77,153,.08)
-}
-
-.service-chevron{
-  margin-left:auto;
-  width:34px;height:34px;
-  border-radius:10px;
-  border:1px solid rgba(148,163,184,.35);
-  display:grid;place-items:center;
-  transition:transform .2s ease
-}
+.service-icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(0,163,196,.14);font-size:1.2rem;flex:0 0 46px}
+.service-head h3{margin:0 0 .2rem;font-size:1.05rem}
+.service-head p{margin:0;font-size:.88rem;color:#4b5563}
+.service-tag{display:inline-block;margin-top:.45rem;font-size:.72rem;font-weight:600;padding:.18rem .65rem;border-radius:999px;background:rgba(0,77,153,.08)}
+.service-chevron{margin-left:auto;width:34px;height:34px;border-radius:10px;border:1px solid rgba(148,163,184,.35);display:grid;place-items:center;transition:transform .2s ease}
 .service-chevron::before{content:"⌄";font-size:1.2rem}
 .service-acc[open] .service-chevron{transform:rotate(180deg)}
-
-.service-body{
-  padding:0 1.25rem 1.25rem;
-  border-top:1px solid #eef2f7;
-  animation:fadeAcc .25s ease
-}
-@keyframes fadeAcc{
-  from{opacity:.2;transform:translateY(-6px)}
-  to{opacity:1;transform:none}
-}
-
-.service-body ul{
-  margin:.7rem 0 .5rem 1.1rem;
-  font-size:.88rem
-}
+.service-body{padding:0 1.25rem 1.25rem;border-top:1px solid #eef2f7;animation:fadeAcc .25s ease}
+@keyframes fadeAcc{from{opacity:.2;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.service-body ul{margin:.7rem 0 .5rem 1.1rem;font-size:.88rem}
 .service-body li{margin:.4rem 0}
+.service-note{margin-top:.6rem;padding:.75rem .9rem;border-radius:14px;background:linear-gradient(135deg,rgba(0,163,196,.12),rgba(244,180,0,.12));font-size:.86rem}
+.services-cta{margin-top:1.5rem;padding:1.2rem 1.3rem;border-radius:18px;background:radial-gradient(circle at top left,#e5f0ff,#fff);border:1px solid rgba(148,163,184,.4);display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+@media(max-width:900px){.services-grid{grid-template-columns:1fr}}
 
-.service-note{
-  margin-top:.6rem;
-  padding:.75rem .9rem;
-  border-radius:14px;
-  background:linear-gradient(135deg,rgba(0,163,196,.12),rgba(244,180,0,.12));
-  font-size:.86rem
+/* ===== Updates Moving (Vertical Ticker) ===== */
+.updates-ticker{
+  position:relative;
+  overflow:hidden;
+  border-left: 3px solid var(--secondary);
+  padding-left: 0.9rem;
+  max-height: 220px;
 }
-
-.services-cta{
-  margin-top:1.5rem;
-  padding:1.2rem 1.3rem;
-  border-radius:18px;
-  background:radial-gradient(circle at top left,#e5f0ff,#fff);
-  border:1px solid rgba(148,163,184,.4);
+.updates-ticker ul{list-style:none;margin:0;padding:0}
+.updates-track{
   display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:1rem;
-  flex-wrap:wrap
+  flex-direction:column;
+  gap:.85rem;
+  animation: updatesScroll 16s linear infinite;
 }
-
-@media(max-width:900px){
-  .services-grid{grid-template-columns:1fr}
+.updates-ticker:hover .updates-track{animation-play-state:paused}
+@keyframes updatesScroll{
+  0%{transform:translateY(0)}
+  100%{transform:translateY(-50%)}
 }
 
 </style>
@@ -817,110 +746,6 @@
       </a>
     </div>
   </div>
-</section>
-
-<section id="team">
-  <span class="badge">Our Leadership &amp; Core Team</span>
-  <h2>Meet the team</h2>
-  <p class="team-intro">
-    SSARP &amp; ASSOCIATES brings together Chartered Accountants, Company
-    Secretaries and trained executives to deliver integrated services.
-  </p>
-
-  <!-- Leaders -->
-  <div class="leader">
-    <h3>CA Mohammad Saem Reza</h3>
-    <div class="leader-role">Founder &amp; Managing Partner – SSARP &amp; ASSOCIATES</div>
-    <div class="leader-tags">Direct Tax • International Tax • GST • Valuations • Business Advisory</div>
-    <p>
-      A Chartered Accountant in full-time practice since 2012, Mr. Reza leads the firm’s tax and advisory practice.
-      He focuses on complex Income Tax and GST matters including scrutiny, assessments, appeals, survey
-      representations and high-value transaction advisory. He is actively involved in business structuring,
-      valuations, financial modelling and strategic advice for corporates, start-ups and SMEs, with a strong
-      emphasis on compliant, tax-efficient solutions.
-    </p>
-  </div>
-
-  <div class="leader">
-    <h3>S Emam (CS, LLB, B.Com)</h3>
-    <div class="leader-role">Head – Corporate Compliance &amp; Legal Drafting</div>
-    <div class="leader-tags">Company Law • ROC Filings • Corporate Governance • Legal Drafting</div>
-    <p>
-      Ms. Emam oversees the corporate law and secretarial compliance vertical. Her work includes incorporation
-      of companies and LLPs, event-based ROC filings, annual returns, director KYC, search reports, due-diligence
-      and governance support. She also drafts commercial agreements, MOUs, shareholder / investment documents
-      and other legal documentation with strong attention to regulatory and procedural requirements.
-    </p>
-  </div>
-
-  <div class="leader">
-    <h3>CA Shah Alam</h3>
-    <div class="leader-role">Partner – Audit, Assurance &amp; Indirect Tax</div>
-    <div class="leader-tags">Statutory Audit • Tax Audit • GST Audit • Internal Controls</div>
-    <p>
-      CA Shah Alam leads the Audit &amp; Assurance practice, handling statutory audits, tax audits, internal audits,
-      stock audits and branch audits for banks and institutions. He focuses on building robust systems, internal
-      controls and documentation so clients remain compliant while strengthening their reporting and governance.
-    </p>
-  </div>
-
-  <!-- Execution team -->
-  <div class="team-subheading">Core Execution Team</div>
-
-  <div class="exec">
-    <h4>Priyanshu Bhagat (B.Com)</h4>
-    <div class="exec-role">GST Executive</div>
-    <div class="exec-tags">GST Returns • Reconciliation • Practical Compliance</div>
-    <p>
-      Handles end-to-end GST assignments – registrations, monthly / quarterly returns, reconciliations,
-      input-tax credit working and day-to-day compliance support for trading, service and industrial clients.
-    </p>
-  </div>
-
-  <div class="exec">
-    <h4>Harsh Kabeer</h4>
-    <div class="exec-role">Accounts Executive</div>
-    <div class="exec-tags">Book-keeping • Tally • MIS Support</div>
-    <p>
-      Responsible for day-to-day accounting, ledger scrutiny, reconciliations and preparation of MIS for clean,
-      updated books of account.
-    </p>
-  </div>
-
-  <div class="exec">
-    <h4>Rashid Ansari</h4>
-    <div class="exec-role">Accounts &amp; Compliance Support</div>
-    <div class="exec-tags">Data Compilation • Return Support</div>
-    <p>
-      Assists in data compilation, backend coordination and follow-ups required for smooth filing of statutory
-      returns and reports across clients.
-    </p>
-  </div>
-
-  <div class="exec">
-    <h4>Ravi Kumar (CA Final)</h4>
-    <div class="exec-role">Audit &amp; Direct Tax Team</div>
-    <div class="exec-tags">Tax Working • Audit Support • Compliance</div>
-    <p>
-      Supports audits, tax computations and compliance workings relating to Income-tax and GST, assisting partners
-      in detailed scrutiny, reconciliations and assessments.
-    </p>
-  </div>
-
-  <div class="exec">
-    <h4>Fatima</h4>
-    <div class="exec-role">Administration &amp; Client Coordination</div>
-    <div class="exec-tags">Client Communication • Office Administration</div>
-    <p>
-      Manages client communication, meeting scheduling, documentation flow and overall front-office administration
-      to ensure a smooth experience for visitors and clients.
-    </p>
-  </div>
-
-  <p class="team-intro" style="margin-top:0.4rem;">
-    Along with the above core team, SSARP &amp; ASSOCIATES also collaborates with a wider network of professionals
-    on specialised assignments, so clients receive comprehensive solutions under one roof.
-  </p>
 </section>
 
     <!-- TEAM (aapka same content) -->
