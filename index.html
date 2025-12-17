@@ -417,7 +417,122 @@
       .brand-text h1 { font-size: 1.15rem; }
       .hero-title { font-size: 1.5rem; }
     }
-  </style>
+  
+/* ===== Enhanced Services Accordion ===== */
+.services-wrap{margin-top:1rem}
+
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1.2rem;
+  margin-top:1rem
+}
+
+.service-acc{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:18px;
+  box-shadow:0 12px 28px rgba(15,23,42,.08);
+  overflow:hidden;
+  transition:transform .18s ease,box-shadow .18s ease
+}
+.service-acc:hover{
+  transform:translateY(-3px);
+  box-shadow:0 18px 38px rgba(15,23,42,.12)
+}
+
+.service-acc summary{
+  list-style:none;
+  cursor:pointer;
+  padding:1.1rem 1.2rem;
+  display:flex;
+  gap:.9rem;
+  align-items:flex-start
+}
+.service-acc summary::-webkit-details-marker{display:none}
+
+.service-icon{
+  width:46px;height:46px;
+  border-radius:14px;
+  display:grid;place-items:center;
+  background:rgba(0,163,196,.14);
+  font-size:1.2rem;
+  flex:0 0 46px
+}
+
+.service-head h3{
+  margin:0 0 .2rem;
+  font-size:1.05rem
+}
+.service-head p{
+  margin:0;
+  font-size:.88rem;
+  color:#4b5563
+}
+
+.service-tag{
+  display:inline-block;
+  margin-top:.45rem;
+  font-size:.72rem;
+  font-weight:600;
+  padding:.18rem .65rem;
+  border-radius:999px;
+  background:rgba(0,77,153,.08)
+}
+
+.service-chevron{
+  margin-left:auto;
+  width:34px;height:34px;
+  border-radius:10px;
+  border:1px solid rgba(148,163,184,.35);
+  display:grid;place-items:center;
+  transition:transform .2s ease
+}
+.service-chevron::before{content:"⌄";font-size:1.2rem}
+.service-acc[open] .service-chevron{transform:rotate(180deg)}
+
+.service-body{
+  padding:0 1.25rem 1.25rem;
+  border-top:1px solid #eef2f7;
+  animation:fadeAcc .25s ease
+}
+@keyframes fadeAcc{
+  from{opacity:.2;transform:translateY(-6px)}
+  to{opacity:1;transform:none}
+}
+
+.service-body ul{
+  margin:.7rem 0 .5rem 1.1rem;
+  font-size:.88rem
+}
+.service-body li{margin:.4rem 0}
+
+.service-note{
+  margin-top:.6rem;
+  padding:.75rem .9rem;
+  border-radius:14px;
+  background:linear-gradient(135deg,rgba(0,163,196,.12),rgba(244,180,0,.12));
+  font-size:.86rem
+}
+
+.services-cta{
+  margin-top:1.5rem;
+  padding:1.2rem 1.3rem;
+  border-radius:18px;
+  background:radial-gradient(circle at top left,#e5f0ff,#fff);
+  border:1px solid rgba(148,163,184,.4);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+  flex-wrap:wrap
+}
+
+@media(max-width:900px){
+  .services-grid{grid-template-columns:1fr}
+}
+
+</style>
 </head>
 
 <body>
@@ -542,54 +657,167 @@
 
     <!-- SERVICES -->
     <section id="services">
-      <span class="badge">Practice Verticals</span>
-      <h2>What we do</h2>
-      <p class="section-subtitle">Under one roof we integrate tax, audit, compliance and business advisory.</p>
+  <span class="badge">Practice Verticals</span>
+  <h2>What we do</h2>
+  <p class="section-subtitle">
+    Integrated finance, taxation, audit and advisory services designed to support
+    compliance as well as strategic decision-making.
+  </p>
 
-      <div class="grid">
-        <article class="card">
-          <div class="card-icon">📊</div>
-          <h3>Direct &amp; International Tax</h3>
-          <p>Advisory, assessments, appeals, transaction structuring, capital gains and non-resident taxation.</p>
-          <small>Section 139, 143(3), 147, 264 representations and more.</small>
-        </article>
+  <div class="services-wrap">
+    <div class="services-grid">
 
-        <article class="card">
-          <div class="card-icon">🧾</div>
-          <h3>GST &amp; Indirect Tax</h3>
-          <p>Registrations, returns, reconciliations, audits, SCN replies, appeals &amp; refunds.</p>
-          <small>Compliances for trading, services, works contracts and imports.</small>
-        </article>
+      <!-- Virtual CFO -->
+      <details class="service-acc">
+        <summary>
+          <div class="service-icon">📈</div>
+          <div class="service-head">
+            <h3>Virtual CFO Services</h3>
+            <p>Professional financial leadership without a full-time CFO.</p>
+            <span class="service-tag">SMEs • Startups • Overseas Entities</span>
+          </div>
+          <div class="service-chevron" aria-hidden="true"></div>
+        </summary>
+        <div class="service-body">
+          <ul>
+            <li>Budgeting, cash-flow forecasting &amp; liquidity planning</li>
+            <li>Monthly MIS, KPIs and variance analysis</li>
+            <li>Working capital &amp; profitability optimisation</li>
+            <li>Debt vs equity planning and banker / investor support</li>
+            <li>Compliance calendar monitoring (IT, GST, ROC)</li>
+            <li>Review of accounting systems &amp; internal controls</li>
+          </ul>
+          <div class="service-note">
+            <strong>Working model:</strong> Dedicated CA-led oversight, periodic
+            review calls and cloud-based reporting — at a fraction of full-time CFO cost.
+          </div>
+        </div>
+      </details>
 
-        <article class="card">
-          <div class="card-icon">📘</div>
-          <h3>Audit &amp; Assurance</h3>
-          <p>Statutory audits, tax audits, internal audits, stock audits and branch audits.</p>
-          <small>Risk-based approach with focus on controls and reporting quality.</small>
-        </article>
+      <!-- International Tax -->
+      <details class="service-acc">
+        <summary>
+          <div class="service-icon">🌍</div>
+          <div class="service-head">
+            <h3>International Taxation &amp; Cross-Border Advisory</h3>
+            <p>Tax clarity for global finance and strategic decisions.</p>
+            <span class="service-tag">DTAA • PE • TDS • GST</span>
+          </div>
+          <div class="service-chevron" aria-hidden="true"></div>
+        </summary>
+        <div class="service-body">
+          <ul>
+            <li>Taxability analysis under Indian law &amp; DTAA</li>
+            <li>Permanent Establishment (PE) risk assessment</li>
+            <li>Withholding tax (TDS) planning &amp; compliance</li>
+            <li>GST on import / export of services &amp; reverse charge</li>
+            <li>Structuring of cross-border contracts &amp; payment flows</li>
+          </ul>
+          <div class="service-note">
+            <strong>Board &amp; HQ coordination:</strong> We participate in board /
+            management discussions and coordinate with overseas finance teams to
+            explain India-specific tax impact of each key decision before execution.
+          </div>
+        </div>
+      </details>
 
-        <article class="card">
-          <div class="card-icon">🏛️</div>
-          <h3>Corporate Compliance &amp; Legal Drafting</h3>
-          <p>ROC filings, minutes, resolutions, MOUs, shareholder agreements and legal documentation.</p>
-          <small>Company Law, LLP Law and corporate governance support.</small>
-        </article>
+      <!-- Tax Consultancy -->
+      <details class="service-acc">
+        <summary>
+          <div class="service-icon">🧠</div>
+          <div class="service-head">
+            <h3>Tax Consultancy</h3>
+            <p>Transaction-level planning and risk mitigation.</p>
+            <span class="service-tag">Direct &amp; Indirect Tax</span>
+          </div>
+          <div class="service-chevron" aria-hidden="true"></div>
+        </summary>
+        <div class="service-body">
+          <ul>
+            <li>Capital gains &amp; restructuring advisory</li>
+            <li>Tax impact analysis for investments &amp; exits</li>
+            <li>Preventive planning to reduce future disputes</li>
+            <li>Review of documentation &amp; defensibility</li>
+          </ul>
+        </div>
+      </details>
 
-        <article class="card">
-          <div class="card-icon">💼</div>
-          <h3>Business Advisory &amp; Valuations</h3>
-          <p>Valuations, modelling, projections, CMA data, fund-raising support and strategic advisory.</p>
-          <small>Useful for bankers, investors and internal decision-making.</small>
-        </article>
+      <!-- Accounting -->
+      <details class="service-acc">
+        <summary>
+          <div class="service-icon">🧾</div>
+          <div class="service-head">
+            <h3>Accounting &amp; Book-Keeping</h3>
+            <p>Clean books and reliable MIS for decisions.</p>
+            <span class="service-tag">Tally • MIS • Reconciliation</span>
+          </div>
+          <div class="service-chevron" aria-hidden="true"></div>
+        </summary>
+        <div class="service-body">
+          <ul>
+            <li>End-to-end accounting &amp; ledger scrutiny</li>
+            <li>Bank, GST, TDS and vendor reconciliations</li>
+            <li>MIS reporting &amp; clean-up of legacy data</li>
+            <li>Accounting policy alignment</li>
+          </ul>
+        </div>
+      </details>
 
-        <article class="card">
-          <div class="card-icon">🧮</div>
-          <h3>Accounting &amp; Outsourced Support</h3>
-          <p>Book-keeping, MIS, reconciliations and back-office finance support.</p>
-          <small>Ideal for SMEs, start-ups, NGOs and multi-location entities.</small>
-        </article>
-      </div>
-    </section>
+      <!-- Audit -->
+      <details class="service-acc">
+        <summary>
+          <div class="service-icon">📘</div>
+          <div class="service-head">
+            <h3>Audit &amp; Assurance</h3>
+            <p>Risk-based audits with focus on controls.</p>
+            <span class="service-tag">Statutory • Tax • Internal</span>
+          </div>
+          <div class="service-chevron" aria-hidden="true"></div>
+        </summary>
+        <div class="service-body">
+          <ul>
+            <li>Statutory audits under Companies Act</li>
+            <li>Tax audits under Income-tax Act</li>
+            <li>Internal, process and GST audits</li>
+            <li>Stock &amp; bank-related audits</li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- Corporate Advisory -->
+      <details class="service-acc">
+        <summary>
+          <div class="service-icon">🏛️</div>
+          <div class="service-head">
+            <h3>Corporate Advisory &amp; Compliance</h3>
+            <p>Lifecycle support from incorporation to governance.</p>
+            <span class="service-tag">ROC • Drafting • Governance</span>
+          </div>
+          <div class="service-chevron" aria-hidden="true"></div>
+        </summary>
+        <div class="service-body">
+          <ul>
+            <li>Company &amp; LLP incorporation</li>
+            <li>ROC filings &amp; annual compliances</li>
+            <li>Drafting of resolutions, MOUs &amp; agreements</li>
+            <li>Due-diligence &amp; compliance health-checks</li>
+          </ul>
+        </div>
+      </details>
+
+    </div>
+
+    <div class="services-cta">
+      <p><strong>Need clarity before taking a financial or tax decision?</strong><br>
+      Speak directly with a Chartered Accountant.</p>
+      <a href="https://calendar.app.google/kBBgAXypSdryZrzv5"
+         class="btn btn-primary"
+         target="_blank" rel="noopener">
+        Speak to a Chartered Accountant
+      </a>
+    </div>
+  </div>
+</section>
 
     <!-- TEAM (aapka same content) -->
     <!-- (Main body ka baaki content aap as-it-is paste kar sakte ho; ye cleaned head+css ke saath chalega) -->
@@ -669,5 +897,18 @@
  
   <!-- Tidio -->
   <script src="//code.tidio.co/afgblpjgvsvzvkmgiryuhjzncxnrg4z9.js" async></script>
+
+<script>
+  document.querySelectorAll('.service-acc').forEach(d => {
+    d.addEventListener('toggle', () => {
+      if (d.open) {
+        document.querySelectorAll('.service-acc').forEach(other => {
+          if (other !== d) other.open = false;
+        });
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
