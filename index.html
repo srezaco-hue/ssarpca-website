@@ -899,6 +899,28 @@
       }
     }
   </style>
+.meet-call {
+  position: fixed;
+  bottom: 90px;        /* WhatsApp button se thoda upar */
+  right: 20px;
+  z-index: 9999;
+}
+
+.meet-btn {
+  background: #0f9d58; /* Google Meet style green */
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  display: inline-block;
+}
+
+.meet-btn:hover {
+  opacity: 0.9;
+}
+
 </head>
 
 <body>
@@ -1410,6 +1432,15 @@
         </div>
       </div>
     </section>
+<!-- Google Meet Video Call Button -->
+<div class="meet-call">
+  <a href="https://calendar.app.google/kBBgAXypSdryZrzv5"
+     target="_blank"
+     rel="noopener"
+     class="meet-btn">
+    Join Video Call (Google Meet)
+  </a>
+</div>
 
   </main>
 
