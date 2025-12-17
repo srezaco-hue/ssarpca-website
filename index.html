@@ -431,24 +431,6 @@
     .wa-chat svg { width: 26px; height: 26px; fill: #ffffff; }
     .wa-chat:hover .wa-chat-label { display: block; }
 
-    /* Google Meet button */
-    .meet-call {
-      position: fixed;
-      bottom: 90px;
-      right: 20px;
-      z-index: 60;
-    }
-    .meet-btn {
-      background: #0f9d58;
-      color: #ffffff;
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-size: 14px;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-      display: inline-block;
-    }
-    .meet-btn:hover { opacity: 0.9; text-decoration: none; }
 
     /* Responsive */
     @media (max-width: 900px) {
@@ -519,7 +501,13 @@
 
         <div class="hero-cta">
           <a href="tel:+918709348748" class="btn btn-primary">Call: +91-8709348748</a>
-          <a href="#contact" class="btn btn-secondary">Book a Consultation</a>
+          <a href="https://calendar.app.google/kBBgAXypSdryZrzv5"
+   class="btn btn-secondary"
+   target="_blank"
+   rel="noopener">
+  Book a Consultation
+</a>
+
         </div>
 
         <p class="hero-call">
@@ -706,13 +694,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Google Meet Video Call Button -->
-    <div class="meet-call">
-      <a href="https://calendar.app.google/kBBgAXypSdryZrzv5" target="_blank" rel="noopener" class="meet-btn">
-        Join Video Call (Google Meet)
-      </a>
-    </div>
 
   </main>
 
