@@ -565,19 +565,23 @@
 }
 
 
-    /* Office location chips inside the dark hero card */
-    .hero-card .office-tags .tag{
-      background: rgba(255,255,255,.10);
-      color: rgba(255,255,255,.92);
-      border: 1px solid rgba(255,255,255,.18);
-      text-decoration: none;
-      cursor: pointer;
-    }
-    .hero-card .office-tags .tag:hover{
-      background: rgba(255,255,255,.16);
-      border-color: rgba(255,255,255,.28);
-      text-decoration: none;
-    }
+/* --- Added: hero office chips + careers section --- */
+.hero-locations{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.hero-locations a{display:inline-flex;align-items:center;gap:6px;
+  padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.16);
+  color:#eaf2ff;text-decoration:none;background:rgba(255,255,255,.06);font-size:.86rem}
+.hero-locations a:hover{background:rgba(255,255,255,.12)}
+.careers-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;margin-top:14px}
+@media(max-width:950px){.careers-grid{grid-template-columns:1fr}}
+.careers-hero-img{width:100%;max-width:520px;border-radius:16px;box-shadow:var(--shadow-soft);border:1px solid rgba(15,23,42,.08)}
+.careers-desc{margin-top:10px;color:var(--muted);line-height:1.6}
+.career-card{background:#fff;border-radius:14px;box-shadow:var(--shadow-soft);padding:16px;border:1px solid rgba(15,23,42,.06)}
+.career-form label{display:block;font-size:.85rem;color:var(--muted);margin-bottom:6px}
+.career-form input,.career-form select,.career-form textarea{width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(15,23,42,.12);background:#fff}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.form-grid{grid-template-columns:1fr}}
+.form-actions{margin-top:12px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.tiny-note{font-size:.82rem;color:var(--muted);margin:8px 0 0}
 
 </style>
 </head>
@@ -602,6 +606,7 @@
         <a href="#tools">Tools</a>
         <a href="#updates">Updates</a>
         <a href="#clients">Clientele</a>
+        <a href="#careers">Careers</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
@@ -621,7 +626,7 @@
       </div>
 
       <div>
-        <div class="hero-badge"><span>NEW DELHI • BENGALURU • PATNA • PAN-INDIA</span></div>
+        <div class="hero-badge"><span>PATNA • BENGALURU • NEW DELHI • PAN-INDIA</span></div>
 
         <h2 class="hero-title">Your integrated partner for Tax, Audit &amp; Compliance</h2>
 
@@ -656,12 +661,11 @@
       <aside class="hero-card">
         <div class="hero-card-inner">
           <h3>Pan-India presence with centralized advisory</h3>
-
-          <div class="tag-row office-tags" aria-label="Office locations">
-            <a class="tag" href="https://maps.google.com/?q=Orchid+Mall,+Boring+Road,+Patna" target="_blank" rel="noopener">Patna (Head)</a>
-            <a class="tag" href="https://maps.google.com/?q=Ground+Floor%2C+House+No.+F-8%2C+Meraj+Apartment%2C+40+Feet+Road%2C+Abul+Fazal+Enclave+II%2C+Jamia+Nagar%2C+New+Delhi+110025" target="_blank" rel="noopener">New Delhi</a>
-            <a class="tag" href="https://maps.google.com/?q=Flat+No.+8%2C+Sriven%40205+Apartments%2C+Amani+Bellendur+Lane%2C+Kadubeeshanhalli%2C+Bengaluru+560103" target="_blank" rel="noopener">Bengaluru</a>
-            <a class="tag" href="https://maps.google.com/?q=ARG+Hotel+Araria" target="_blank" rel="noopener">Araria</a>
+          <div class="hero-locations" aria-label="Office locations">
+            <a href="https://maps.google.com/?q=The+Orchid+Mall,+Boring+Road,+Patna" target="_blank" rel="noopener">Patna</a>
+            <a href="https://maps.google.com/?q=Sriven@205+Apartments,+Kadubeesanahalli,+Bengaluru+560103" target="_blank" rel="noopener">Bengaluru</a>
+            <a href="https://maps.google.com/?q=Meraj+Apartment,+Abul+Fazal+Enclave+II,+Jamia+Nagar,+New+Delhi+110025" target="_blank" rel="noopener">New Delhi</a>
+            <a href="#contact">Other</a>
           </div>
           <p>
             From assessment proceedings to board-room advisory, our team combines
@@ -887,73 +891,39 @@
     <h3>Mohammad Saem Reza, Chartered Accountant</h3>
     <div class="leader-role">Managing Partner – SSARP &amp; Associates</div>
     <div class="leader-tags">Audit • Taxation • Project Financing • Financial Reporting • Strategic Advisory</div>
-    <p>
-      Mohammad Saem Reza is a Chartered Accountant with over 16 years of experience in statutory and bank audits, taxation, project financing,
-      financial reporting and strategic advisory. As Managing Partner of SSARP &amp; Associates, he helps businesses build strong financial systems
-      with a focus on compliance, governance and scalability.
-    </p>
-    <p>
-      He has handled statutory audits, special purpose audits, merger audits and limited reviews for listed and private entities,
-      with independent exposure to key audit areas including revenue, PPE, depreciation, impairment, treasury and lease accounting.
-    </p>
-    <p>
-      Mohammad has been associated with national and international projects, including assignments for DFS (Germany), Daewoo Constructions (South Korea)
-      and governance initiatives under Bihar Smart City.
-    </p>
-    <p>
-      He actively works as a Virtual CFO and Project Consultant, supporting promoters and finance teams through financial modelling, CMA data,
-      funding support, valuations and investor-ready reporting.
-    </p>
-    <p>
-      For international clients, he provides end-to-end support from India entry and office setup, tax and regulatory structuring, to post-setup GST,
-      Income Tax and compliance advisory, acting as a single-point financial partner in India.
-    </p>
+    <p>Mohammad Saem Reza is a Chartered Accountant with over 16 years of experience in statutory and bank audits, taxation, project financing, financial reporting and strategic advisory. As Managing Partner of SSARP &amp; Associates, he helps businesses build strong financial systems with a focus on compliance, governance and scalability.</p>
+    <p>He has handled statutory audits, special purpose audits, merger audits and limited reviews for listed and private entities, with independent exposure to key audit areas including revenue, PPE, depreciation, impairment, treasury and lease accounting.</p>
+    <p>Mohammad has been associated with national and international projects, including assignments for DFS (Germany), Daewoo Constructions (South Korea) and governance initiatives under Bihar Smart City.</p>
+    <p>He actively works as a Virtual CFO and Project Consultant, supporting promoters and finance teams through financial modelling, CMA data, funding support, valuations and investor-ready reporting.</p>
+    <p>For international clients, he provides end-to-end support from India entry and office setup, tax and regulatory structuring, to post-setup GST, Income Tax and compliance advisory, acting as a single-point financial partner in India.</p>
   </div>
 
   <div class="leader">
     <h3>S. Emam (CS | LL.B | B.Com)</h3>
-    <div class="leader-role">Corporate Governance &amp; Legal Advisory</div>
-    <div class="leader-tags">Corporate Governance • Private Equity • Venture Capital • Start-Ups</div>
-    <p>
-      S. Emam is a corporate governance professional with strong expertise in company law compliance, board advisory, legal documentation and strategic
-      support to high-growth organizations. She works closely with promoters, investors and management teams to build robust, compliant and scalable
-      corporate structures.
-    </p>
-    <p>
-      She has hands-on experience in corporate secretarial services, statutory compliance management, shareholder relations and regulatory filings,
-      ensuring seamless governance across the corporate lifecycle. Her work includes end-to-end support for Board Meetings, General Meetings,
-      drafting of resolutions, minutes and governance documentation.
-    </p>
-    <p>
-      S. Emam actively advises on foreign investment and cross-border structuring, including FDI advisory, FEMA compliance, regulatory approvals and
-      investment documentation, supporting both foreign investors and Indian entities.
-    </p>
-    <p>
-      She is experienced in drafting, reviewing and vetting legal documents such as agreements, MoUs, contracts and internal policies with a strong
-      focus on legal accuracy and risk mitigation. She also supports company formation, restructuring and dissolution, ensuring full compliance with
-      statutory and regulatory requirements.
-    </p>
+    <div class="leader-role">Corporate Governance | Private Equity | Venture Capital | Start-Ups</div>
+    <div class="leader-tags">Company Law • Board Advisory • FEMA/FDI • Legal Documentation • Governance</div>
+    <p>S. Emam is a corporate governance professional with strong expertise in company law compliance, board advisory, legal documentation and strategic support to high-growth organizations. She works closely with promoters, investors and management teams to build robust, compliant and scalable corporate structures.</p>
+    <p>She has hands-on experience in corporate secretarial services, statutory compliance management, shareholder relations and regulatory filings, ensuring seamless governance across the corporate lifecycle. Her work includes end-to-end support for Board Meetings, General Meetings, drafting of resolutions, minutes and governance documentation.</p>
+    <p>S. Emam actively advises on foreign investment and cross-border structuring, including FDI advisory, FEMA compliance, regulatory approvals and investment documentation, supporting both foreign investors and Indian entities.</p>
+    <p>She is experienced in drafting, reviewing and vetting legal documents such as agreements, MoUs, contracts and internal policies with a strong focus on legal accuracy and risk mitigation. She also supports company formation, restructuring and dissolution, ensuring full compliance with statutory and regulatory requirements.</p>
   </div>
 
   <div class="leader">
     <h3>Mohammad Shah Alam</h3>
     <div class="leader-role">Audit &amp; Banking Assurance</div>
-    <div class="leader-tags">Bank Statutory Audit • Concurrent Audit • RBI Compliance • Private Client Advisory</div>
-    <p>
-      Mohammad Shah Alam is a finance professional with strong expertise in bank statutory audits, concurrent audits and private client advisory,
-      delivering structured and compliance-driven audit outcomes. He has handled multiple statutory and concurrent audits of public and private sector
-      banks, with sound understanding of Reserve Bank of India guidelines, internal controls, credit assessment and operational risk frameworks.
-    </p>
-    <p>
-      His experience includes independent handling of loan processes, NPA review, asset classification, treasury operations and branch compliance,
-      ensuring accuracy, transparency and early risk identification. Alongside banking audits, he advises private clients and growing enterprises on
-      financial reporting, taxation, compliance and advisory matters.
-    </p>
-    <p>
-      Known for his methodical working style, strong documentation and attention to detail, he focuses on audits that go beyond compliance to support
-      risk mitigation and process improvement. His ability to manage key audit areas and maintain effective communication with stakeholders makes him a
-      trusted professional for both banking institutions and private clients.
-    </p>
+    <div class="leader-tags">Bank Statutory Audit • Concurrent Audit • RBI Guidelines • Risk &amp; Controls</div>
+    <p>Mohammad Shah Alam is a finance professional with strong expertise in bank statutory audits, concurrent audits and private client advisory, delivering structured and compliance-driven audit outcomes. He has handled multiple statutory and concurrent audits of public and private sector banks, with sound understanding of Reserve Bank of India guidelines, internal controls, credit assessment and operational risk frameworks.</p>
+    <p>His experience includes independent handling of loan processes, NPA review, asset classification, treasury operations and branch compliance, ensuring accuracy, transparency and early risk identification. Alongside banking audits, he advises private clients and growing enterprises on financial reporting, taxation, compliance and advisory matters.</p>
+    <p>Known for his methodical working style, strong documentation and attention to detail, he focuses on audits that go beyond compliance to support risk mitigation and process improvement. His ability to manage key audit areas and maintain effective communication with stakeholders makes him a trusted professional for both banking institutions and private clients.</p>
+  </div>
+
+  <div class="leader">
+    <h3>Aahana Kharbanda, Chartered Accountant</h3>
+    <div class="leader-role">GST Compliance | Indirect Tax Advisory | RERA Management</div>
+    <div class="leader-tags">GST Advisory • Reconciliations • Audits • RERA Filings • Real Estate Structuring</div>
+    <p>Aahana Kharbanda is an Indirect Tax specialist with strong expertise in GST advisory, compliance management and RERA regulatory support. As a Partner, she leads the firm’s GST &amp; RERA practice, supporting businesses and real estate projects in navigating complex regulatory frameworks with clarity and confidence.</p>
+    <p>She manages the complete GST lifecycle, including registrations, monthly and annual return filings, reconciliations, tax planning, audits and departmental representations. Her advisory spans GST classification, input tax credit optimisation, reverse charge mechanism, e-invoicing and sector-specific GST issues across real estate, manufacturing, trading and services.</p>
+    <p>Aahana also plays a key role in RERA compliance, advising developers on project registration, periodic filings, financial disclosures and statutory certifications. Her experience includes transaction structuring, including works contracts, JDAs and real estate arrangements, ensuring tax efficiency while maintaining full regulatory compliance.</p>
   </div>
 
   <div class="team-subheading">Core Execution Team</div>
@@ -961,94 +931,49 @@
   <div class="exec">
     <h4>Priyanshi Agarwal, Chartered Accountant</h4>
     <div class="exec-role">Direct Tax Advisory | Compliance | Assessments &amp; Litigation Support</div>
-    <div class="exec-tags">Income Tax • Notices • Assessments • Tax Planning • TDS</div>
-    <p>
-      Priyanshi Agarwal is a dedicated tax professional specializing in Direct Tax advisory, compliance management, assessments and litigation support.
-      As an Associate with the firm, she manages end-to-end Income Tax matters for individuals, firms, corporates and non-profit entities, ensuring
-      accurate filings and timely compliance.
-    </p>
-    <p>
-      She is actively involved in preparation and review of Income Tax Returns (ITR), tax computation, advance tax planning and TDS compliance,
-      combining strong technical knowledge with practical execution. Her work also includes drafting replies to departmental notices, preparing
-      submissions and supporting clients during assessment proceedings.
-    </p>
-    <p>
-      With a detail-oriented and analytical approach, Priyanshi assists clients in capital gains taxation, deductions and exemptions, and supports
-      tax-efficient structuring while maintaining full regulatory compliance. She also contributes to tax audit support, documentation management and
-      reconciliation, helping clients remain audit-ready and compliant at all times.
-    </p>
-  </div>
-
-  <div class="exec">
-    <h4>Aahana Kharbanda, Chartered Accountant</h4>
-    <div class="exec-role">GST Compliance | Indirect Tax Advisory | RERA Management</div>
-    <div class="exec-tags">GST • RERA • Real Estate • Reconciliation • Representation</div>
-    <p>
-      Aahana Kharbanda is an Indirect Tax specialist with strong expertise in GST advisory, compliance management and RERA regulatory support.
-      As a Partner, she leads the firm’s GST &amp; RERA practice, supporting businesses and real estate projects in navigating complex regulatory
-      frameworks with clarity and confidence.
-    </p>
-    <p>
-      She manages the complete GST lifecycle, including registrations, monthly and annual return filings, reconciliations, tax planning, audits and
-      departmental representations. Her advisory spans GST classification, input tax credit optimisation, reverse charge mechanism, e-invoicing and
-      sector-specific GST issues across real estate, manufacturing, trading and services.
-    </p>
-    <p>
-      Aahana also plays a key role in RERA compliance, advising developers on project registration, periodic filings, financial disclosures and
-      statutory certifications. Her experience includes transaction structuring, including works contracts, JDAs and real estate arrangements,
-      ensuring tax efficiency while maintaining full regulatory compliance.
-    </p>
+    <div class="exec-tags">Income Tax • TDS • Notices • Assessments • Tax Planning</div>
+    <p>Priyanshi Agarwal is a dedicated tax professional specializing in Direct Tax advisory, compliance management, assessments and litigation support. As an Associate with the firm, she manages end-to-end Income Tax matters for individuals, firms, corporates and non-profit entities, ensuring accurate filings and timely compliance.</p>
+    <p>She is actively involved in preparation and review of Income Tax Returns (ITR), tax computation, advance tax planning and TDS compliance, combining strong technical knowledge with practical execution. Her work also includes drafting replies to departmental notices, preparing submissions and supporting clients during assessment proceedings.</p>
+    <p>With a detail-oriented and analytical approach, Priyanshi assists clients in capital gains taxation, deductions and exemptions, and supports tax-efficient structuring while maintaining full regulatory compliance. She also contributes to tax audit support, documentation management and reconciliation, helping clients remain audit-ready and compliant at all times.</p>
   </div>
 
   <div class="exec">
     <h4>Priyanshu Bhagat</h4>
     <div class="exec-role">GST Executive</div>
     <div class="exec-tags">GST Returns • Reconciliation • Practical Compliance</div>
-    <p>
-      Handles end-to-end GST assignments – registrations, monthly / quarterly returns, reconciliations, input-tax credit working and day-to-day practical
-      compliance support.
-    </p>
+    <p>Handles end-to-end GST assignments – registrations, monthly / quarterly returns, reconciliations, input-tax credit working and day-to-day practical compliance support.</p>
   </div>
 
   <div class="exec">
     <h4>Harsh Kabeer</h4>
     <div class="exec-role">Accounts Executive</div>
     <div class="exec-tags">Book-keeping • Tally • MIS Support</div>
-    <p>
-      Responsible for day-to-day accounting, ledger scrutiny, basic reconciliations and preparation of MIS.
-    </p>
+    <p>Responsible for day-to-day accounting, ledger scrutiny, basic reconciliations and preparation of MIS.</p>
   </div>
 
   <div class="exec">
     <h4>Rashid Ansari</h4>
     <div class="exec-role">Accounts &amp; Compliance Support</div>
     <div class="exec-tags">Data Compilation • Return Support</div>
-    <p>
-      Assists in data compilation, backend coordination and follow-ups required for smooth filing of statutory returns.
-    </p>
+    <p>Assists in data compilation, backend coordination and follow-ups required for smooth filing of statutory returns.</p>
   </div>
 
   <div class="exec">
     <h4>Ravi Kumar (CA Final)</h4>
     <div class="exec-role">Audit &amp; Direct Tax Team</div>
     <div class="exec-tags">Tax Working • Audit Support • Compliance</div>
-    <p>
-      Supports audits, tax computations and compliance workings relating to Income-tax and GST.
-    </p>
+    <p>Supports audits, tax computations and compliance workings relating to Income-tax and GST.</p>
   </div>
 
   <div class="exec">
     <h4>Fatima</h4>
     <div class="exec-role">Administration &amp; Client Coordination</div>
     <div class="exec-tags">Client Communication • Office Administration</div>
-    <p>
-      Manages client communication, meeting scheduling, documentation flow and overall front-office administration.
-    </p>
+    <p>Manages client communication, meeting scheduling, documentation flow and overall front-office administration.</p>
   </div>
 
   <p class="team-intro" style="margin-top:0.4rem;">
-    Along with the above core team, SSARP &amp; ASSOCIATES also collaborates with a wider network of professionals on specialised assignments,
-    so clients get comprehensive solutions under one roof.
+    Along with the above core team, SSARP &amp; ASSOCIATES also collaborates with a wider network of professionals on specialised assignments, so clients get comprehensive solutions.
   </p>
 </section>
 
@@ -1085,8 +1010,7 @@
     <article class="tool-card">
       <h3>Old vs New Tax Regime (FY-wise)</h3>
       <p>
-        Compare tax under both regimes for FY 2025-26 & 2026-27 with all major heads
-        and separate capital gains block.
+        Compare tax payable under old vs new regime for FY-wise computation with key deductions and a separate capital gains block.
       </p>
       <a href="compare-tax-regime.html" class="btn btn-primary" target="_blank" rel="noopener">
         Open Tax Regime Comparator
@@ -1094,16 +1018,27 @@
     </article>
 
     <article class="tool-card">
-      <h3>Salary TDS + Form-16 (Part-B)</h3>
+      <h3>Salary TDS Calculator (with Form 16)</h3>
       <p>
-        Month-wise salary input, NPS handling, TDS planning and printable Form‑16 (Part‑B)
-        output via “Print → Save as PDF”.
+        Salary TDS computation with deductions and Form-16 style summary for quick review and sharing.
       </p>
-      <a href="salary-tds-form16.html" class="btn btn-primary" target="_blank" rel="noopener">
+      <a href="salary-tds-calculator.html" class="btn btn-primary" target="_blank" rel="noopener">
         Open Salary TDS Tool
       </a>
     </article>
-  </div></div>
+
+    <article class="tool-card">
+      <h3>Retainership Fee Estimator (Indicative)</h3>
+      <p>
+        Transparent retainer-range estimator for long-term finance & compliance support. Driven by operations,
+        GST/TDS complexity, invoice volume, reporting depth and involvement level — not entity type.
+        Includes bundled retainers and indicative market ranges for one-time services.
+      </p>
+      <a href="retainership-fee-estimator.html" class="btn btn-primary" target="_blank" rel="noopener">
+        Open Retainer Estimator
+      </a>
+    </article>
+  </div>
 </section>
 
 <section id="updates">
@@ -1115,15 +1050,105 @@
   </p>
 
   <div class="updates-ticker" aria-label="Updates ticker">
-    <ul class="updates-track">
+    <ul class="updates-track" id="updatesTrack">
       <li>
-        <h4>Loading updates…</h4>
-        <div class="updates-meta">SSARP Updates</div>
-        <p>If updates don’t load, please refresh the page.</p>
+        <h4>Faceless assessments &amp; e-proceedings</h4>
+        <div class="updates-meta">Income-tax • Assessments &amp; appeals</div>
+        <p>
+          Increasingly, scrutiny and appellate proceedings are being handled
+          through online portals and video-conferencing. We assist clients in
+          strategy, drafting, documentation and representation for such
+          e-proceedings.
+        </p>
       </li>
-</ul>
+
+      <li>
+        <h4>Enhanced focus on TDS / TCS compliance</h4>
+        <div class="updates-meta">Income-tax • TDS returns &amp; reconciliations</div>
+        <p>
+          Mismatches between books, Form 26AS and AIS / TIS are a major trigger
+          for notices. We help organisations design processes so that TDS, TCS
+          and related reconciliations are clean and defensible.
+        </p>
+      </li>
+
+      <li>
+        <h4>GST reconciliations &amp; input-tax credit discipline</h4>
+        <div class="updates-meta">GST • Returns, audits &amp; departmental queries</div>
+        <p>
+          GST departments are closely reviewing GSTR-2B vs 3B vs books and
+          e-invoicing adoption. Our team supports clients with reconciliations,
+          reply drafting, audits and ongoing advisory to minimise disputes.
+        </p>
+      </li>
+
+      <!-- duplicate for seamless scroll -->
+      <li>
+        <h4>Faceless assessments &amp; e-proceedings</h4>
+        <div class="updates-meta">Income-tax • Assessments &amp; appeals</div>
+        <p>
+          Increasingly, scrutiny and appellate proceedings are being handled
+          through online portals and video-conferencing. We assist clients in
+          strategy, drafting, documentation and representation for such
+          e-proceedings.
+        </p>
+      </li>
+
+      <li>
+        <h4>Enhanced focus on TDS / TCS compliance</h4>
+        <div class="updates-meta">Income-tax • TDS returns &amp; reconciliations</div>
+        <p>
+          Mismatches between books, Form 26AS and AIS / TIS are a major trigger
+          for notices. We help organisations design processes so that TDS, TCS
+          and related reconciliations are clean and defensible.
+        </p>
+      </li>
+
+      <li>
+        <h4>GST reconciliations &amp; input-tax credit discipline</h4>
+        <div class="updates-meta">GST • Returns, audits &amp; departmental queries</div>
+        <p>
+          GST departments are closely reviewing GSTR-2B vs 3B vs books and
+          e-invoicing adoption. Our team supports clients with reconciliations,
+          reply drafting, audits and ongoing advisory to minimise disputes.
+        </p>
+      </li>
+    </ul>
   </div>
 </section>
+
+<script>
+(function(){
+  const track = document.getElementById('updatesTrack');
+  if(!track) return;
+
+  fetch('updates.txt', {cache:'no-store'}).then(r=>{
+    if(!r.ok) throw new Error('updates.txt not found');
+    return r.text();
+  }).then(txt=>{
+    const lines = txt.split(/
+?
+/).map(l=>l.trim()).filter(Boolean).slice(0,50);
+    if(!lines.length) return;
+    const items = [];
+    for(const line of lines){
+      const parts = line.split('|').map(p=>p.trim());
+      const title = parts[0] || 'Update';
+      const meta = parts[1] || 'SSARP Updates';
+      const desc = parts.slice(2).join(' | ') || '';
+      items.push({title, meta, desc});
+    }
+    const makeLi = (it)=>(
+      `<li><h4>${esc(it.title)}</h4><div class="updates-meta">${esc(it.meta)}</div><p>${esc(it.desc)}</p></li>`
+    );
+    track.innerHTML = items.map(makeLi).join('') + items.map(makeLi).join('');
+  }).catch(()=>{});
+
+  function esc(str){
+    return String(str).replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+  }
+})();
+</script>
 
 <section id="videos">
   <span class="badge">Videos</span>
@@ -1156,7 +1181,103 @@
 </section>
 
 <!-- CLIENTELE IMAGE -->
-    <section id="clients">
+    <section id="careers">
+  <span class="badge">Careers</span>
+  <h2>Your future, unleashed.</h2>
+  <p class="section-subtitle">Apply for Full-time roles, Articleship or Internship.</p>
+
+  <div class="careers-grid">
+    <div class="careers-left">
+      <img class="careers-hero-img" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%221200%22%20height%3D%22700%22%3E%0A%3Cdefs%3E%0A%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230b1220%22/%3E%0A%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%230f2a4a%22/%3E%0A%20%20%3C/linearGradient%3E%0A%20%20%3Cfilter%20id%3D%22s%22%20x%3D%22-20%25%22%20y%3D%22-20%25%22%20width%3D%22140%25%22%20height%3D%22140%25%22%3E%0A%20%20%20%20%3CfeDropShadow%20dx%3D%220%22%20dy%3D%2210%22%20stdDeviation%3D%2218%22%20flood-color%3D%22%23000%22%20flood-opacity%3D%220.35%22/%3E%0A%20%20%3C/filter%3E%0A%3C/defs%3E%0A%3Crect%20width%3D%221200%22%20height%3D%22700%22%20rx%3D%2244%22%20fill%3D%22url%28%23g%29%22/%3E%0A%3Cg%20filter%3D%22url%28%23s%29%22%3E%0A%20%20%3Crect%20x%3D%2270%22%20y%3D%2290%22%20width%3D%221060%22%20height%3D%22520%22%20rx%3D%2234%22%20fill%3D%22rgba%28255%2C255%2C255%2C0.06%29%22%20stroke%3D%22rgba%28255%2C255%2C255%2C0.14%29%22/%3E%0A%3C/g%3E%0A%3Ctext%20x%3D%22110%22%20y%3D%22250%22%20font-family%3D%22Inter%2Csystem-ui%2CSegoe%20UI%2CArial%22%20font-size%3D%2296%22%20font-weight%3D%22800%22%20fill%3D%22%23c9ff6a%22%3EYour%20future%2C%3C/text%3E%0A%3Ctext%20x%3D%22110%22%20y%3D%22360%22%20font-family%3D%22Inter%2Csystem-ui%2CSegoe%20UI%2CArial%22%20font-size%3D%22112%22%20font-weight%3D%22900%22%20fill%3D%22%23ffffff%22%3Eunleashed.%3C/text%3E%0A%3Ctext%20x%3D%22110%22%20y%3D%22460%22%20font-family%3D%22Inter%2Csystem-ui%2CSegoe%20UI%2CArial%22%20font-size%3D%2234%22%20font-weight%3D%22600%22%20fill%3D%22rgba%28255%2C255%2C255%2C0.82%29%22%3ECareers%20at%20SSARP%20%26amp%3B%20Associates%3C/text%3E%0A%3Ctext%20x%3D%22110%22%20y%3D%22520%22%20font-family%3D%22Inter%2Csystem-ui%2CSegoe%20UI%2CArial%22%20font-size%3D%2228%22%20fill%3D%22rgba%28255%2C255%2C255%2C0.70%29%22%3EGrow%20with%20real%20work%2C%20strong%20mentoring%20and%20modern%20workflows.%3C/text%3E%0A%3C/svg%3E" alt="Your future, unleashed." />
+      <p class="careers-desc">The future is in your hands — and we’re here to help you build it\. At SSARP \& Associates, you get practical exposure across Direct Tax, GST, audits, corporate compliance and business advisory, supported by structured mentoring, strong documentation standards and tech\-enabled workflows\. Whether you’re looking for a full\-time role, CA/CS articleship or an internship, you’ll work on real client cases, learn how decisions are made in board\-room and assessment contexts, and develop skills that make you confident, audit\-ready and industry\-ready\. Choose your track, share your profile, and let’s explore a long\-term fit\.</p>
+    </div>
+
+    <div class="careers-right">
+      <div class="career-card">
+        <h3>Apply Now</h3>
+        <p class="tiny-note">On submit, your email app will open to <strong>srezaco@gmail.com</strong>. Please attach your resume manually.</p>
+
+        <form id="careerForm" class="career-form" autocomplete="off">
+          <div class="form-grid">
+            <div>
+              <label>Full Name</label>
+              <input type="text" id="c_name" required />
+            </div>
+            <div>
+              <label>Email</label>
+              <input type="email" id="c_email" required />
+            </div>
+
+            <div>
+              <label>Mobile</label>
+              <input type="tel" id="c_mobile" required />
+            </div>
+
+            <div>
+              <label>Position Type</label>
+              <select id="c_role" required>
+                <option value="" disabled selected>Select</option>
+                <option>Full-time Job</option>
+                <option>Articleship (CA)</option>
+                <option>Articleship (CS)</option>
+                <option>Internship (MBA)</option>
+                <option>Internship (B.Com)</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Preferred Location</label>
+              <select id="c_location" required>
+                <option value="" disabled selected>Select</option>
+                <option>Patna</option>
+                <option>Bengaluru</option>
+                <option>New Delhi</option>
+                <option>Pan-India (Flexible)</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Open to Relocate?</label>
+              <select id="c_relocate" required>
+                <option value="" disabled selected>Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Experience</label>
+              <select id="c_exp" required>
+                <option value="" disabled selected>Select</option>
+                <option>0</option>
+                <option>0-2 years</option>
+                <option>2-5 years</option>
+                <option>More than 5 years</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Resume (upload)</label>
+              <input type="file" id="c_resume" accept=".pdf,.doc,.docx" />
+            </div>
+          </div>
+
+          <div style="margin-top:10px;">
+            <label>Short note</label>
+            <textarea id="c_note" rows="3" placeholder="Brief profile / key skills / availability"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Send Application</button>
+            <span class="tiny-note">After email opens, click attach 📎 to add your resume.</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="clients">
       <span class="badge">Our Clientele</span>
       <h2>Who trusted us</h2>
       <p class="section-subtitle">A glimpse of some entities we have worked with.</p>
@@ -1166,96 +1287,138 @@
 
     <!-- CONTACT (aapka same content) -->
     <section id="contact">
-      <span class="badge">Contact</span>
-      <h2>Our offices &amp; contact details</h2>
-      <p class="section-subtitle">Reach out to us for engagements, clarifications or speaking sessions.</p>
+  <span class="badge">Contact</span>
+  <h2>Our offices &amp; contact details</h2>
+  <p class="section-subtitle">Reach out to us for engagements, clarifications or speaking sessions.</p>
 
-      <div class="contact-grid">
-                <div>
-          <div class="contact-card">
-            <h3>Head Office – Patna</h3>
-            <p>
-              <strong>Address:</strong><br />
-              301A, The Orchid Mall, Boring Road, Opp. A.N. College,<br />
-              Patna – 800013, Bihar, India
-            </p>
-            <ul class="contact-list">
-              <li><strong>Phone:</strong> <a href="tel:+919955778451">+91-9955778451</a></li>
-              <li><strong>Email:</strong> <a href="mailto:srezaco@gmail.com">srezaco@gmail.com</a></li>
-              <li><strong>Alternate email:</strong> <a href="mailto:info@ssarpca.com">info@ssarpca.com</a></li>
-            </ul>
-            <p class="contact-note">
-              <a class="map-link" href="https://maps.google.com/?q=Orchid+Mall,+Boring+Road,+Patna" target="_blank" rel="noopener">
-                View on Google Maps
-              </a>
-            </p>
-          </div>
-
-          <div class="contact-card">
-            <h3>Branch Office – New Delhi</h3>
-            <p>
-              <strong>Address:</strong><br />
-              Ground Floor, House No. F-8, Meraj Apartment,<br />
-              40 Feet Road, Abul Fazal Enclave II,<br />
-              Jamia Nagar, New Delhi – 110025, India
-            </p>
-            <p class="contact-note">
-              <a class="map-link" href="https://maps.google.com/?q=Ground+Floor%2C+House+No.+F-8%2C+Meraj+Apartment%2C+40+Feet+Road%2C+Abul+Fazal+Enclave+II%2C+Jamia+Nagar%2C+New+Delhi+110025" target="_blank" rel="noopener">
-                View on Google Maps
-              </a>
-            </p>
-          </div>
-
-          <div class="contact-card">
-            <h3>Branch Office – Bengaluru</h3>
-            <p>
-              <strong>Address:</strong><br />
-              Flat No. 8, Sriven@205 Apartments,<br />
-              Amani Bellendur Lane, Kadubeeshanhalli,<br />
-              Bengaluru – 560103, Karnataka, India
-            </p>
-            <p class="contact-note">
-              <a class="map-link" href="https://maps.google.com/?q=Flat+No.+8%2C+Sriven%40205+Apartments%2C+Amani+Bellendur+Lane%2C+Kadubeeshanhalli%2C+Bengaluru+560103" target="_blank" rel="noopener">
-                View on Google Maps
-              </a>
-            </p>
-          </div>
-
-          <div class="contact-card">
-            <h3>Branch Office – Araria</h3>
-            <p>
-              <strong>Address:</strong><br />
-              65, Jahangir Nagar, on NH-27 (earlier NH-57),<br />
-              Near ARG Hotel, Araria – 854311, Bihar, India
-            </p>
-            <ul class="contact-list">
-              <li><strong>Phone:</strong> <a href="tel:+919955778482">+91-9955778482</a></li>
-            </ul>
-            <p class="contact-note">
-              <a class="map-link" href="https://maps.google.com/?q=ARG+Hotel+Araria" target="_blank" rel="noopener">
-                View on Google Maps
-              </a>
-            </p>
-          </div>
-        </div>
-
-        
-            <p>We are available for calls, WhatsApp, email and video meetings.</p>
-            <ul class="contact-list">
-              <li><strong>Consultation hotline:</strong> <a href="tel:+918709348748">+91-8709348748</a></li>
-              <li><strong>WhatsApp:</strong> <a href="https://wa.me/919955778482" target="_blank" rel="noopener">+91-9955778482</a></li>
-            </ul>
-            <p class="contact-note">For faster response, please share your <strong>name, organisation, email ID and contact number</strong>.</p>
-          </div>
-        </div>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-card">
+        <h3>Head Office – Patna</h3>
+        <p>
+          <strong>Address:</strong><br />
+          301A, The Orchid Mall, Boring Road, Opp. A.N. College,<br />
+          Patna – 800013, Bihar, India
+        </p>
+        <ul class="contact-list">
+          <li><strong>Phone:</strong> <a href="tel:+919955778451">+91-9955778451</a></li>
+          <li><strong>Email:</strong> <a href="mailto:srezaco@gmail.com">srezaco@gmail.com</a></li>
+          <li><strong>Alternate email:</strong> <a href="mailto:info@ssarpca.com">info@ssarpca.com</a></li>
+        </ul>
+        <p class="contact-note">
+          <a class="map-link" href="https://maps.google.com/?q=The+Orchid+Mall,+Boring+Road,+Patna" target="_blank" rel="noopener">
+            View on Google Maps
+          </a>
+        </p>
       </div>
-    </section>
 
-  </main>
+      <div class="contact-card">
+        <h3>Branch Office – New Delhi</h3>
+        <p>
+          <strong>Address:</strong><br />
+          Ground Floor, House No- F-8, Meraj Apartment,<br />
+          40 Feet Road, Abul Fazal Enclave II, Jamia Nagar,<br />
+          New Delhi – 110025
+        </p>
+        <p class="contact-note">
+          <a class="map-link" href="https://maps.google.com/?q=Ground+Floor,+House+No+F-8,+Meraj+Apartment,+Abul+Fazal+Enclave+II,+Jamia+Nagar,+New+Delhi+110025" target="_blank" rel="noopener">
+            View on Google Maps
+          </a>
+        </p>
+      </div>
+
+      <div class="contact-card">
+        <h3>Branch Office – Bengaluru</h3>
+        <p>
+          <strong>Address:</strong><br />
+          Flat No 8, Sriven@205 Apartments,<br />
+          Amani Bellendur Lane, Kadubeesanahalli,<br />
+          Bengaluru – 560103
+        </p>
+        <p class="contact-note">
+          <a class="map-link" href="https://maps.google.com/?q=Flat+8,+Sriven@205+Apartments,+Amani+Bellendur+Lane,+Kadubeesanahalli,+Bengaluru+560103" target="_blank" rel="noopener">
+            View on Google Maps
+          </a>
+        </p>
+      </div>
+
+      <div class="contact-card">
+        <h3>Branch Office – Araria</h3>
+        <p>
+          <strong>Address:</strong><br />
+          65, Jahangir Nagar, on NH-27 (earlier NH-57),<br />
+          Near ARG Hotel, Araria – 854311, Bihar, India
+        </p>
+        <ul class="contact-list">
+          <li><strong>Phone:</strong> <a href="tel:+919955778482">+91-9955778482</a></li>
+        </ul>
+        <p class="contact-note">
+          <a class="map-link" href="https://maps.google.com/?q=ARG+Hotel+Araria" target="_blank" rel="noopener">
+            View on Google Maps
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <div class="contact-card">
+        <h3>Online consultations</h3>
+        <p>We are available for calls, WhatsApp, email and video meetings.</p>
+        <ul class="contact-list">
+          <li><strong>Consultation hotline:</strong> <a href="tel:+918709348748">+91-8709348748</a></li>
+          <li><strong>WhatsApp:</strong> <a href="https://wa.me/919955778482" target="_blank" rel="noopener">+91-9955778482</a></li>
+        </ul>
+        <p class="contact-note">For faster response, please share your <strong>name, organisation, email ID and contact number</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
 
   <footer>© SSARP &amp; ASSOCIATES, Chartered Accountants. All rights reserved.</footer>
 
  
+
+<script>
+(function(){
+  const f = document.getElementById('careerForm');
+  if(!f) return;
+
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('c_name').value.trim();
+    const email = document.getElementById('c_email').value.trim();
+    const mobile = document.getElementById('c_mobile').value.trim();
+    const role = document.getElementById('c_role').value.trim();
+    const loc = document.getElementById('c_location').value.trim();
+    const relocate = document.getElementById('c_relocate').value.trim();
+    const exp = document.getElementById('c_exp').value.trim();
+    const note = (document.getElementById('c_note').value || '').trim();
+
+    const subject = `Career | ${role} | ${loc} | Relocate: ${relocate} | Exp: ${exp}`;
+    const bodyLines = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Mobile: ${mobile}`,
+      `Position Type: ${role}`,
+      `Preferred Location: ${loc}`,
+      `Open to Relocate: ${relocate}`,
+      `Experience: ${exp}`,
+      '',
+      'Short Note:',
+      note || '-',
+      '',
+      'Resume: Please find attached (attach your resume file before sending).'
+    ];
+    const body = bodyLines.join('\n');
+
+    window.location.href = `mailto:srezaco@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+})();
+</script>
+
+
   <!-- Tidio -->
   <script src="//code.tidio.co/afgblpjgvsvzvkmgiryuhjzncxnrg4z9.js" async></script>
 
@@ -1286,66 +1449,5 @@
   })();
 </script>
 
-<script>
-  async function loadUpdatesFromTextFile(){
-    const track = document.querySelector('#updates .updates-track');
-    if(!track) return;
-
-    const escapeHtml = (str) => (str || "").replace(/[&<>"']/g, (c) => ({
-      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-    }[c]));
-
-    const parseLine = (line) => {
-      // Supported formats (plain text):
-      // 1) Title | Meta | Description
-      // 2) Title | Description
-      // 3) Single sentence (treated as Description)
-      const parts = line.split('|').map(p => p.trim()).filter(Boolean);
-      let title = "Update";
-      let meta = "SSARP Updates";
-      let body = line.trim();
-
-      if(parts.length >= 3){
-        title = parts[0]; meta = parts[1]; body = parts.slice(2).join(' | ');
-      } else if(parts.length === 2){
-        title = parts[0]; body = parts[1];
-      } else if(parts.length === 1){
-        body = parts[0];
-        const words = body.split(/\s+/).filter(Boolean);
-        title = words.slice(0, 6).join(' ') + (words.length > 6 ? '…' : '');
-      }
-
-      const li = document.createElement('li');
-      li.innerHTML = `
-        <h4>${escapeHtml(title)}</h4>
-        <div class="updates-meta">${escapeHtml(meta)}</div>
-        <p>${escapeHtml(body)}</p>
-      `;
-      return li;
-    };
-
-    try{
-      const res = await fetch('updates.txt', { cache: 'no-store' });
-      if(!res.ok) throw new Error('updates.txt not found');
-      const text = await res.text();
-      const lines = text.split(/\r?\n/).map(x => x.trim()).filter(x => x && !x.startsWith('#'));
-      if(lines.length === 0) throw new Error('No updates found');
-
-      track.innerHTML = "";
-      const frag = document.createDocumentFragment();
-      lines.forEach(line => frag.appendChild(parseLine(line)));
-      track.appendChild(frag);
-
-      // Duplicate once for seamless ticker loop (your existing CSS animation expects repetition)
-      track.innerHTML += track.innerHTML;
-    } catch(e){
-      console.warn("Updates load failed:", e);
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', loadUpdatesFromTextFile);
-</script>
-
 </body>
 </html>
-
