@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>GST Interest & Late Fee Estimator | SSARP & Associates</title>
+<style>
+:root{--bg:#0b1220;--text:#e8eefc;--muted:#a9b7d6;--border:rgba(255,255,255,.10);--shadow:0 10px 30px rgba(0,0,0,.35);--r:16px}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:radial-gradient(1200px 800px at 10% 10%, rgba(79,140,255,.25), transparent 60%),radial-gradient(1000px 700px at 90% 20%, rgba(57,217,138,.18), transparent 55%),var(--bg);color:var(--text)}
+header{max-width:1000px;margin:0 auto;padding:22px 16px 6px}
+h1{margin:0;font-size:22px}
+.sub{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.4}
+main{max-width:1000px;margin:0 auto;padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:900px){main{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.hd{padding:14px 16px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.02)}
+.hd h2{margin:0;font-size:14px;font-weight:900}
+.bd{padding:14px 16px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px}
+@media(max-width:520px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+input,select{width:100%;padding:10px;border-radius:12px;border:1px solid var(--border);background:rgba(10,18,34,.65);color:var(--text);outline:none}
+.btn{cursor:pointer;border:1px solid var(--border);background:linear-gradient(180deg,rgba(79,140,255,.22),rgba(79,140,255,.08));color:var(--text);padding:10px 12px;border-radius:12px;font-weight:900}
+.btn.secondary{background:rgba(255,255,255,.03)}
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.box{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:14px;padding:12px}
+.box .label{color:var(--muted);font-size:12px}
+.box .val{font-size:18px;font-weight:950;margin-top:6px}
+.tiny{font-size:11px;color:var(--muted)}
+footer{max-width:1000px;margin:0 auto;padding:10px 16px 24px;color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <h1>GST Interest &amp; Late Fee Estimator</h1>
+  <p class="sub">Quick indicative calculator for delayed GST returns. Always verify with latest law/notifications and portal computations.</p>
+</header>
+
+<main>
+  <section class="card">
+    <div class="hd"><h2>Inputs</h2></div>
+    <div class="bd">
+      <div class="grid">
+        <div>
+          <label>Return Type</label>
+          <select id="rtype">
+            <option value="3b" selected>GSTR-3B</option>
+            <option value="1">GSTR-1</option>
+          </select>
+        </div>
+        <div>
+          <label>Delay (days)</label>
+          <input id="days" type="number" min="0" value="0"/>
+        </div>
+        <div>
+          <label>Tax payable (CGST+SGST/IGST) (₹)</label>
+          <input id="tax" type="number" min="0" value="0"/>
+        </div>
+        <div>
+          <label>Interest rate (% p.a.)</label>
+          <input id="rate" type="number" min="0" step="0.1" value="18"/>
+        </div>
+        <div>
+          <label>Nil return?</label>
+          <select id="nil">
+            <option value="no" selected>No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </div>
+        <div>
+          <label>Cap late fee (₹) (optional)</label>
+          <input id="cap" type="number" min="0" value="0"/>
+        </div>
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn" id="btnCalc">Compute</button>
+        <button class="btn secondary" id="btnReset">Reset</button>
+      </div>
+
+      <p class="tiny" style="margin-top:10px">
+        Assumptions (editable logic): Late fee assumed ₹50/day (₹25 CGST + ₹25 SGST) for non-nil; ₹20/day for nil. 
+        Portal caps/waivers may apply.
+      </p>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="hd"><h2>Results</h2></div>
+    <div class="bd">
+      <div class="kpi">
+        <div class="box"><div class="label">Interest (₹)</div><div class="val" id="interest">—</div></div>
+        <div class="box"><div class="label">Late Fee (₹)</div><div class="val" id="latefee">—</div></div>
+        <div class="box"><div class="label">Total Outgo (₹)</div><div class="val" id="total">—</div></div>
+        <div class="box"><div class="label">Notes</div><div class="val" style="font-size:12px;line-height:1.35" id="notes">—</div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Prepared by SSARP &amp; Associates • Indicative only • Final computation may differ based on notifications/waivers/caps and portal logic.</footer>
+
+<script>
+function INR(n){ n = Math.max(0, Number(n||0)); return Math.round(n).toLocaleString('en-IN'); }
+
+function compute(){
+  const days = Math.max(0, Number(document.getElementById('days').value||0));
+  const tax = Math.max(0, Number(document.getElementById('tax').value||0));
+  const rate = Math.max(0, Number(document.getElementById('rate').value||0));
+  const nil = document.getElementById('nil').value === 'yes';
+  const rtype = document.getElementById('rtype').value;
+  const cap = Math.max(0, Number(document.getElementById('cap').value||0));
+
+  // Interest: tax * rate * days / 365
+  const interest = tax * (rate/100) * (days/365);
+
+  // Late fee assumption:
+  // Non-nil: 50/day; nil: 20/day. (simple indicative)
+  let perDay = nil ? 20 : 50;
+  // if GSTR-1, keep the same assumption here (user can adjust cap)
+  let late = perDay * days;
+  if(cap>0) late = Math.min(late, cap);
+
+  const total = interest + late;
+
+  document.getElementById('interest').textContent = '₹ ' + INR(interest);
+  document.getElementById('latefee').textContent  = '₹ ' + INR(late);
+  document.getElementById('total').textContent    = '₹ ' + INR(total);
+
+  let notes = [];
+  notes.push(rtype==='3b' ? 'Return: GSTR-3B' : 'Return: GSTR-1');
+  notes.push(nil ? 'Nil return assumed.' : 'Non-nil return assumed.');
+  if(cap>0) notes.push('Late fee capped as per input.');
+  notes.push('Verify any amnesty/waiver notifications and portal computation.');
+  document.getElementById('notes').textContent = notes.join(' ');
+}
+
+function reset(){
+  document.getElementById('rtype').value='3b';
+  document.getElementById('days').value=0;
+  document.getElementById('tax').value=0;
+  document.getElementById('rate').value=18;
+  document.getElementById('nil').value='no';
+  document.getElementById('cap').value=0;
+  compute();
+}
+
+document.getElementById('btnCalc').addEventListener('click', (e)=>{e.preventDefault(); compute();});
+document.getElementById('btnReset').addEventListener('click', (e)=>{e.preventDefault(); reset();});
+document.addEventListener('DOMContentLoaded', compute);
+</script>
+</body>
+</html>
