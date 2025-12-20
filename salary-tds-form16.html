@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ITWS - Income Tax Calculation (SSARP)</title>
+  <style>
+    body{font-family:Arial, sans-serif;margin:20px;background:#0b0f14;color:#e6edf3}
+    .card{background:#111826;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 16px;margin:0 0 14px 0;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+    h1{margin:0 0 6px 0}
+    h3{margin:10px 0 6px 0}
+    .row{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+    label{font-size:12px;color:#b7c2cc}
+    input,select{padding:6px 8px;border:1px solid rgba(255,255,255,.14);border-radius:8px;font-size:13px;background:#0d1420;color:#e6edf3;outline:none}
+    input[type="number"]{width:110px}
+    .btn{padding:7px 10px;border:0;border-radius:6px;cursor:pointer;font-size:12px}
+    .btnP{background:#2563eb;color:#fff}
+    .btnS{background:rgba(255,255,255,.08);color:#e6edf3;border:1px solid rgba(255,255,255,.12)}
+    .btnD{background:#e11d48;color:#fff}
+    .small{font-size:11px;color:#9aa4af}
+    table{width:100%;border-collapse:collapse;background:#0d1420;font-size:12px;color:#e6edf3}
+    th,td{border:1px solid rgba(255,255,255,.12);padding:6px;text-align:center}
+    th{background:rgba(255,255,255,.06);position:sticky;top:0;z-index:1}
+    .left{text-align:left}
+    .right{text-align:right}
+    .hl{background:rgba(34,197,94,.12);font-weight:bold}
+    footer{margin-top:8px;text-align:right;font-size:11px;color:#94a3b8}
+
+    /* PRINT/PDF */
+    @media print{
+      *{color:#000 !important;}
+      table{background:#fff !important;}
+      th{background:#f0f0f6 !important;}
+      input,select{border:1px solid #ccc !important; background:#fff !important; color:#000 !important;}
+
+      body{background:#fff;margin:0}
+      .no-print{display:none !important}
+      .card{box-shadow:none;border-radius:0;margin:0;padding:10mm}
+      th{position:static}
+      .wm{position:fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:-1; pointer-events:none;}
+      .wm span{transform:rotate(-30deg); font-size:44px; color:rgba(0,0,0,0.07); font-weight:700; white-space:pre-line; text-align:center; line-height:1.2;}
+      @page { size:A4; margin:10mm; }
+    }
+
+    /* ITWS sheet styles */
+    .sheet {border:2px solid #111;}
+    .sheet th, .sheet td {border:1px solid #111;}
+    .sheet .head{font-weight:700;font-size:16px;text-align:center}
+    .sheet .left{text-align:left}
+    .sheet .right{text-align:right}
+    .sheet .bold{font-weight:700}
+    .sheet .red{background:#ffb3b3;font-weight:700}
+    .box{border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px;background:rgba(255,255,255,.04)}
+  </style>
+</head>
+<body>
+
+<div class="card no-print">
+  <h1>ITWS – Income Tax Calculation</h1>
+  <div class="small">
+    FY supported: <b>2025-26</b> & <b>2026-27</b> • Offline • Dark Theme • Offline • PDF via Print → Save as PDF
+  </div>
+</div>
+
+<div class="card no-print">
+  <div class="row">
+    <div>
+      <label>Financial Year</label><br>
+      <select id="fy">
+        <option value="2025">FY 2025-26</option>
+        <option value="2026">FY 2026-27</option>
+      </select>
+    </div>
+    <div>
+      <label>Employee Name</label><br>
+      <input id="empName" type="text" placeholder="Name">
+    </div>
+    <div>
+      <label>Designation</label><br>
+      <input id="empDesig" type="text" placeholder="Designation">
+    </div>
+    <div>
+      <label>PAN</label><br>
+      <input id="empPAN" type="text" placeholder="ABCDE1234F">
+    </div>
+    <div>
+      <label>NPS Employer % (Manual)</label><br>
+<input type="number" id="npsPct" min="0" step="0.1" value="14" style="width:70px"> %
+
+    </div>
+    <div>
+      <label>NPS 80CCD(2) Limit %</label><br>
+      <select id="npsLimitPct" style="width:110px">
+        <option value="14" selected>14% (Govt)</option>
+        <option value="10">10% (Others)</option>
+      </select>
+    </div>
+    <div>
+      <label>Compute Till Month (As-of)</label><br>
+      <select id="asOf">
+        <option value="0">Apr</option><option value="1">May</option><option value="2">Jun</option><option value="3">Jul</option>
+        <option value="4">Aug</option><option value="5">Sep</option><option value="6">Oct</option><option value="7">Nov</option>
+        <option value="8">Dec</option><option value="9">Jan</option><option value="10">Feb</option><option value="11">Mar</option>
+      </select>
+    </div>
+
+    <div style="flex:1"></div>
+    <div>
+      <button class="btn btnS" onclick="recall()">Recall</button>
+      <button class="btn btnS" onclick="saveNow()">Save</button>
+      <button class="btn btnP" onclick="compute()">Compute</button>
+      <button class="btn btnP" onclick="generateITWSPDF()">Generate Form-16 (Part-B) PDF</button>
+      <button class="btn btnD" onclick="clearScreen()">Clear</button>
+    </div>
+  </div>
+  
+  <div class="row" style="margin-top:10px">
+    <div>
+      <label>Employer Name (Form-16)</label><br>
+      <input id="emprName" type="text" placeholder="Employer name">
+    </div>
+    <div style="flex:1; min-width:220px">
+      <label>Employer Address (Form-16)</label><br>
+      <input id="emprAddr" type="text" placeholder="Address" style="width:100%">
+    </div>
+    <div>
+      <label>City</label><br>
+      <input id="emprCity" type="text" placeholder="City" style="width:120px">
+    </div>
+    <div>
+      <label>PIN</label><br>
+      <input id="emprPin" type="text" placeholder="PIN" style="width:90px">
+    </div>
+    <div>
+      <label>PAN of Deductor</label><br>
+      <input id="dedPAN" type="text" placeholder="AAAAA1234A" style="width:120px">
+    </div>
+    <div>
+      <label>TAN of Deductor</label><br>
+      <input id="dedTAN" type="text" placeholder="AAAA12345A" style="width:120px">
+    </div>
+    <div>
+      <label>Employee Address (optional)</label><br>
+      <input id="empAddr" type="text" placeholder="Employee address" style="width:220px">
+    </div>
+    <div>
+      <label>Employee Ref No.</label><br>
+      <input id="empRef" type="text" placeholder="(if any)" style="width:90px">
+    </div>
+    <div>
+      <label>Certificate No.</label><br>
+      <input id="certNo" type="text" placeholder="Certificate No." style="width:120px">
+    </div>
+    <div>
+      <label>Last updated on</label><br>
+      <input id="lastUpd" type="date" style="width:140px">
+    </div>
+    <div>
+      <label>Place (Verification)</label><br>
+      <input id="place" type="text" placeholder="Place" style="width:120px">
+    </div>
+  </div>
+<div class="small" style="margin-top:8px">
+    Month-wise compute: select “As-of month” → tool will compute <b>salary/tax/tds till date</b> and <b>planning for remaining months</b>.
+  </div>
+</div>
+
+<div class="card no-print">
+  <h3>Month-wise Salary Input</h3>
+  <div class="small">NPS Employer auto-calc: (Basic + DA) × selected % if blank/0. Manual override allowed month-wise.</div>
+  <div style="max-height:320px; overflow:auto; border:1px solid #eee; border-radius:8px;">
+    <table>
+      <thead>
+      <tr>
+        <th>Month</th>
+        <th>Basic</th><th>DA</th><th>HRA</th><th>Other</th><th>Arrears</th>
+        <th>PT</th><th>NPS Emp</th><th>NPS Empr</th><th>TDS Paid</th><th>Copy ↑</th>
+      </tr>
+      </thead>
+      <tbody id="salBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card no-print">
+  <h3>Old Regime Deductions (Manual)</h3>
+  <div class="row">
+    <div><label>80C (max 1,50,000)</label><br><input type="number" id="d80c" min="0" value="0"></div>
+    <div><label>Housing Loan Interest u/s 24(b) (max 2,00,000)</label><br><input type="number" id="d24b" min="0" value="0"></div>
+    <div>
+      <label>80D (Medical)</label><br>
+      <input type="number" id="d80d" min="0" value="0" style="width:120px">
+      <select id="d80dCat" title="80D limit" style="width:160px">
+        <option value="25000" selected>Non-senior (Max 25,000)</option>
+        <option value="50000">Senior citizen (Max 50,000)</option>
+      </select>
+    </div>
+    <div><label>80E (Edu Loan)</label><br><input type="number" id="d80e" min="0" value="0"></div>
+    <div><label>80G (Donation)</label><br><input type="number" id="d80g" min="0" value="0"></div>
+    <div><label>Other</label><br><input type="number" id="dOther" min="0" value="0"></div>
+  </div>
+</div>
+
+<div class="card no-print">
+  <h3>Scheme Selection for PDF</h3>
+  <div class="row">
+    <label><input type="radio" name="scheme" value="new" checked> NEW Regime (Form-16 PDF)</label>
+    <label><input type="radio" name="scheme" value="old"> OLD Regime (Form-16 PDF)</label>
+  </div>
+</div>
+
+<div class="card no-print">
+  <h3>Month-wise TDS Planning (As-of Month)</h3>
+  <div class="box" id="planBox" class="small">Compute to see plan…</div>
+</div>
+
+<div class="card no-print">
+  <h3>Quick Summary (both regimes)</h3>
+  <table id="cmpTbl">
+    <thead><tr><th class="left">Particulars</th><th>Old (₹)</th><th>New (₹)</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <footer>Prepared by SSARP & Associates (TDS Working Tool)</footer>
+</div>
+
+<script>
+  const months = ["Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Jan","Feb","Mar"];
+  function num(v){ v=+v; return isFinite(v)?v:0; }
+  function money(n){ return Math.round(num(n)); }
+  function selectedScheme(){ return document.querySelector('input[name="scheme"]:checked')?.value || "new"; }
+  function storageKey(){ return `ITWS_${fy.value}_${empPAN.value.trim().toUpperCase()}`; }
+
+  function initTable(){
+    const tb = document.getElementById("salBody");
+    tb.innerHTML="";
+    for(let i=0;i<12;i++){
+      const tr=document.createElement("tr");
+      tr.innerHTML=`
+        <td class="left">${months[i]}</td>
+        <td><input type="number" min="0" id="b_${i}" value="0"></td>
+        <td><input type="number" min="0" id="da_${i}" value="0"></td>
+        <td><input type="number" min="0" id="hra_${i}" value="0"></td>
+        <td><input type="number" min="0" id="o_${i}" value="0"></td>
+        <td><input type="number" min="0" id="ar_${i}" value="0"></td>
+        <td><input type="number" min="0" id="pt_${i}" value="0"></td>
+        <td><input type="number" min="0" id="npsE_${i}" value="0"></td>
+        <td><input type="number" min="0" id="npsR_${i}" value="0" placeholder="auto"></td>
+        <td><input type="number" min="0" id="tds_${i}" value="0"></td>
+        <td><button class="btn btnS" onclick="copyPrev(${i})">↑</button></td>
+      `;
+      tb.appendChild(tr);
+    }
+  }
+
+  function copyPrev(i){
+    if(i===0) return;
+    const f=["b","da","hra","o","ar","pt","npsE","npsR","tds"];
+    f.forEach(x=>document.getElementById(`${x}_${i}`).value=document.getElementById(`${x}_${i-1}`).value);
+  }
+
+  function readRows(){
+    const rows=[];
+    const pct = num(npsPct.value)/100;
+    for(let i=0;i<12;i++){
+      const basic=num(document.getElementById(`b_${i}`).value);
+      const da=num(document.getElementById(`da_${i}`).value);
+      const hra=num(document.getElementById(`hra_${i}`).value);
+      const other=num(document.getElementById(`o_${i}`).value);
+      const arrears=num(document.getElementById(`ar_${i}`).value);
+      const pt=num(document.getElementById(`pt_${i}`).value);
+      const npsEmp=num(document.getElementById(`npsE_${i}`).value);
+      let npsEmpr=num(document.getElementById(`npsR_${i}`).value);
+      const tds=num(document.getElementById(`tds_${i}`).value);
+
+      if(npsEmpr===0 && (basic+da)>0){
+        npsEmpr = +(pct*(basic+da)).toFixed(2);
+        document.getElementById(`npsR_${i}`).value = npsEmpr;
+      }
+      const gross = basic+da+hra+other+arrears;
+      rows.push({i,basic,da,hra,other,arrears,pt,npsEmp,npsEmpr,tds,gross});
+    }
+    return rows;
+  }
+
+  // NEW regime slabs as per your ITWS screenshot
+  function taxNew_ITWS(taxable){
+    let t=taxable, tax=0;
+    function slab(from,to,rate){
+      if(t<=from) return;
+      const amt = Math.min(t, to) - from;
+      if(amt>0) tax += amt*rate;
+    }
+    slab(0, 400000, 0.00);
+    slab(400000, 800000, 0.05);
+    slab(800000, 1200000, 0.10);
+    slab(1200000, 1600000, 0.15);
+    slab(1600000, 2000000, 0.15);
+    slab(2000000, 2400000, 0.20);
+    if(t>2400000) tax += (t-2400000)*0.30;
+    return tax;
+  }
+
+  function taxOld(taxable){
+    let t=taxable, tax=0;
+    if(t<=250000) return 0;
+    t-=250000;
+    if(t<=250000) return t*0.05;
+    tax += 250000*0.05; t-=250000;
+    if(t<=500000) return tax + t*0.20;
+    tax += 500000*0.20; t-=500000;
+    if(t>0) tax += t*0.30;
+    return tax;
+  }
+
+  function sumTill(rows, idx, field){
+    let s=0;
+    for(let i=0;i<=idx;i++) s += num(rows[i][field]);
+    return s;
+  }
+
+  function compute(){
+    const name=empName.value.trim(), pan=empPAN.value.trim().toUpperCase();
+    if(!name || !pan){ alert("Employee Name & PAN required."); return; }
+
+    const rows = readRows();
+    const asIdx = num(asOf.value); // 0..11
+
+    // TILL DATE (up to selected month)
+    const grossTill = sumTill(rows, asIdx, "gross");
+    const ptTill = sumTill(rows, asIdx, "pt");
+    const npsEmprTill = sumTill(rows, asIdx, "npsEmpr");
+    const tdsTill = sumTill(rows, asIdx, "tds");
+    const basicDATill = (()=>{ let s=0; for(let i=0;i<=asIdx;i++){ s += num(rows[i].basic)+num(rows[i].da); } return s; })();
+
+    // NPS u/s 80CCD(2) deductible is capped by allowed % of (Basic+DA)
+    const monthsDoneTmp = (asIdx+1);
+    const annualBasicDAProjected = monthsDoneTmp>0 ? (basicDATill/monthsDoneTmp)*12 : 0;
+    const annualNpsEmprProjected = monthsDoneTmp>0 ? (npsEmprTill/monthsDoneTmp)*12 : 0;
+    const annualPTProjected = monthsDoneTmp>0 ? (ptTill/monthsDoneTmp)*12 : 0;
+    const npsLimitPctV = num((document.getElementById('npsLimitPct')?.value)||14)/100;
+    const nps80ccd2Allowed = Math.min(annualNpsEmprProjected, npsLimitPctV * annualBasicDAProjected);
+
+    const monthsDone = asIdx + 1;
+    const monthsLeft = 12 - monthsDone;
+
+    // Annual projection based on till-date average (Sec 192 style)
+    const annualGrossProjected = (grossTill / monthsDone) * 12;
+
+    // deductions caps
+    const SD_OLD=50000, SD_NEW=75000;
+    const d80cV = Math.min(num(d80c.value),150000);
+    const d24bV = Math.min(num(d24b.value),200000);
+    const d80dCap = num(document.getElementById('d80dCat')?.value || 25000);
+    const d80dV = Math.min(num(d80d.value), d80dCap);
+    const d80eV = num(d80e.value);
+    const d80gV = num(d80g.value);
+    const dOtherV = num(dOther.value);
+
+    // NEW regime (ITWS style)
+    const A_new = annualGrossProjected - SD_NEW;
+    const B_new = annualPTProjected + nps80ccd2Allowed;
+    const C_new = A_new - B_new;
+    const D_new = 0;
+    const E_new = C_new - D_new;
+    let baseNew = taxNew_ITWS(Math.max(E_new,0));
+    const cessNew = baseNew*0.04;
+    const H_new = baseNew + cessNew;
+
+    // OLD regime (with deductions)
+    const A_old = annualGrossProjected - SD_OLD;
+    const B_old = annualPTProjected + nps80ccd2Allowed + d24bV + d80dV + d80eV + d80gV + dOtherV;
+    const C_old = A_old - B_old;
+    const D_old = d80cV;
+    const E_old = C_old - D_old;
+    let baseOld = taxOld(Math.max(E_old,0));
+    const cessOld = baseOld*0.04;
+    const H_old = baseOld + cessOld;
+
+    // summary table
+    const cmp=document.querySelector("#cmpTbl tbody");
+    cmp.innerHTML=`
+      <tr><td class="left">As-of Month</td><td>${months[asIdx]}</td><td>${months[asIdx]}</td></tr>
+      <tr><td class="left">Gross Salary Till Date</td><td class="right">${money(grossTill)}</td><td class="right">${money(grossTill)}</td></tr>
+      <tr><td class="left">Projected Annual Gross (Sec 192)</td><td class="right">${money(annualGrossProjected)}</td><td class="right">${money(annualGrossProjected)}</td></tr>
+      <tr class="hl"><td class="left">Projected Annual Tax (incl. cess)</td><td class="right">${money(H_old)}</td><td class="right">${money(H_new)}</td></tr>
+      <tr><td class="left">TDS Deducted Till Date</td><td class="right">${money(tdsTill)}</td><td class="right">${money(tdsTill)}</td></tr>
+    `;
+
+    // planning based on selected scheme
+    const sch = selectedScheme();
+    const taxSelected = (sch==="new") ? H_new : H_old;
+    const balance = taxSelected - tdsTill;
+    const perMonth = monthsLeft>0 ? (balance / monthsLeft) : 0;
+
+    document.getElementById("planBox").innerHTML = `
+      <div class="small">
+        <b>Selected Scheme:</b> ${sch.toUpperCase()}<br>
+        <b>Months done:</b> ${monthsDone} | <b>Months remaining:</b> ${monthsLeft}<br><br>
+        <b>Gross Salary Till Date:</b> ₹${money(grossTill)}<br>
+        <b>Projected Annual Gross (Sec 192):</b> ₹${money(annualGrossProjected)}<br>
+        <b>Projected Annual Tax (Selected, incl. cess):</b> ₹${money(taxSelected)}<br>
+        <b>TDS Deducted Till Date:</b> ₹${money(tdsTill)}<br>
+        <b>Balance Tax:</b> ₹${money(balance)}<br>
+        <b>Recommended Monthly TDS (Balance / Remaining):</b> <span class="hl">₹${money(perMonth)}</span>
+      </div>
+    `;
+
+    // store snapshot for PDF
+    window.__MW = {
+      fy: fy.value,
+      ay: (fy.value==="2025") ? "2026-27" : "2027-28",
+      asIdx, monthsDone, monthsLeft,
+      name, desig: empDesig.value.trim(), pan,
+      npsPct: npsPct.value,
+      grossTill, annualGrossProjected, ptTill, npsEmprTill, annualPTProjected, annualNpsEmprProjected, nps80ccd2Allowed, annualBasicDAProjected, tdsTill,
+      old:{A:A_old,B:B_old,C:C_old,D:D_old,E:E_old, base:baseOld, cess:cessOld, H:H_old,
+           d80cV,d24bV,d80dV,d80eV,d80gV,dOtherV},
+      neu:{A:A_new,B:B_new,C:C_new,D:0,E:E_new, base:baseNew, cess:cessNew, H:H_new},
+      scheme: sch
+    };
+
+    saveNow();
+  }
+
+  function saveNow(){
+    const name=empName.value.trim(), pan=empPAN.value.trim().toUpperCase();
+    if(!name||!pan) return;
+    const rows = readRows();
+    const data={
+      fy: fy.value,
+      name, desig: empDesig.value.trim(), pan,
+      npsPct: npsPct.value,
+      asOf: asOf.value,
+      scheme: selectedScheme(),
+      deductions:{d80c:num(d80c.value), d24b:num(d24b.value), d80d:num(d80d.value), d80dCat:(document.getElementById('d80dCat')?.value||'25000'), d80e:num(d80e.value), d80g:num(d80g.value), dOther:num(dOther.value)},
+      rows
+    };
+    localStorage.setItem(storageKey(), JSON.stringify(data));
+  }
+
+  function recall(){
+    const pan=empPAN.value.trim().toUpperCase();
+    if(!pan){ alert("Enter PAN first."); return; }
+    const raw=localStorage.getItem(storageKey());
+    if(!raw){ alert("No saved data for this FY+PAN."); return; }
+    const data=JSON.parse(raw);
+    empName.value=data.name||"";
+    empDesig.value=data.desig||"";
+    empPAN.value=data.pan||pan;
+    npsPct.value=data.npsPct||"14";
+    asOf.value = data.asOf ?? "0";
+    if(data.scheme){
+      const rb=document.querySelector(`input[name="scheme"][value="${data.scheme}"]`);
+      if(rb) rb.checked=true;
+    }
+    d80c.value=data.deductions?.d80c||0;
+    d24b.value=data.deductions?.d24b||0;
+    d80d.value=data.deductions?.d80d||0;
+    if(data.deductions?.d80dCat){ const el=document.getElementById('d80dCat'); if(el) el.value=String(data.deductions.d80dCat); }
+    d80e.value=data.deductions?.d80e||0;
+    d80g.value=data.deductions?.d80g||0;
+    dOther.value=data.deductions?.dOther||0;
+
+    initTable();
+    (data.rows||[]).forEach(r=>{
+      document.getElementById(`b_${r.i}`).value=r.basic||0;
+      document.getElementById(`da_${r.i}`).value=r.da||0;
+      document.getElementById(`hra_${r.i}`).value=r.hra||0;
+      document.getElementById(`o_${r.i}`).value=r.other||0;
+      document.getElementById(`ar_${r.i}`).value=r.arrears||0;
+      document.getElementById(`pt_${r.i}`).value=r.pt||0;
+      document.getElementById(`npsE_${r.i}`).value=r.npsEmp||0;
+      document.getElementById(`npsR_${r.i}`).value=r.npsEmpr||0;
+      document.getElementById(`tds_${r.i}`).value=r.tds||0;
+    });
+  }
+
+  function clearScreen(){
+    if(!confirm("Clear screen?")) return;
+    empName.value=""; empDesig.value=""; empPAN.value="";
+    d80c.value=0; d24b.value=0; d80d.value=0; if(document.getElementById('d80dCat')) document.getElementById('d80dCat').value='25000'; d80e.value=0; d80g.value=0; dOther.value=0;
+    document.querySelector('input[name="scheme"][value="new"]').checked=true;
+    npsPct.value="14"; asOf.value="0";
+    initTable();
+    document.querySelector("#cmpTbl tbody").innerHTML="";
+    document.getElementById("planBox").innerHTML="Compute to see plan…";
+  }
+
+  
+  function generateITWSPDF(){
+    compute();
+    if(!window.__MW){ alert("Compute first."); return; }
+    const X = window.__MW;
+
+    // pull Form-16 header fields from inputs
+    const emprName = (document.getElementById("emprName")?.value || "").trim();
+    const emprAddr = (document.getElementById("emprAddr")?.value || "").trim();
+    const emprCity = (document.getElementById("emprCity")?.value || "").trim();
+    const emprPin  = (document.getElementById("emprPin")?.value || "").trim();
+    const dedPAN   = (document.getElementById("dedPAN")?.value || "").trim();
+    const dedTAN   = (document.getElementById("dedTAN")?.value || "").trim();
+    const empAddr  = (document.getElementById("empAddr")?.value || "").trim();
+    const empRef   = (document.getElementById("empRef")?.value || "").trim();
+    const certNo   = (document.getElementById("certNo")?.value || "").trim();
+    const lastUpd  = (document.getElementById("lastUpd")?.value || "").trim();
+    const place    = (document.getElementById("place")?.value || "").trim();
+
+    const grossSalary = money(X.annualGrossProjected);
+    const stdDed = (X.scheme==="new") ? 75000 : 50000;
+    const incomeSalaries = Math.max(grossSalary - stdDed, 0);
+
+    // Chapter VIA deductions (only meaningful for OLD in this tool)
+    const ded80c = (X.old?.d80cV)||0;
+    const dedNps = money(X.nps80ccd2Allowed||0);
+    const npsLimitPctSel = (document.getElementById('npsLimitPct')?.value || '14');
+    const npsMaxPctLabel = `${npsLimitPctSel}%`;
+
+    const ded24b = (X.old?.d24bV)||0;
+    const ded80d = (X.old?.d80dV)||0;
+    const ded80e = (X.old?.d80eV)||0;
+    const ded80g = (X.old?.d80gV)||0;
+    const dedOther = (X.old?.dOtherV)||0;
+    const d80dCapLabel = (document.getElementById('d80dCat')?.value || '25000');
+
+
+    const taxable = money((X.scheme==="new") ? X.neu.E : X.old.E);
+    const baseTax = money((X.scheme==="new") ? X.neu.base : X.old.base);
+
+    // Rebate u/s 87A (as per your Form-16 image behaviour for New Regime up to 12L)
+    let rebate87A = 0;
+    if(X.scheme==="new" && taxable<=1200000){
+      rebate87A = baseTax; // full rebate shown in your sample
+    }
+
+    const taxAfterRebate = Math.max(baseTax - rebate87A, 0);
+    const cess = money(taxAfterRebate * 0.04);
+    const totalTax = money(taxAfterRebate + cess);
+
+    const tds = money(X.tdsTill);
+    const netPayable = money(totalTax - tds);
+
+    const fromDate = `01/04/${X.fy}`;
+    const toDate = `31/03/${(+X.fy)+1}`;
+
+    const w = window.open("", "_blank");
+    w.document.write(`
+    <html>
+    <head>
+      <title>Form 16 - Part B</title>
+      <style>
+        body{font-family:Arial;font-size:11px;margin:8mm;color:#000}
+        table{width:100%;border-collapse:collapse}
+        td,th{border:1px solid #000;padding:4px;vertical-align:top}
+        .center{text-align:center}
+        .right{text-align:right}
+        .bold{font-weight:700}
+        .no-b{border:none !important}
+        .muted{color:#333}
+        @page{size:A4;margin:8mm}
+      </style>
+    </head>
+    <body>
+
+    <table class="no-b" style="width:100%">
+      <tr><td class="center bold no-b">FORM 16</td></tr>
+      <tr><td class="center no-b">[See rule 31(1)(a)]</td></tr>
+      <tr><td class="center bold no-b">Certificate under section 203 of the Income-tax Act, 1961 for Tax deducted at source on Salary</td></tr>
+    </table>
+
+    <br>
+
+    <table>
+      <tr>
+        <td class="bold">Certificate No.</td><td>${certNo||"-"}</td>
+        <td class="bold">Last updated on</td><td>${lastUpd||"-"}</td>
+      </tr>
+      <tr>
+        <td class="bold">Name and address of the Employer</td>
+        <td colspan="1">${(emprName||"-")}<br><span class="muted">${emprAddr||""}</span></td>
+        <td class="bold">Name and Address of the Employee</td>
+        <td>${X.name||"-"}<br><span class="muted">${empAddr||""}</span></td>
+      </tr>
+      <tr>
+        <td class="bold">PAN of the Deductor</td><td>${dedPAN||"-"}</td>
+        <td class="bold">PAN of the Employee</td><td>${X.pan||"-"}</td>
+      </tr>
+      <tr>
+        <td class="bold">TAN of the Deductor</td><td>${dedTAN||"-"}</td>
+        <td class="bold">Employee Reference No. (if available)</td><td>${empRef||"-"}</td>
+      </tr>
+      <tr>
+        <td class="bold">CIT (TDS)</td><td>The Commissioner of Income Tax, ${emprCity||"-"}</td>
+        <td class="bold">Assessment Year</td><td>${X.ay||"-"}</td>
+      </tr>
+      <tr>
+        <td class="bold">City</td><td>${emprCity||"-"}</td>
+        <td class="bold">Pin code</td><td>${emprPin||"-"}</td>
+      </tr>
+      <tr>
+        <td class="bold">Period with the employer</td>
+        <td colspan="3">From: <b>${fromDate}</b> &nbsp;&nbsp; To: <b>${toDate}</b></td>
+      </tr>
+    </table>
+
+    <br>
+
+    <table>
+      <tr><th colspan="4" class="center bold">PART B (Annexure)</th></tr>
+      <tr><th colspan="4" class="left bold">Details of Salary Paid and any other income and tax deducted</th></tr>
+
+      <tr><td colspan="3" class="bold">1. Gross Salary</td><td class="right bold">${grossSalary}</td></tr>
+      <tr><td class="no-b"></td><td colspan="2">(a) Salary as per provisions contained in sec. 17(1)</td><td class="right">${grossSalary}</td></tr>
+      <tr><td class="no-b"></td><td colspan="2">(b) Value of perquisites u/s 17(2)</td><td class="right">-</td></tr>
+      <tr><td class="no-b"></td><td colspan="2">(c) Profits in lieu of salary under section 17(3)</td><td class="right">-</td></tr>
+      <tr><td class="no-b"></td><td colspan="2" class="bold">(d) Total</td><td class="right bold">${grossSalary}</td></tr>
+
+      <tr><td colspan="3" class="bold">2. Less: Allowance to the extent exempt u/s 10</td><td class="right">-</td></tr>
+
+      <tr><td colspan="3" class="bold">3. Balance (1-2)</td><td class="right bold">${grossSalary}</td></tr>
+
+      <tr><td colspan="3" class="bold">4. Deductions u/s 16</td><td></td></tr>
+      <tr><td class="no-b"></td><td colspan="2">(a) Entertainment allowance</td><td class="right">-</td></tr>
+      <tr><td class="no-b"></td><td colspan="2">(b) Tax on employment (Professional Tax)</td><td class="right">${money(X.annualPTProjected||X.ptTill)}</td></tr>
+      <tr><td class="no-b"></td><td colspan="2">(c) Standard deduction u/s 16(ia)</td><td class="right">${stdDed}</td></tr>
+
+      <tr><td colspan="3" class="bold">5. Total amount of deductions under section 16</td><td class="right bold">${money(money(X.annualPTProjected||X.ptTill)+stdDed)}</td></tr>
+
+      <tr><td colspan="3" class="bold">6. Income chargeable under the head 'Salaries' [(3) + (1e) - 5]</td><td class="right bold">${incomeSalaries}</td></tr>
+
+      <tr><td colspan="3" class="bold">7. Add: Any other income reported by the employee</td><td class="right">-</td></tr>
+      <tr><td colspan="3" class="bold">8. Total amount of other income reported by the employee (7 a to c)</td><td class="right">-</td></tr>
+
+      <tr><td colspan="3" class="bold">9. Gross Total Income (6+8)</td><td class="right bold">${incomeSalaries}</td></tr>
+
+      <tr><td colspan="4" class="bold">10. Deductions under Chapter VI-A</td></tr>
+      <tr><td class="no-b"></td><td colspan="2">Section 80C (max 1,50,000)</td><td class="right">${(X.scheme==="old")?money(ded80c):"-"}</td></tr>
+      <tr><td class="no-b"></td><td colspan="2">Section 80CCD(2) (Employer NPS) (Max ${npsMaxPctLabel} of Basic+DA)</td><td class="right">${money(dedNps)}</td></tr>
+      <tr><td class="no-b"></td><td colspan="2">Section 24(b) Housing Loan Interest</td><td class="right">${(X.scheme==="old")?money(ded24b):"-"}</td></tr>
+      <tr><td class="no-b"></td><td colspan="2">Section 80D (Max ${d80dCapLabel})</td><td class="right">${(X.scheme==="old")?money(ded80d):"-"}</td></tr>
+      <tr><td class="no-b"></td><td colspan="2">Section 80E</td><td class="right">${(X.scheme==="old")?money(ded80e):"-"}</td></tr>
+      <tr><td class="no-b"></td><td colspan="2">Section 80G</td><td class="right">${(X.scheme==="old")?money(ded80g):"-"}</td></tr>
+      <tr><td class="no-b"></td><td colspan="2">Other deductions</td><td class="right">${(X.scheme==="old")?money(dedOther):"-"}</td></tr>
+
+      <tr><td colspan="3" class="bold">11. Aggregate of deductible amount under Chapter VI-A</td><td class="right bold">${money((X.scheme==="old")?(dedNps+ded80c+ded24b+ded80d+ded80e+ded80g+dedOther):(dedNps))}</td></tr>
+
+      <tr><td colspan="3" class="bold">12. Total Taxable Income</td><td class="right bold">${taxable}</td></tr>
+
+      <tr><td colspan="3" class="bold">13. Tax on total income</td><td class="right">${baseTax}</td></tr>
+      <tr><td colspan="3" class="bold">14. Tax Rebate u/s 87A</td><td class="right">${rebate87A?money(rebate87A):"-"}</td></tr>
+      <tr><td colspan="3" class="bold">16. Education cess @ 4%</td><td class="right">${cess?money(cess):"-"}</td></tr>
+      <tr><td colspan="3" class="bold">17. Tax Payable</td><td class="right bold">${totalTax}</td></tr>
+      <tr><td colspan="3" class="bold">20. Tax deducted at source u/s 192(1)</td><td class="right">${tds}</td></tr>
+      <tr><td colspan="3" class="bold">22. Tax (Payable) / (Refundable)</td><td class="right bold">${netPayable}</td></tr>
+    </table>
+
+    <br>
+
+    <table>
+      <tr><th colspan="4" class="center bold">Verification</th></tr>
+      <tr>
+        <td colspan="4">
+          I, ____________________________ (designation) hereby certify that the information given above is true, complete and correct and is based on the books of account, documents, TDS statement and other available records.
+        </td>
+      </tr>
+      <tr>
+        <td class="bold">Place</td><td>${place||"-"}</td>
+        <td class="bold">Date</td><td>____________</td>
+      </tr>
+      <tr>
+        <td class="bold">Full Name</td><td>____________</td>
+        <td class="bold">Signature</td><td>____________</td>
+      </tr>
+    </table>
+
+    <script>window.onload=()=>window.print();<\/script>
+    </body>
+    </html>
+    `);
+    w.document.close();
+  }
+
+
+  initTable();
+</script>
+</body>
+</html>

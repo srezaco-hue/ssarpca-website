@@ -1,0 +1,10 @@
+# SSARP Website Updates
+# Edit this file in GitHub (no coding needed). Each non-empty line becomes one update card.
+# Supported formats:
+# 1) Title | Meta | Description
+# 2) Title | Description
+# 3) Single sentence
+
+Faceless assessments & e-proceedings | Income-tax • Assessments & appeals | Scrutiny and appellate proceedings are increasingly portal-based. We assist with strategy, drafting, documentation and representation.
+Enhanced focus on TDS / TCS compliance | Income-tax • TDS returns & reconciliations | Mismatches between books, Form 26AS and AIS/TIS can trigger notices. We help set up clean processes and reconciliations.
+GST reconciliations & input-tax credit discipline | GST • Returns, audits & departmental queries | GST departments are closely reviewing GSTR-2B vs 3B vs books and e-invoicing. We support reconciliations, reply drafting, audits and ongoing advisory.
