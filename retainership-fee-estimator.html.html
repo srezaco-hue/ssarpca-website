@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Retainership Fee Estimator | SSARP & Associates</title>
+  <style>
+    :root{
+      --bg:#0b1220; --text:#e8eefc; --muted:#a9b7d6;
+      --border:rgba(255,255,255,.09); --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:16px; --good:#39d98a; --warn:#ffd166; --brand:#4f8cff;
+      --card:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02));
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background: radial-gradient(1200px 800px at 10% 10%, rgba(79,140,255,.25), transparent 60%),
+                  radial-gradient(1000px 700px at 90% 20%, rgba(57,217,138,.18), transparent 55%),
+                  var(--bg); color:var(--text);}
+    header{max-width:1150px;margin:0 auto;padding:26px 16px 10px}
+    h1{margin:0;font-size:22px;letter-spacing:.2px}
+    .sub{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.5}
+    main{max-width:1150px;margin:0 auto;padding:16px;display:grid;grid-template-columns:1.05fr .95fr;gap:16px}
+    @media(max-width:980px){main{grid-template-columns:1fr}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .hd{padding:14px 16px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.02);
+      display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .hd h2{margin:0;font-size:15px;font-weight:900}
+    .bd{padding:14px 16px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px}
+    @media(max-width:560px){.grid{grid-template-columns:1fr}}
+    label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+    input,select{width:100%;padding:10px;border-radius:12px;border:1px solid var(--border);
+      background:rgba(10,18,34,.65);color:var(--text);outline:none}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .btn{cursor:pointer;border:1px solid var(--border);
+      background:linear-gradient(180deg,rgba(79,140,255,.22),rgba(79,140,255,.08));
+      color:var(--text);padding:10px 12px;border-radius:12px;font-weight:900}
+    .btn.secondary{background:rgba(255,255,255,.03);font-weight:800}
+    .pill{padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);
+      font-size:12px;color:var(--muted)}
+    .kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .box{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:14px;padding:12px}
+    .box .label{color:var(--muted);font-size:12px}
+    .box .val{font-size:18px;font-weight:950;margin-top:6px}
+    .tiny{font-size:11.5px;color:var(--muted);line-height:1.5}
+    details{border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.02);overflow:hidden;margin-top:10px}
+    summary{cursor:pointer;padding:10px 12px;font-weight:950;list-style:none}
+    summary::-webkit-details-marker{display:none}
+    details .inner{padding:0 12px 12px}
+    ul{margin:8px 0 0 18px}
+    table{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.02)}
+    th,td{padding:10px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:top}
+    th{color:var(--muted);font-weight:900;background:rgba(255,255,255,.02)}
+    tr:last-child td{border-bottom:none}
+    .right{text-align:right}
+    .disclaimer{margin-top:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);
+      border-radius:14px;padding:10px 12px}
+    .good{color:var(--good);font-weight:900}
+    .warn{color:var(--warn);font-weight:900}
+    .section-title{margin:0 0 6px 0;font-size:14px;font-weight:950}
+    .note{border-left:3px solid rgba(79,140,255,.55);padding-left:10px;margin:10px 0}
+    .tag{display:inline-block;margin-top:6px;font-size:12px;color:var(--muted)}
+  
+    /* --- Currency converter --- */
+    .converter{margin-top:14px;padding:14px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.03)}
+    .converter .row{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+    .converter label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+    .converter select,.converter input{width:180px;max-width:100%;padding:10px 12px;border-radius:12px;border:1px solid var(--border);background:rgba(0,0,0,.2);color:var(--text);outline:none}
+    .converter .btn{padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(56,189,248,.20);color:var(--text);cursor:pointer}
+    .converter .btn:hover{background:rgba(56,189,248,.28)}
+    .converter .out{margin-top:10px;font-size:14px;color:var(--text)}
+    .converter .out strong{font-size:16px}
+
+  </style>
+</head>
+
+<body>
+<header>
+  <h1>Retainership Fee Estimator (Indicative Range)</h1>
+  <p class="sub">
+    Designed for <b>retainer-based services</b> (not per-return / fixed-price quoting). Estimates are suitable for
+    Indian businesses and are driven primarily by operations & compliance drivers —
+    <b>not by legal entity type</b>.
+  </p>
+</header>
+
+<main>
+  <section class="card" aria-label="Estimator inputs">
+    <div class="hd">
+      <h2>Inputs</h2>
+      <div class="row">
+        <span class="pill">Consultative estimator</span>
+        <button class="btn secondary" id="btnReset" type="button">Reset</button>
+      </div>
+    </div>
+    <div class="bd">
+      <div class="grid">
+        <div>
+          <label>Retainer / Bundle you are exploring</label>
+          <select id="service">
+            <option value="vcfo">Virtual CFO & Finance Leadership</option>
+            <option value="fao">Finance & Accounts Outsourcing (FAO) — starting from ₹5,000/month</option>
+            <option value="taxofficer">Tax & Regulatory Compliance Officer (Retainer)</option>
+            <option value="corp">Corporate Law & Governance Compliance</option>
+            <option value="bundle_compliance">Bundle: Business Compliance Retainer</option>
+            <option value="bundle_360">Bundle: Finance & Compliance 360°</option>
+          </select>
+          <div class="tiny">Bundles combine multiple workstreams with one SPOC and a defined review rhythm.</div>
+        </div>
+
+        <div>
+          <label>Nature of business</label>
+          <select id="nature">
+            <option value="services_b2b">Services (B2B)</option>
+            <option value="services_b2c">Services (B2C)</option>
+            <option value="trading_b2b">Trading (B2B)</option>
+            <option value="trading_b2c">Trading (B2C)</option>
+            <option value="manufacturing_b2b">Manufacturing (B2B)</option>
+            <option value="manufacturing_b2c">Manufacturing (B2C)</option>
+          </select>
+          <div class="tiny">This affects GST flow, invoice discipline, reconciliation effort and reporting needs.</div>
+        </div>
+
+        <div>
+          <label>Monthly transactions / vouchers</label>
+          <select id="txn">
+            <option value="t1">Up to 150</option>
+            <option value="t2">151 – 400</option>
+            <option value="t3">401 – 900</option>
+            <option value="t4">901 – 2000</option>
+            <option value="t5">2000+</option>
+          </select>
+          <div class="tiny">Includes accounting entries, bank transactions, receipts, payments and adjustments.</div>
+        </div>
+
+        <div>
+          <label>B2B invoice volume (monthly)</label>
+          <select id="b2b">
+            <option value="b1">0 – 25</option>
+            <option value="b2">26 – 100</option>
+            <option value="b3">101 – 250</option>
+            <option value="b4">251 – 600</option>
+            <option value="b5">600+</option>
+          </select>
+          <div class="tiny">Key driver for 2B vs books reconciliation, e-invoice checks, party follow-ups.</div>
+        </div>
+
+        <div>
+          <label>GST complexity</label>
+          <select id="gst">
+            <option value="g0">No GST / Not applicable</option>
+            <option value="g1">Single GSTIN, standard sales</option>
+            <option value="g2">Multiple GSTINs / branches</option>
+            <option value="g3">E-invoicing enabled</option>
+            <option value="g4">RCM / exports / works contract / mixed supply</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Income-tax & TDS exposure</label>
+          <select id="tds">
+            <option value="i0">Low</option>
+            <option value="i1">Moderate</option>
+            <option value="i2">High</option>
+            <option value="i3">Very high (notices / cross-border)</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Compliance intensity & reporting depth</label>
+          <select id="reporting">
+            <option value="r1">Basic: books + compliance calendar</option>
+            <option value="r2">Standard: MIS, ageing, variance tracking</option>
+            <option value="r3">Advanced: cashflow, WC, dashboards, lender-ready reporting</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Involvement level & urgency</label>
+          <select id="urgency">
+            <option value="u1">Routine (planned work, normal SLA)</option>
+            <option value="u2">High involvement (weekly reviews / board support)</option>
+            <option value="u3">Urgent / firefighting (tight timelines)</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Entity type (informational only)</label>
+          <select id="entity">
+            <option>Pvt Ltd</option>
+            <option>Proprietorship</option>
+            <option>Partnership Firm</option>
+            <option>LLP</option>
+          </select>
+          <div class="tiny">Entity type is not a primary driver. Complexity and scale drive the estimate.</div>
+        </div>
+
+      </div>
+
+      <div class="row" style="margin-top:12px;">
+        <button class="btn" id="btnCalc" type="button">Estimate retainer</button>
+        <span class="tiny">Tip: If your volumes fluctuate, choose a slightly higher band.</span>
+      </div>
+    </div>
+  </section>
+
+  <aside class="card" aria-label="Estimator outputs">
+    <div class="hd">
+      <h2>Results</h2>
+      <span class="pill" id="pill">—</span>
+    </div>
+    <div class="bd">
+      <div class="kpi">
+        <div class="box">
+          <div class="label">Indicative monthly retainer range</div>
+          <div class="val" id="range">—</div>
+          <div class="tiny" id="meta">Fill inputs and click “Estimate retainer”.</div>
+        </div>
+        <div class="box">
+          <div class="label">Engagement type</div>
+          <div class="val" id="etype">—</div>
+          <div class="tiny">Retainer / bundle based engagement</div>
+        </div>
+      </div>
+
+      <details open>
+        <summary>Auto-generated scope (indicative)</summary>
+        <div class="inner">
+          <ul id="scope">
+            <li>Monthly books review and compliance calendar</li>
+            <li>GST / TDS coordination and reconciliations</li>
+            <li>Management reporting and advisory touchpoints</li>
+          </ul>
+          <div class="note tiny">
+            Scope gets finalised after discovery call and documented in the engagement letter.
+          </div>
+        </div>
+      </details>
+
+      <div class="disclaimer tiny">
+        <b class="warn">Disclaimer:</b> Indicative ranges only; the final scope and fee are finalised via discovery call and
+        engagement letter. Out-of-scope items, travel, litigation, and exceptional timelines are billed separately.
+      </div>
+
+      <details>
+        <summary>One-time services (indicative market ranges)</summary>
+        <div class="inner">
+          <table>
+            <thead><tr><th>Service (one-time)</th><th class="right">Indicative range</th></tr></thead>
+            <tbody>
+              <tr><td><b>GST return filing support</b> (monthly compliance pack / non-retainer)</td><td class="right">₹ 1,500 – ₹ 15,000 / month</td></tr>
+              <tr><td><b>Accounting clean-up / catch-up</b> (historical backlog)</td><td class="right">₹ 5,000 – ₹ 75,000</td></tr>
+              <tr><td>Proprietorship setup (basic docs)</td><td class="right">₹ 1,000 – ₹ 5,000</td></tr>
+              <tr><td>Private Limited Company incorporation</td><td class="right">₹ 10,000 – ₹ 45,000</td></tr>
+              <tr><td>Public Company incorporation</td><td class="right">₹ 20,000 – ₹ 80,000</td></tr>
+              <tr><td>LLP registration</td><td class="right">₹ 8,000 – ₹ 35,000</td></tr>
+              <tr><td>Section 8 Company incorporation</td><td class="right">₹ 25,000 – ₹ 1,20,000</td></tr>
+              <tr><td>NGO registration (Trust / Society)</td><td class="right">₹ 15,000 – ₹ 1,00,000</td></tr>
+              <tr><td>ROC annual filing support (AOC-4/MGT-7 etc.)</td><td class="right">₹ 6,000 – ₹ 60,000</td></tr>
+              <tr><td>Event-based ROC filing (DIR-12, SH-7, PAS-3 etc.)</td><td class="right">₹ 3,000 – ₹ 35,000</td></tr>
+              <tr><td>PF registration</td><td class="right">₹ 2,500 – ₹ 12,000</td></tr>
+              <tr><td>ESIC registration</td><td class="right">₹ 2,500 – ₹ 12,000</td></tr>
+              <tr><td>Digital Signature (DSC) procurement support</td><td class="right">₹ 1,000 – ₹ 3,000</td></tr>
+              <tr><td>GST annual return / audit assistance</td><td class="right">₹ 12,000 – ₹ 1,50,000</td></tr>
+              <tr><td>Income-tax return (complex / business)</td><td class="right">₹ 2,500 – ₹ 25,000</td></tr>
+            </tbody>
+          </table>
+          <div class="tiny" style="margin-top:8px;">
+            Note: Above are market ranges only. Actual fee depends on documentation readiness, timelines and complexity.
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </aside>
+</main>
+
+<script>
+(function(){
+  const INR = (n)=> "₹ " + Math.round(n).toLocaleString("en-IN");
+
+  let lastMinINR = null;
+  let lastMaxINR = null;
+
+  function updateConversion(){
+    const out = document.getElementById('convOut');
+    const ccy = document.getElementById('ccy').value;
+    const rate = parseFloat(document.getElementById('rate').value);
+    if(lastMinINR===null || lastMaxINR===null){
+      out.textContent = "—";
+      return;
+    }
+    if(!rate || rate<=0){
+      out.innerHTML = `<span class="tiny">Tip: Click “Fetch live rate” or enter a rate to see conversions.</span>`;
+      return;
+    }
+    const min = lastMinINR / rate;
+    const max = lastMaxINR / rate;
+    const fmt = new Intl.NumberFormat(undefined,{maximumFractionDigits:0});
+    out.innerHTML = `<strong>${ccy} ${fmt.format(min)} – ${fmt.format(max)}</strong> <span class="tiny">(approx.)</span>`;
+  }
+
+  async function fetchLiveRate(){
+    const btn = document.getElementById('fetchRate');
+    const out = document.getElementById('convOut');
+    const ccy = document.getElementById('ccy').value;
+    btn.disabled = true;
+    btn.textContent = "Fetching…";
+    try{
+      const r = await fetch('https://open.er-api.com/v6/latest/INR', {cache:'no-store'});
+      const j = await r.json();
+      if(!j || j.result !== 'success' || !j.rates || !j.rates[ccy]) throw new Error('rate unavailable');
+      const inrToCcy = j.rates[ccy];     // 1 INR = X CCY
+      const ccyToInr = 1 / inrToCcy;     // 1 CCY = INR
+      document.getElementById('rate').value = ccyToInr.toFixed(4);
+      updateConversion();
+      out.innerHTML = out.innerHTML + ` <span class="tiny">• source: open.er-api.com</span>`;
+    }catch(e){
+      out.innerHTML = `<span class="tiny">Couldn’t fetch live rate. Please enter a rate manually.</span>`;
+    }finally{
+      btn.disabled = false;
+      btn.textContent = "Fetch live rate";
+    }
+  }
+  const byId = (id)=> document.getElementById(id);
+
+  const weights = {
+    nature: { services_b2b:1.05, services_b2c:1.00, trading_b2b:1.08, trading_b2c:1.02, manufacturing_b2b:1.12, manufacturing_b2c:1.06 },
+    txn: { t1:0.95, t2:1.05, t3:1.20, t4:1.40, t5:1.65 },
+    b2b: { b1:0.95, b2:1.05, b3:1.15, b4:1.30, b5:1.45 },
+    gst: { g0:0.95, g1:1.00, g2:1.12, g3:1.22, g4:1.35 },
+    tds: { i0:0.95, i1:1.05, i2:1.20, i3:1.35 },
+    reporting: { r1:0.95, r2:1.10, r3:1.28 },
+    urgency: { u1:1.00, u2:1.15, u3:1.30 }
+  };
+
+  const base = {
+    vcfo: { min:25000, max:75000, label:"Retainer", scope:[
+      "Monthly finance review, prioritised action plan and decision support",
+      "Budgeting, cashflow & working-capital tracking (as applicable)",
+      "Periodic management reporting & KPI dashboard inputs",
+      "Guidance on compliance posture and stakeholder queries"
+    ]},
+    fao: { min:5000, max:30000, label:"Retainer", scope:[
+      "Book-keeping, ledger scrutiny and monthly closure discipline",
+      "Bank & key reconciliations; vendor/customer follow-ups (as agreed)",
+      "Monthly MIS pack (as per reporting depth selected)",
+      "Process suggestions to reduce errors & improve timeliness"
+    ]},
+    taxofficer: { min:8000, max:40000, label:"Retainer", scope:[
+      "GST calendar, return support and reconciliation checkpoints",
+      "TDS compliance support & basic advisory for routine issues",
+      "Notice / portal coordination (non-litigation) and documentation checks",
+      "Monthly compliance review and risk flags to management"
+    ]},
+    corp: { min:6000, max:35000, label:"Retainer", scope:[
+      "Compliance calendar, board/meeting documentation (as applicable)",
+      "ROC routine filings and governance documentation support",
+      "Drafting support for basic corporate resolutions & registers",
+      "Compliance reporting and coordination with management"
+    ]},
+    bundle_compliance: { min:15000, max:65000, label:"Bundle", scope:[
+      "Integrated GST + TDS + basic corporate compliance calendar",
+      "Monthly reconciliations and compliance health checks",
+      "One SPOC, defined review rhythm, and consolidated reporting",
+      "Quarterly advisory review to prevent surprises"
+    ]},
+    bundle_360: { min:25000, max:110000, label:"Bundle", scope:[
+      "Finance operations + compliance + CFO-level review rhythm",
+      "Monthly books closure + GST/TDS governance + MIS dashboards",
+      "Cashflow & working-capital tracking; lender/investor readiness",
+      "Priority support for decision-making & urgent requirements"
+    ]}
+  };
+
+  function calc(){
+    const svc = byId("service").value;
+    const b = base[svc];
+    const m =
+      weights.nature[byId("nature").value] *
+      weights.txn[byId("txn").value] *
+      weights.b2b[byId("b2b").value] *
+      weights.gst[byId("gst").value] *
+      weights.tds[byId("tds").value] *
+      weights.reporting[byId("reporting").value] *
+      weights.urgency[byId("urgency").value];
+
+    // clamp multiplier for safety
+    const mult = Math.min(2.2, Math.max(0.8, m));
+
+    let min = b.min * mult;
+    let max = b.max * mult;
+
+    // ensure FAO always starts from 5k
+    if (svc === "fao") min = Math.max(5000, min);
+
+    // nice rounding
+    const roundTo = (x)=> Math.round(x/500)*500;
+    min = roundTo(min); max = roundTo(max);
+
+    byId("range").textContent = `${INR(min)} – ${INR(max)} / month`;
+    lastMinINR = min; lastMaxINR = max; updateConversion();
+    byId("etype").textContent = b.label;
+    byId("pill").textContent = b.label === "Bundle" ? "Bundle" : "Retainer";
+    byId("meta").textContent = `Driven by operations & compliance complexity (entity type is informational only).`;
+    const ul = byId("scope");
+    ul.innerHTML = "";
+    for (const s of b.scope){
+      const li = document.createElement("li");
+      li.textContent = s;
+      ul.appendChild(li);
+    }
+  }
+
+  function reset(){
+    byId("service").value = "vcfo";
+    byId("nature").value = "services_b2b";
+    byId("txn").value = "t1";
+    byId("b2b").value = "b1";
+    byId("gst").value = "g1";
+    byId("tds").value = "i1";
+    byId("reporting").value = "r2";
+    byId("urgency").value = "u1";
+    byId("entity").value = "Pvt Ltd";
+
+    byId("range").textContent = "—";
+    byId("etype").textContent = "—";
+    byId("pill").textContent = "—";
+    lastMinINR = null; lastMaxINR = null; updateConversion();
+    byId("meta").textContent = "Fill inputs and click “Estimate retainer”.";
+    byId("scope").innerHTML = "<li>Monthly books review and compliance calendar</li><li>GST / TDS coordination and reconciliations</li><li>Management reporting and advisory touchpoints</li>";
+  }
+
+  byId("btnCalc").addEventListener("click", calc);
+  byId("btnReset").addEventListener("click", reset);
+  byId("ccy").addEventListener("change", updateConversion);
+  byId("rate").addEventListener("input", updateConversion);
+  byId("fetchRate").addEventListener("click", fetchLiveRate);
+})();
+</script>
+</body>
+</html>
