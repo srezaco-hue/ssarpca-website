@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>EMI Calculator | SSARP & Associates</title>
+<style>
+:root{--bg:#0b1220;--card:#111a2e;--muted:#9fb2d9;--stroke:#1f2a44;--acc:#4f8cff;--txt:#e8eefc}
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--txt)}
+header,section{padding:24px 7%} header{border-bottom:1px solid var(--stroke)}
+.card{background:var(--card);border:1px solid var(--stroke);border-radius:14px;padding:16px;max-width:860px}
+label{display:block;font-size:13px;color:var(--muted);margin:10px 0 6px}
+input{width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--stroke);background:#0f1730;color:var(--txt)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.btn{display:inline-block;background:var(--acc);border:0;color:#fff;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:600;margin-top:12px}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:14px}
+.k{border:1px solid var(--stroke);border-radius:12px;padding:10px;background:#0f1730}
+.k strong{display:block;font-size:12px;color:var(--muted)}
+.k span{font-weight:800}
+a{color:#6fb1ff;text-decoration:none}
+.small{font-size:12px;color:var(--muted)}
+</style></head>
+<body>
+<header><h1 style="margin:0 0 6px">EMI Calculator</h1><div class="small"><a href="index.html">← Back to website</a></div></header>
+<section><div class="card">
+<div class="row">
+  <div><label>Loan Amount (₹)</label><input id="p" type="number" value="500000" min="0"/></div>
+  <div><label>Interest Rate (% p.a.)</label><input id="r" type="number" value="10" step="0.01" min="0"/></div>
+  <div><label>Tenure (Months)</label><input id="n" type="number" value="60" min="1"/></div>
+</div>
+<button class="btn" id="calc">Calculate EMI</button>
+<div class="kpi">
+  <div class="k"><strong>Monthly EMI</strong><span id="emi">—</span></div>
+  <div class="k"><strong>Total Interest</strong><span id="ti">—</span></div>
+  <div class="k"><strong>Total Payment</strong><span id="tp">—</span></div>
+</div>
+<p class="small" style="margin-top:12px">Indicative calculator. Actual EMI may vary based on lender rounding/policies.</p>
+</div></section>
+<script>
+(()=>{const INR=new Intl.NumberFormat('en-IN');const el=id=>document.getElementById(id);
+function calc(){const P=+el('p').value||0;const annual=+el('r').value||0;const N=parseInt(el('n').value||1,10);
+const i=annual/1200;let emi=0;if(i===0) emi=P/N; else {const pow=Math.pow(1+i,N); emi=P*i*pow/(pow-1);}
+const total=emi*N, interest=total-P;
+el('emi').textContent='₹'+INR.format(Math.round(emi));
+el('tp').textContent='₹'+INR.format(Math.round(total));
+el('ti').textContent='₹'+INR.format(Math.round(interest));}
+el('calc').addEventListener('click',calc);calc();})();
+</script></body></html>

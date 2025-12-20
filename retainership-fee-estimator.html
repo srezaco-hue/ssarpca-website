@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Retainership Fee Estimator | SSARP & Associates</title>
+<style>
+:root{--bg:#0b1220;--card:#111a2e;--muted:#9fb2d9;--stroke:#1f2a44;--acc:#4f8cff;--txt:#e8eefc}
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--txt)}
+header,section{padding:24px 7%} header{border-bottom:1px solid var(--stroke);position:sticky;top:0;background:rgba(11,18,32,.92);backdrop-filter:blur(10px)}
+a{color:#6fb1ff;text-decoration:none}
+.card{background:var(--card);border:1px solid var(--stroke);border-radius:14px;padding:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+label{display:block;font-size:13px;color:var(--muted);margin:10px 0 6px}
+select,input,textarea{width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid var(--stroke);background:#0f1730;color:var(--txt)}
+textarea{min-height:90px;resize:vertical}
+.btn{display:inline-block;background:var(--acc);border:0;color:#fff;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:600}
+.btn.secondary{background:transparent;border:1px solid var(--stroke);color:var(--txt)}
+.pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--stroke);color:var(--muted);font-size:12px}
+.range{font-size:22px;font-weight:800;margin-top:8px}
+.small{font-size:12px;color:var(--muted)}
+.hr{height:1px;background:var(--stroke);margin:14px 0}
+</style></head>
+<body>
+<header><div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap">
+<div><h1 style="margin:0 0 6px">Retainership Fee Estimator</h1>
+<div class="small">Indicative only; finalised via discovery call & engagement letter.</div></div>
+<a class="pill" href="index.html">← Back</a></div></header>
+
+<section class="grid">
+  <div class="card">
+    <h3 style="margin:0 0 6px">Inputs</h3>
+    <label>Service Track</label>
+    <select id="track">
+      <option value="vcfo">Virtual CFO & Finance Leadership</option>
+      <option value="fao">Finance & Accounts Outsourcing (FAO)</option>
+      <option value="tax">Tax & Regulatory Compliance Officer (Retainer)</option>
+      <option value="corp">Corporate Law & Governance Compliance</option>
+      <option value="bundle_bc">Bundle: Business Compliance Retainer</option>
+      <option value="bundle_360">Bundle: Finance & Compliance 360°</option>
+    </select>
+
+    <label>Nature of Business</label>
+    <select id="nature"><option>Services</option><option>Trading</option><option>Manufacturing</option><option>B2B</option><option>B2C</option><option>Mixed</option></select>
+
+    <label>Monthly transaction volume</label>
+    <select id="tx"><option value="1">Low (0–50)</option><option value="2">Medium (50–200)</option><option value="3">High (200–500)</option><option value="4">Very High (500+)</option></select>
+
+    <label>B2B invoices/month</label>
+    <select id="b2b"><option value="0">Not applicable</option><option value="1">0–25</option><option value="2">25–100</option><option value="3">100–300</option><option value="4">300+</option></select>
+
+    <label>GST complexity</label>
+    <select id="gst"><option value="1">Single GST / basic</option><option value="2">Multi GST / RCM</option><option value="3">E-invoicing / advanced</option></select>
+
+    <label>Income-tax & TDS exposure</label>
+    <select id="tds"><option value="1">Low</option><option value="2">Medium</option><option value="3">High</option></select>
+
+    <label>Reporting depth & compliance intensity</label>
+    <select id="rep"><option value="1">Basic (monthly)</option><option value="2">Standard (monthly + dashboards)</option><option value="3">High (weekly/close support)</option></select>
+
+    <label>Urgency / involvement level</label>
+    <select id="urg"><option value="1">Normal</option><option value="2">Priority</option><option value="3">High priority</option></select>
+
+    <label>Entity type (secondary / informational only)</label>
+    <select id="entity"><option>Proprietorship</option><option>Partnership</option><option>LLP</option><option>Pvt Ltd</option></select>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+      <button class="btn" id="calc">Estimate</button>
+      <button class="btn secondary" id="reset">Reset</button>
+    </div>
+    <div class="small" style="margin-top:10px">Disclaimer: Indicative only; finalised via discovery call & engagement letter.</div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin:0 0 6px">Output</h3>
+    <div class="pill" id="etype">Engagement: Retainer / Bundle</div>
+    <div class="range" id="range">₹ —</div>
+
+    <div class="hr"></div>
+    <h4 style="margin:0 0 6px">Auto scope</h4>
+    <textarea id="scope" readonly></textarea>
+
+    <div class="hr"></div>
+    <h4 style="margin:0 0 6px">Currency converter</h4>
+    <div class="grid" style="grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+      <div>
+        <label>Convert to</label>
+        <select id="ccy"><option value="USD">USD</option><option value="AED">AED</option><option value="EUR">EUR</option><option value="GBP">GBP</option></select>
+      </div>
+      <div>
+        <label>FX rate (1 INR = ?)</label>
+        <input id="fx" placeholder="Click 'Fetch live rate'"/>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center">
+      <button class="btn secondary" id="fetchFx">Fetch live rate</button>
+      <button class="btn" id="convert">Convert range</button>
+      <a class="pill" id="converter" target="_blank" rel="noopener">Open converter</a>
+    </div>
+    <div class="range" style="font-size:18px" id="converted">—</div>
+
+    <div class="hr"></div>
+    <h4 style="margin:0 0 6px">One-time services (indicative market ranges)</h4>
+    <div class="small">Market indication only — not fixed fees. Finalised based on documents, timelines and scope.</div>
+    <div class="hr"></div>
+    <div class="small">
+      • Pvt Ltd / LLP incorporation: ₹8,000 – ₹25,000<br>
+      • Section 8 / NGO registration: ₹18,000 – ₹60,000<br>
+      • GST registration: ₹1,000 – ₹4,000<br>
+      • PF/ESIC registration: ₹2,000 – ₹8,000<br>
+      • ROC filings (event based): ₹2,000 – ₹15,000+<br>
+      • DSC: as per vendor
+    </div>
+  </div>
+</section>
+
+<script>
+(()=> {
+  const INR = new Intl.NumberFormat('en-IN');
+  const el = id => document.getElementById(id);
+  let lastMin=null,lastMax=null;
+  const baseByTrack={vcfo:[35000,120000],fao:[5000,40000],tax:[12000,55000],corp:[15000,65000],bundle_bc:[20000,85000],bundle_360:[45000,160000]};
+  const mult=v=>1+(parseInt(v,10)-1)*0.12;
+  const multB=v=>1+(parseInt(v,10))*0.06;
+
+  function estimate(){
+    const track=el('track').value;
+    let [bmin,bmax]=baseByTrack[track]||[15000,60000];
+    let m=1;
+    m*=mult(el('tx').value);
+    m*=multB(el('b2b').value);
+    m*=1+(parseInt(el('gst').value,10)-1)*0.10;
+    m*=1+(parseInt(el('tds').value,10)-1)*0.10;
+    m*=1+(parseInt(el('rep').value,10)-1)*0.12;
+    m*=1+(parseInt(el('urg').value,10)-1)*0.10;
+    const ent=el('entity').value; if(ent==="Pvt Ltd"||ent==="LLP") m*=1.02;
+
+    const min=Math.round((bmin*m)/500)*500;
+    const max=Math.round((bmax*m)/500)*500;
+    lastMin=min; lastMax=max;
+    el('range').textContent=`₹${INR.format(min)} – ₹${INR.format(max)}`;
+
+    const scope=[
+      `Engagement: ${el('track').options[el('track').selectedIndex].text}`,
+      `Business: ${el('nature').value}; Monthly transactions: ${el('tx').options[el('tx').selectedIndex].text}`,
+      `GST: ${el('gst').options[el('gst').selectedIndex].text}; TDS/IT: ${el('tds').options[el('tds').selectedIndex].text}`,
+      `Reporting: ${el('rep').options[el('rep').selectedIndex].text}; Urgency: ${el('urg').options[el('urg').selectedIndex].text}`,
+      `Final scope & fees are confirmed via discovery call & engagement letter.`
+    ].join("\n");
+    el('scope').value=scope;
+
+    const avg=Math.round((min+max)/2);
+    const ccy=el('ccy').value;
+    el('converter').href=`https://www.google.com/search?q=${avg}+INR+to+${ccy}`;
+  }
+
+  async function fetchFx(){
+    const ccy=el('ccy').value;
+    try{
+      const r=await fetch(`https://api.frankfurter.app/latest?from=INR&to=${ccy}`);
+      const j=await r.json();
+      if(j && j.rates && j.rates[ccy]) el('fx').value=Number(j.rates[ccy]).toFixed(6);
+      else alert("Live rate unavailable. Use external converter.");
+    }catch(e){ alert("Live rate fetch failed. Use external converter."); }
+  }
+
+  function convert(){
+    if(lastMin===null) estimate();
+    const ccy=el('ccy').value;
+    const rate=parseFloat(el('fx').value);
+    const avg=Math.round((lastMin+lastMax)/2);
+    el('converter').href=`https://www.google.com/search?q=${avg}+INR+to+${ccy}`;
+    if(!rate || isNaN(rate)){
+      window.open(el('converter').href, "_blank");
+      return;
+    }
+    const fmt=new Intl.NumberFormat('en-US',{maximumFractionDigits:0});
+    el('converted').textContent=`${ccy} ${fmt.format(lastMin*rate)} – ${ccy} ${fmt.format(lastMax*rate)}`;
+  }
+
+  el('calc').addEventListener('click', estimate);
+  el('reset').addEventListener('click', ()=>location.reload());
+  el('fetchFx').addEventListener('click', fetchFx);
+  el('convert').addEventListener('click', convert);
+  el('ccy').addEventListener('change', ()=>{ if(lastMin!==null){ convert(); } });
+
+  estimate();
+})();
+</script>
+</body></html>
