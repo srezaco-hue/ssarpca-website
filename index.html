@@ -49,15 +49,23 @@
 
   <style>
     :root {
-      --primary: #004d99;
-      --primary-light: #e5f0ff;
-      --secondary: #00a3c4;
+      --primary: #3aa0ff;
+      --primary-2: #1e78ff;
+      --secondary: #2dd4bf;
       --accent: #f4b400;
-      --bg: #f4f5f7;
-      --text: #1f2a33;
-      --muted: #6b7280;
-      --radius: 10px;
-      --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.12);
+
+      --bg: #050a12;
+      --surface: rgba(255,255,255,0.04);
+      --surface-2: rgba(255,255,255,0.07);
+      --surface-3: rgba(255,255,255,0.10);
+      --border: rgba(255,255,255,0.10);
+
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+      --muted-2: rgba(255,255,255,0.55);
+
+      --radius: 14px;
+      --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.45);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -77,7 +85,8 @@
     section {
       margin: 0 auto 3rem;
       padding: 2.5rem 1.75rem;
-      background: #ffffff;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow-soft);
     }
@@ -277,11 +286,11 @@
     .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; margin-top: 0.8rem; }
 
     .card {
-      border-radius: 14px;
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
       padding: 1rem 1rem 1.1rem;
-      box-shadow: 0 8px 18px rgba(15,23,42,0.08);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.35);
       position: relative;
       overflow: hidden;
     }
@@ -332,14 +341,11 @@
     .tool-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 0.9rem; }
 
     .tool-card {
-      border-radius: 14px;
-      background: #ffffff;
-      border: 1px solid #d1d5db;
+      border-radius: 16px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
       padding: 1rem 1.1rem 1.1rem;
-      box-shadow: 0 8px 20px rgba(15,23,42,0.08);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.35);
     }
     .tool-card h3 { font-size: 1rem; margin-bottom: 0.3rem; }
     .tool-card p { font-size: 0.85rem; color: #4b5563; margin-bottom: 0.6rem; }
@@ -410,7 +416,14 @@
     }
 
     @media (max-width: 640px) {
-      section { padding: 1.8rem 1.2rem; margin-bottom: 2rem; }
+      section {
+      margin: 0 auto 3rem;
+      padding: 2.5rem 1.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+    }
       .grid { grid-template-columns: minmax(0, 1fr); }
       .wa-chat-label { display: none !important; }
       .brand-logo { width: 56px; }
@@ -588,17 +601,25 @@
 /* =========================
    Dark / Premium Theme (override)
    ========================= */
-:root{
-  --primary:#4aa3ff;
-  --primary-light:rgba(74,163,255,.14);
-  --secondary:#00a3c4;
-  --accent:#f4b400;
-  --bg:#06080d;
-  --text:#eaf1ff;
-  --muted:rgba(234,241,255,.72);
-  --radius:16px;
-  --shadow-soft: 0 16px 40px rgba(0,0,0,.45);
-}
+:root {
+      --primary: #3aa0ff;
+      --primary-2: #1e78ff;
+      --secondary: #2dd4bf;
+      --accent: #f4b400;
+
+      --bg: #050a12;
+      --surface: rgba(255,255,255,0.04);
+      --surface-2: rgba(255,255,255,0.07);
+      --surface-3: rgba(255,255,255,0.10);
+      --border: rgba(255,255,255,0.10);
+
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+      --muted-2: rgba(255,255,255,0.55);
+
+      --radius: 14px;
+      --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.45);
+    }
 
 body{
   background: radial-gradient(1200px 700px at 20% -10%, rgba(74,163,255,.18), rgba(6,8,13,0) 55%),
@@ -610,11 +631,14 @@ body{
 a{ color: var(--primary); }
 a:hover{ text-decoration: none; opacity: .92; }
 
-section{
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.08);
-  box-shadow: var(--shadow-soft);
-}
+section {
+      margin: 0 auto 3rem;
+      padding: 2.5rem 1.75rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+    }
 
 section:nth-of-type(even){
   background: rgba(255,255,255,.03);
@@ -703,20 +727,37 @@ h1,h2,h3,h4{ color: #eaf1ff; }
 
 
     /* === Readability hotfix (dark theme) === */
-    :root{
-      --bg:#070b11;
-      --text:#eaf1ff;
-      --muted:#b4c0d1;
+    :root {
+      --primary: #3aa0ff;
+      --primary-2: #1e78ff;
+      --secondary: #2dd4bf;
+      --accent: #f4b400;
+
+      --bg: #050a12;
+      --surface: rgba(255,255,255,0.04);
+      --surface-2: rgba(255,255,255,0.07);
+      --surface-3: rgba(255,255,255,0.10);
+      --border: rgba(255,255,255,0.10);
+
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+      --muted-2: rgba(255,255,255,0.55);
+
+      --radius: 14px;
+      --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.45);
     }
     body{ color: var(--text); }
     .muted, .section-subtitle, .fineprint, .small { color: var(--muted) !important; }
 
     /* Make generic cards dark (previously white) */
-    .card{
-      background: rgba(255,255,255,.06) !important;
-      border: 1px solid rgba(255,255,255,.10) !important;
-      color: var(--text) !important;
-      box-shadow: 0 18px 40px rgba(0,0,0,.35) !important;
+    .card {
+      border-radius: 16px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: 1rem 1rem 1.1rem;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.35);
+      position: relative;
+      overflow: hidden;
     }
     .card h1, .card h2, .card h3, .card h4{ color: #ffffff !important; }
     .card a{ color: #bfe6ff; }
@@ -740,6 +781,64 @@ h1,h2,h3,h4{ color: #eaf1ff; }
     .client-card:hover img{
       filter: grayscale(0%) contrast(1.02) brightness(1);
     }
+
+  
+    /* ---- Readability hotfix (dark theme) ---- */
+    body { color: var(--text); background: radial-gradient(1200px 800px at 20% 10%, rgba(58,160,255,0.14), transparent 55%),
+                             radial-gradient(900px 600px at 85% 20%, rgba(45,212,191,0.10), transparent 55%),
+                             var(--bg); }
+
+    p, li, .muted, .subtext, .desc { color: var(--muted); }
+    h1, h2, h3, h4, h5, strong, .title { color: var(--text); }
+
+    a { color: rgba(58,160,255,0.95); }
+    a:hover { color: rgba(45,212,191,0.95); }
+
+    /* Any legacy light panels -> convert to dark surface */
+    .panel, .white-card, .light-card, .content-card, .box, .callout, .strip, .banner-card {
+      background: var(--surface-2) !important;
+      border-color: var(--border) !important;
+      color: var(--text) !important;
+    }
+    .panel p, .white-card p, .light-card p, .content-card p, .box p, .callout p, .strip p, .banner-card p {
+      color: var(--muted) !important;
+    }
+
+    /* Buttons: keep your existing style, but readable on dark */
+    .btn, button, .button {
+      color: rgba(255,255,255,0.95);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.10) !important;
+      border: 1px solid var(--border) !important;
+      color: rgba(255,255,255,0.92) !important;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.14) !important; }
+
+    /* Client images: grayscale by default, color on hover (premium) */
+    .clientele img, .client-img, .client-card img {
+      filter: grayscale(1) contrast(1.05);
+      opacity: 0.95;
+      transition: filter .25s ease, opacity .25s ease, transform .25s ease;
+    }
+    .clientele a:hover img, .client-card:hover img, .client-img:hover {
+      filter: grayscale(0) contrast(1.05);
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    /* Fix faint text inside cards (common) */
+    .card *, .tool-card * { color: inherit; }
+    .card p, .tool-card p, .card li, .tool-card li { color: var(--muted); }
+    .card .kpi, .tool-card .kpi { color: rgba(255,255,255,0.92); }
+
+    /* Force readable inputs */
+    input, select, textarea {
+      background: rgba(255,255,255,0.06) !important;
+      color: rgba(255,255,255,0.92) !important;
+      border: 1px solid rgba(255,255,255,0.14) !important;
+    }
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.55) !important; }
 
   </style>
 </head>
