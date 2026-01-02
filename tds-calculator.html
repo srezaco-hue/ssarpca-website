@@ -1,25 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Free EMI Calculator | SSARP & Associates</title>
-<meta name="description" content="Fast and accurate EMI Calculator for loans. Calculate EMI, interest payable, monthly instalment instantly.">
-<meta name="keywords" content="EMI Calculator, Loan EMI Calculator, Home Loan EMI, Personal Loan EMI, Car Loan EMI">
   <meta charset="UTF-8" />
-  <title>EMI & Prepayment Calculator</title>
+  <title>Smart TDS Calculator - Income Tax Act, 1961</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Chart.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
     :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --bg: #0f172a;
-      --card-bg: #111827;
-      --card-alt: #020617;
-      --accent: #22c55e;
-      --danger: #ef4444;
+      --primary: #0f4c81;
+      --primary-dark: #08345a;
+      --accent: #ff8c00;
+      --success: #16a34a;
+      --warning: #facc15;
+      --danger: #dc2626;
+      --bg: #0b1120;
+      --card-bg: #0f172a;
       --border: #1f2937;
       --text: #e5e7eb;
       --muted: #9ca3af;
@@ -28,80 +23,73 @@
       --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.6);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1e293b, #020617 55%);
+      background: radial-gradient(circle at top, #1f2937, #020617 55%);
       color: var(--text);
       min-height: 100vh;
       padding: 20px;
     }
 
     .app-container {
-      max-width: 1200px;
+      max-width: 1250px;
       margin: 0 auto;
     }
 
     header {
-      margin-bottom: 20px;
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
       align-items: baseline;
     }
 
     header h1 {
       font-size: 1.6rem;
       font-weight: 700;
-      letter-spacing: 0.02em;
     }
 
     header p {
-      color: var(--muted);
       font-size: 0.9rem;
+      color: var(--muted);
     }
 
     .badge {
-      background: rgba(37, 99, 235, 0.15);
+      background: linear-gradient(135deg, var(--accent), #f97316);
+      color: #111827;
+      padding: 4px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(59, 130, 246, 0.4);
-      padding: 4px 10px;
       font-size: 0.75rem;
-      color: #bfdbfe;
+      font-weight: 600;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 4fr);
+      grid-template-columns: minmax(0, 2.8fr) minmax(0, 3.2fr);
       gap: 16px;
       align-items: flex-start;
     }
 
-    @media (max-width: 900px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 950px) {
+      .grid { grid-template-columns: 1fr; }
     }
 
     .card {
-      background: linear-gradient(145deg, var(--card-bg), var(--card-alt));
+      background: linear-gradient(145deg, var(--card-bg), #020617);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
-      padding: 16px 18px;
+      padding: 14px 16px;
     }
 
     .card-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       gap: 10px;
     }
 
@@ -110,8 +98,8 @@
     }
 
     .card-header small {
-      color: var(--muted);
       font-size: 0.8rem;
+      color: var(--muted);
     }
 
     .form-grid {
@@ -120,17 +108,15 @@
       gap: 10px;
     }
 
-    @media (max-width: 640px) {
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 650px) {
+      .form-grid { grid-template-columns: 1fr; }
     }
 
     label {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--muted);
-      margin-bottom: 4px;
-      display: flex;
+      margin-bottom: 3px;
+      display: inline-flex;
       align-items: center;
       gap: 4px;
     }
@@ -166,46 +152,29 @@
 
     input:focus, select:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.4);
-      background: #020617;
+      box-shadow: 0 0 0 1px rgba(15, 118, 178, 0.5);
     }
 
     .inline-group {
       display: flex;
+      gap: 8px;
       align-items: center;
-      gap: 6px;
       flex-wrap: wrap;
     }
 
-    .toggle-group {
-      border-radius: 999px;
-      background: #020617;
-      border: 1px solid #374151;
-      padding: 2px;
-      display: inline-flex;
-      gap: 2px;
-    }
-
-    .toggle-btn {
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: none;
-      background: transparent;
-      color: var(--muted);
-      font-size: 0.8rem;
+    .radio-group label {
       cursor: pointer;
     }
 
-    .toggle-btn.active {
-      background: var(--primary);
-      color: white;
+    .radio-group input {
+      width: auto;
+      margin-right: 4px;
     }
 
-    .actions {
-      margin-top: 12px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #1f2933, transparent);
+      margin: 10px 0;
     }
 
     button {
@@ -223,8 +192,8 @@
 
     button.primary {
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.35);
+      color: #f9fafb;
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.5);
     }
 
     button.secondary {
@@ -233,19 +202,58 @@
       border: 1px solid #374151;
     }
 
-    button.danger {
-      background: rgba(127, 29, 29, 0.9);
+    button:hover { transform: translateY(-1px); }
+    button:active { transform: translateY(0); box-shadow: none; }
+
+    .actions {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .error-box, .alert {
+      margin-top: 6px;
+      padding: 7px 9px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+    }
+
+    .error-box {
+      border: 1px solid rgba(248, 113, 113, 0.7);
+      background: rgba(127, 29, 29, 0.3);
       color: #fecaca;
-      border: 1px solid #b91c1c;
+      display: none;
     }
 
-    button:hover {
-      transform: translateY(-1px);
+    .alert.info {
+      border: 1px solid #1d4ed8;
+      background: rgba(37, 99, 235, 0.15);
+      color: #bfdbfe;
     }
 
-    button:active {
-      transform: translateY(0);
-      box-shadow: none;
+    .alert.success {
+      border: 1px solid rgba(22, 163, 74, 0.8);
+      background: rgba(22, 163, 74, 0.2);
+      color: #bbf7d0;
+    }
+
+    .alert.warning {
+      border: 1px solid rgba(250, 204, 21, 0.9);
+      background: rgba(250, 204, 21, 0.18);
+      color: #fef9c3;
+    }
+
+    .alert.danger {
+      border: 1px solid rgba(220, 38, 38, 0.9);
+      background: rgba(220, 38, 38, 0.22);
+      color: #fee2e2;
+    }
+
+    .section-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 5px;
     }
 
     .summary-grid {
@@ -255,101 +263,77 @@
     }
 
     @media (max-width: 900px) {
-      .summary-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
-
-    @media (max-width: 640px) {
-      .summary-grid {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 600px) {
+      .summary-grid { grid-template-columns: 1fr; }
     }
 
     .stat {
       border-radius: var(--radius-md);
       border: 1px solid #1f2937;
-      padding: 10px;
-      background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.15), #020617);
+      padding: 9px;
+      background: radial-gradient(circle at top left, rgba(15, 118, 178, 0.18), #020617);
     }
 
     .stat-title {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--muted);
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .stat-value {
-      font-size: 1rem;
+      font-size: 0.98rem;
       font-weight: 600;
     }
 
     .stat-sub {
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       color: var(--muted);
       margin-top: 2px;
     }
 
-    .stat.tag-green {
-      border-color: rgba(34, 197, 94, 0.5);
+    .stat.green { border-color: rgba(22, 163, 74, 0.7); }
+    .stat.red { border-color: rgba(220, 38, 38, 0.7); }
+    .stat.yellow { border-color: rgba(234, 179, 8, 0.7); }
+
+    .table-wrapper {
+      max-height: 220px;
+      overflow: auto;
+      border-radius: 10px;
+      border: 1px solid #1f2937;
+      margin-top: 6px;
     }
 
-    .stat.tag-red {
-      border-color: rgba(239, 68, 68, 0.5);
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
     }
 
-    .pill {
-      font-size: 0.7rem;
-      border-radius: 999px;
-      padding: 2px 7px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
+    th, td {
+      padding: 6px 7px;
+      border-bottom: 1px solid #1f2937;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, 0.98);
+      font-weight: 500;
       color: #e5e7eb;
-      background: rgba(15, 23, 42, 0.9);
     }
 
-    .error-box {
-      margin-top: 8px;
-      padding: 8px 10px;
-      border-radius: 8px;
-      border: 1px solid rgba(248, 113, 113, 0.7);
-      background: rgba(127, 29, 29, 0.3);
-      color: #fecaca;
-      font-size: 0.8rem;
-      display: none;
-    }
-
-    .section-title {
-      font-size: 0.9rem;
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-
-    .prepayment-row {
-      display: grid;
-      grid-template-columns: 2fr 2fr 2fr auto;
-      gap: 6px;
-      margin-bottom: 6px;
-      align-items: center;
-    }
-
-    @media (max-width: 740px) {
-      .prepayment-row {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .divider {
-      height: 1px;
-      background: linear-gradient(to right, transparent, #1f2933, transparent);
-      margin: 12px 0;
-    }
+    th:first-child, td:first-child { text-align: left; }
 
     details {
       border-radius: var(--radius-md);
       border: 1px solid #1f2937;
-      padding: 8px 10px;
-      background: rgba(15, 23, 42, 0.8);
-      margin-top: 8px;
+      padding: 8px 9px;
+      background: rgba(15, 23, 42, 0.9);
+      margin-top: 7px;
     }
 
     summary {
@@ -362,141 +346,63 @@
       align-items: center;
     }
 
-    summary::marker, summary::-webkit-details-marker {
-      display: none;
-    }
+    summary::marker, summary::-webkit-details-marker { display: none; }
 
     .summary-chevron {
       font-size: 0.75rem;
       color: var(--muted);
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-      font-size: 0.75rem;
-    }
-
-    th, td {
-      padding: 6px 6px;
-      text-align: right;
-      border-bottom: 1px solid #1f2937;
-      white-space: nowrap;
-    }
-
-    th {
-      background: rgba(15, 23, 42, 0.9);
-      position: sticky;
-      top: 0;
-      z-index: 1;
-      cursor: pointer;
-      font-weight: 500;
-      color: #e5e7eb;
-    }
-
-    th[data-sort-key]:hover {
-      background: rgba(37, 99, 235, 0.4);
-    }
-
-    td:first-child, th:first-child {
-      text-align: left;
-    }
-
-    .table-wrapper {
-      max-height: 260px;
-      overflow: auto;
-      border-radius: 10px;
-      border: 1px solid #1f2937;
-      margin-top: 8px;
-    }
-
-    .sort-indicator {
-      font-size: 0.6rem;
-      margin-left: 3px;
-      color: var(--muted);
-    }
-
-    .charts-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 10px;
-    }
-
-    @media (max-width: 900px) {
-      .charts-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    canvas {
-      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), #020617);
-      border-radius: var(--radius-md);
-      border: 1px solid #1f2937;
-      padding: 6px;
-    }
-
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.78rem;
-      margin-top: 6px;
-    }
-
-    .comparison-table th, .comparison-table td {
-      border-bottom: 1px solid #1f2937;
-      padding: 6px;
-      text-align: right;
-    }
-
-    .comparison-table th:first-child,
-    .comparison-table td:first-child {
-      text-align: left;
-    }
-
-    .highlight {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .negative {
-      color: var(--danger);
-      font-weight: 600;
-    }
-
-    .tag {
+    .chip {
       font-size: 0.7rem;
-      padding: 2px 6px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 2px 7px;
+      display: inline-block;
+      margin-right: 4px;
+      margin-top: 2px;
+    }
+
+    .chip.green {
+      background: rgba(22, 163, 74, 0.2);
+      border: 1px solid rgba(22, 163, 74, 0.7);
+      color: #bbf7d0;
+    }
+
+    .chip.red {
+      background: rgba(248, 113, 113, 0.18);
+      border: 1px solid rgba(248, 113, 113, 0.7);
+      color: #fee2e2;
+    }
+
+    .chip.yellow {
+      background: rgba(250, 204, 21, 0.16);
+      border: 1px solid rgba(250, 204, 21, 0.7);
+      color: #fef9c3;
+    }
+
+    .muted {
+      font-size: 0.74rem;
       color: var(--muted);
     }
 
     .toolbar {
       display: flex;
+      gap: 6px;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
       justify-content: flex-end;
+      margin-top: 8px;
     }
 
     @media print {
-      body {
-        background: white;
-        color: black;
-      }
+      body { background: white; color: black; }
       .card, header {
         box-shadow: none;
         background: white;
         border-color: #d1d5db;
       }
-      button, .actions, .toolbar, .badge {
-        display: none !important;
-      }
-      canvas {
-        border: 1px solid #d1d5db;
-      }
+      button, .toolbar, .badge { display: none !important; }
+      .alert { border-color: #9ca3af; background: #f9fafb; color: black; }
+      table { font-size: 0.7rem; }
     }
   </style>
 </head>
@@ -504,266 +410,637 @@
 <div class="app-container">
   <header>
     <div>
-      <h1>EMI & Prepayment Calculator</h1>
-      <p>Accurate EMI, amortization & prepayment impact with charts and comparison.</p>
+      <h1>Smart TDS Calculator</h1>
+      <p>Section-wise TDS with nature-based rate selection, higher rate checks & due date calculation.</p>
     </div>
-    <span class="badge">₹ • EMI • Prepayment • Comparison</span>
+    <span class="badge">TDS • Sections • 206AA • 206AB</span>
   </header>
 
   <div class="grid">
-    <!-- LEFT: Input & Prepayment -->
+    <!-- LEFT: Input -->
     <section class="card">
       <div class="card-header">
-        <h2>Loan Details</h2>
-        <small>Fill details to see real-time EMI & schedule</small>
+        <h2>Input Details</h2>
+        <small>Step 1: Choose Section • Step 2: Choose Nature / Rate Option</small>
       </div>
 
       <div class="form-grid">
         <div>
           <label>
-            Principal Amount
-            <span class="info-icon" title="Total loan amount you are borrowing.">i</span>
+            TDS Section (Searchable)
+            <span class="info-icon" title="Start typing section number or name and select from the list.">i</span>
           </label>
-          <input type="number" id="principal" placeholder="e.g. 2500000" min="0" step="1000">
+          <input list="tdsSectionsList" id="tdsSectionInput" placeholder="e.g. 194C - Contractors">
+          <datalist id="tdsSectionsList"></datalist>
         </div>
 
         <div>
           <label>
-            Annual Interest Rate (%)
-            <span class="info-icon" title="Nominal annual interest rate charged by lender.">i</span>
+            Financial Year
+            <span class="info-icon" title="Select FY for which TDS is being deducted.">i</span>
           </label>
-          <input type="number" id="annualRate" placeholder="e.g. 8.5" min="0" step="0.01">
+          <select id="financialYear">
+            <option value="">Select FY</option>
+            <option>2023-24</option>
+            <option selected>2024-25</option>
+            <option>2025-26</option>
+          </select>
         </div>
 
         <div>
           <label>
-            Tenure
-            <span class="info-icon" title="Total period of loan. You can toggle between years and months.">i</span>
+            Nature / Rate Option
+            <span class="info-icon" title="Section-specific nature – system picks rate automatically.">i</span>
           </label>
-          <div class="inline-group">
-            <input type="number" id="tenure" placeholder="e.g. 20" min="1" step="1">
-            <div class="toggle-group" id="tenureToggle">
-              <button type="button" class="toggle-btn active" data-unit="years">Years</button>
-              <button type="button" class="toggle-btn" data-unit="months">Months</button>
-            </div>
+          <select id="rateOption">
+            <option value="">Select Section First</option>
+          </select>
+        </div>
+
+        <div>
+          <label>
+            Deductee Type
+            <span class="info-icon" title="Type of payee (affects rate for some sections).">i</span>
+          </label>
+          <select id="deducteeType">
+            <option value="">Select</option>
+            <option>Individual</option>
+            <option>HUF</option>
+            <option>Company</option>
+            <option>Firm</option>
+            <option>AOP</option>
+            <option>BOI</option>
+            <option>Local Authority</option>
+            <option>Others</option>
+          </select>
+        </div>
+
+        <div>
+          <label>
+            Payment Amount (₹)
+            <span class="info-icon" title="Gross amount before TDS deduction.">i</span>
+          </label>
+          <input type="number" id="paymentAmount" placeholder="e.g. 250000" min="0" step="100">
+        </div>
+
+        <div>
+          <label>
+            Date of Payment / Credit
+            <span class="info-icon" title="Date on which amount is credited/paid, whichever earlier.">i</span>
+          </label>
+          <input type="date" id="paymentDate">
+        </div>
+
+        <div>
+          <label>
+            PAN Available?
+            <span class="info-icon" title="If PAN not available, higher rate @20% or more (206AA) applies.">i</span>
+          </label>
+          <div class="inline-group radio-group">
+            <label><input type="radio" name="panAvailable" value="yes" checked> Yes</label>
+            <label><input type="radio" name="panAvailable" value="no"> No</label>
           </div>
         </div>
 
         <div>
           <label>
-            Loan Start Date
-            <span class="info-icon" title="Date from which EMI schedule starts.">i</span>
+            Specified Person u/s 206AB?
+            <span class="info-icon" title="Higher TDS for non-filers – twice the rate or 5%, whichever higher.">i</span>
           </label>
-          <input type="date" id="startDate">
+          <div class="inline-group radio-group">
+            <label><input type="radio" name="is206ab" value="no" checked> No</label>
+            <label><input type="radio" name="is206ab" value="yes"> Yes</label>
+          </div>
+        </div>
+
+        <div>
+          <label>
+            Deductor Type
+            <span class="info-icon" title="Govt vs non-govt affects due date for deposit.">i</span>
+          </label>
+          <div class="inline-group radio-group">
+            <label><input type="radio" name="deductorType" value="non-govt" checked> Non-Government</label>
+            <label><input type="radio" name="deductorType" value="govt"> Government</label>
+          </div>
+        </div>
+
+        <div>
+          <label>
+            TDS Deposit Date (for interest)
+            <span class="info-icon" title="Actual/proposed deposit date. If blank, today assumed.">i</span>
+          </label>
+          <input type="date" id="depositDate">
         </div>
       </div>
 
       <div class="divider"></div>
 
-      <div>
-        <div class="section-title">Prepayment Options</div>
-        <div class="inline-group" style="margin-bottom:8px;">
-          <span class="tag">Effect of Prepayment:</span>
-          <label class="inline-group" style="font-size:0.8rem;">
-            <input type="radio" name="prepayEffect" value="tenure" checked style="width:auto;">
-            Reduce Tenure
+      <div class="form-grid">
+        <div>
+          <label>
+            Surcharge (optional)
+            <span class="info-icon" title="For high value / non-resident cases – approx slabs.">i</span>
           </label>
-          <label class="inline-group" style="font-size:0.8rem;">
-            <input type="radio" name="prepayEffect" value="emi" style="width:auto;">
-            Reduce EMI
-          </label>
+          <select id="surchargeOption">
+            <option value="none">No Surcharge</option>
+            <option value="10">10%</option>
+            <option value="15">15%</option>
+            <option value="25">25%</option>
+            <option value="37">37%</option>
+          </select>
         </div>
 
-        <div id="prepaymentsContainer"></div>
-
-        <button class="secondary" type="button" id="addPrepaymentBtn">
-          + Add Prepayment
-        </button>
-        <small style="display:block;margin-top:4px;color:var(--muted);font-size:0.75rem;">
-          One-time: single extra payment. Recurring: same amount every month from selected date.
-        </small>
+        <div>
+          <label>
+            Apply 4% Health & Education Cess?
+            <span class="info-icon" title="Generally on non-resident TDS; depends on facts.">i</span>
+          </label>
+          <div class="inline-group radio-group">
+            <label><input type="radio" name="applyCess" value="no" checked> No</label>
+            <label><input type="radio" name="applyCess" value="yes"> Yes</label>
+          </div>
+        </div>
       </div>
 
+      <div id="thresholdAlert" class="alert info" style="display:none;margin-top:8px;"></div>
+
       <div class="actions">
-        <button class="primary" id="calculateBtn" type="button">Calculate EMI & Schedule</button>
-        <button class="secondary" id="resetBtn" type="button">Reset</button>
+        <button type="button" class="primary" id="calculateBtn">Calculate TDS</button>
+        <button type="button" class="secondary" id="resetBtn">Reset</button>
       </div>
 
       <div id="errorBox" class="error-box"></div>
     </section>
 
-    <!-- RIGHT: Summary & Comparison -->
+    <!-- RIGHT: Summary -->
     <section class="card">
       <div class="card-header">
-        <h2>Summary & Comparison</h2>
-        <small>Original vs Prepayment-adjusted scenario</small>
+        <h2>Computation Summary</h2>
+        <small>Auto-selected rates with higher rate logic</small>
       </div>
 
       <div class="summary-grid">
         <div class="stat">
-          <div class="stat-title">Original EMI</div>
-          <div class="stat-value" id="origEmiDisplay">₹ 0.00</div>
-          <div class="stat-sub" id="origTenureDisplay">Tenure: 0 months</div>
+          <div class="stat-title">Gross Payment Amount</div>
+          <div class="stat-value" id="grossAmountDisplay">₹ 0.00</div>
+          <div class="stat-sub" id="sectionDisplay">Section: –</div>
         </div>
         <div class="stat">
-          <div class="stat-title">Revised EMI / Tenure</div>
-          <div class="stat-value" id="revEmiDisplay">₹ 0.00</div>
-          <div class="stat-sub" id="revTenureDisplay">Tenure: 0 months</div>
+          <div class="stat-title">Effective TDS Rate</div>
+          <div class="stat-value" id="effectiveRateDisplay">0.00%</div>
+          <div class="stat-sub" id="rateExplanationDisplay">Base: –</div>
         </div>
-        <div class="stat tag-green">
-          <div class="stat-title">Interest Saved</div>
-          <div class="stat-value" id="interestSavedDisplay">₹ 0.00</div>
-          <div class="stat-sub" id="interestSavedPercentDisplay">0.00% of original interest</div>
+        <div class="stat red">
+          <div class="stat-title">Total TDS to Deduct</div>
+          <div class="stat-value" id="totalTdsDisplay">₹ 0.00</div>
+          <div class="stat-sub" id="basicTdsBreakupDisplay">Basic: ₹0.00 | Surch.: ₹0.00 | Cess: ₹0.00</div>
+        </div>
+
+        <div class="stat green">
+          <div class="stat-title">Net Payment to Deductee</div>
+          <div class="stat-value" id="netAmountDisplay">₹ 0.00</div>
+          <div class="stat-sub">Amount payable after TDS.</div>
+        </div>
+        <div class="stat yellow">
+          <div class="stat-title">Deposit Due Date</div>
+          <div class="stat-value" id="dueDateDisplay">–</div>
+          <div class="stat-sub" id="dueDateInfoDisplay">Days remaining: –</div>
         </div>
         <div class="stat">
-          <div class="stat-title">Total Prepayment</div>
-          <div class="stat-value" id="totalPrepayDisplay">₹ 0.00</div>
-          <div class="stat-sub">Extra amount paid towards principal</div>
-        </div>
-        <div class="stat">
-          <div class="stat-title">Total Payable (Original)</div>
-          <div class="stat-value" id="origTotalPayableDisplay">₹ 0.00</div>
-          <div class="stat-sub" id="origInterestDisplay">Interest: ₹ 0.00</div>
-        </div>
-        <div class="stat">
-          <div class="stat-title">Total Payable (Revised)</div>
-          <div class="stat-value" id="revTotalPayableDisplay">₹ 0.00</div>
-          <div class="stat-sub" id="revInterestDisplay">Interest: ₹ 0.00</div>
+          <div class="stat-title">Interest & Late Fee (Estimate)</div>
+          <div class="stat-value" id="interestDisplay">Interest: ₹ 0.00</div>
+          <div class="stat-sub" id="penaltyDisplay">Late fee (234E) est.: ₹ 0.00</div>
         </div>
       </div>
 
       <div class="divider"></div>
 
-      <table class="comparison-table">
-        <thead>
-        <tr>
-          <th>Metric</th>
-          <th>Original</th>
-          <th>Revised</th>
-          <th>Difference</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>EMI</td>
-          <td id="cmpOrigEmi">₹ 0.00</td>
-          <td id="cmpRevEmi">₹ 0.00</td>
-          <td id="cmpEmiDiff">₹ 0.00</td>
-        </tr>
-        <tr>
-          <td>Tenure (Months)</td>
-          <td id="cmpOrigTenure">0</td>
-          <td id="cmpRevTenure">0</td>
-          <td id="cmpTenureDiff">0</td>
-        </tr>
-        <tr>
-          <td>Total Interest</td>
-          <td id="cmpOrigInterest">₹ 0.00</td>
-          <td id="cmpRevInterest">₹ 0.00</td>
-          <td id="cmpInterestDiff">₹ 0.00</td>
-        </tr>
-        <tr>
-          <td>Total Amount Payable</td>
-          <td id="cmpOrigTotal">₹ 0.00</td>
-          <td id="cmpRevTotal">₹ 0.00</td>
-          <td id="cmpTotalDiff">₹ 0.00</td>
-        </tr>
-        </tbody>
-      </table>
+      <div class="section-title">Detailed Breakdown</div>
+      <div class="table-wrapper">
+        <table>
+          <tbody>
+          <tr><th>Parameter</th><th>Value</th></tr>
+          <tr><td>Base Rate (selected)</td><td id="baseRateRow">0.00%</td></tr>
+          <tr><td>Higher Rate (No PAN - 206AA)</td><td id="panImpactRow">–</td></tr>
+          <tr><td>Higher Rate (206AB)</td><td id="abImpactRow">–</td></tr>
+          <tr><td>Final Effective Rate</td><td id="finalRateRow">0.00%</td></tr>
+          <tr><td>Basic TDS Amount</td><td id="basicTdsRow">₹ 0.00</td></tr>
+          <tr><td>Surcharge Amount</td><td id="surchargeRow">₹ 0.00</td></tr>
+          <tr><td>Health & Education Cess</td><td id="cessRow">₹ 0.00</td></tr>
+          <tr><td>Total TDS</td><td id="totalTdsRow">₹ 0.00</td></tr>
+          <tr><td>Threshold Check</td><td id="thresholdRow">–</td></tr>
+          <tr><td>Remark</td><td id="remarkRow">–</td></tr>
+          </tbody>
+        </table>
+      </div>
 
       <div class="toolbar">
-        <button class="secondary" type="button" id="downloadCsvBtn">Download Schedules (CSV)</button>
-        <button class="secondary" type="button" id="printBtn">Print Report</button>
+        <button class="secondary" type="button" id="printBtn">Print / Save as PDF</button>
       </div>
     </section>
   </div>
 
-  <!-- Charts -->
+  <!-- Section Info & Due Dates -->
   <section class="card" style="margin-top:16px;">
     <div class="card-header">
-      <h2>Visual Analysis</h2>
-      <small>Principal vs Interest, EMI path, outstanding balance & interest savings</small>
+      <h2>Section Information & Compliance</h2>
+      <small>Nature-wise rates, thresholds & quarterly due dates</small>
     </div>
 
-    <div class="charts-grid">
+    <div class="form-grid" style="margin-bottom:8px;">
       <div>
-        <div class="section-title">Principal vs Interest (Original vs Revised)</div>
-        <canvas id="principalInterestChart" height="220"></canvas>
+        <div class="section-title">Selected Section Details</div>
+        <div id="sectionInfoBox" class="alert info" style="min-height:90px;">
+          Select a TDS section to view description, nature-wise rate options & thresholds.
+        </div>
       </div>
       <div>
-        <div class="section-title">EMI Over Time</div>
-        <canvas id="emiChart" height="220"></canvas>
-      </div>
-      <div>
-        <div class="section-title">Outstanding Principal Over Time</div>
-        <canvas id="principalBalanceChart" height="220"></canvas>
-      </div>
-      <div>
-        <div class="section-title">Interest Comparison</div>
-        <canvas id="interestComparisonChart" height="220"></canvas>
+        <div class="section-title">TDS Return Due Dates (Quarterly)</div>
+        <div class="table-wrapper" style="max-height:160px;">
+          <table>
+            <thead>
+            <tr><th>Quarter</th><th>Period</th><th>Due Date</th></tr>
+            </thead>
+            <tbody id="tdsReturnTableBody"></tbody>
+          </table>
+        </div>
+        <p class="muted" style="margin-top:4px;">
+          Q1: 31 July • Q2: 31 October • Q3: 31 January • Q4: 31 May (subject to changes/ extensions by CBDT).
+        </p>
       </div>
     </div>
-  </section>
 
-  <!-- Amortization Schedules -->
-  <section class="card" style="margin-top:16px;">
-    <div class="card-header">
-      <h2>Amortization Schedules</h2>
-      <small>Sortable, month-by-month breakdown</small>
-    </div>
-
-    <!-- Original -->
-    <details open id="origDetails">
+    <details>
       <summary>
-        Original Schedule
+        Late Fee / Penalty (234E – estimate)
         <span class="summary-chevron">▼</span>
       </summary>
-      <div class="table-wrapper">
-        <table id="origTable">
-          <thead>
-          <tr>
-            <th data-sort-key="paymentNumber"># <span class="sort-indicator">⇅</span></th>
-            <th data-sort-key="date">Payment Date <span class="sort-indicator">⇅</span></th>
-            <th data-sort-key="openingBalance">Opening Balance <span class="sort-indicator">⇅</span></th>
-            <th data-sort-key="emi">EMI <span class="sort-indicator">⇅</span></th>
-            <th data-sort-key="principal">Principal <span class="sort-indicator">⇅</span></th>
-            <th data-sort-key="interest">Interest <span class="sort-indicator">⇅</span></th>
-            <th data-sort-key="closingBalance">Closing Balance <span class="sort-indicator">⇅</span></th>
-          </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+      <div style="margin-top:6px;">
+        <p class="muted">
+          Late fee u/s 234E: ₹200 per day of delay in filing TDS statement, capped at TDS amount.
+        </p>
+        <div class="form-grid" style="margin-top:6px;">
+          <div>
+            <label>Delay in filing TDS statement (days)</label>
+            <input type="number" id="delayDaysInput" placeholder="e.g. 12" min="0" step="1">
+          </div>
+          <div style="display:flex;align-items:flex-end;">
+            <button class="secondary" type="button" id="recalcPenaltyBtn">Recalculate 234E Estimate</button>
+          </div>
+        </div>
+        <p class="muted" style="margin-top:6px;">
+          This is an approximate working. For exact levy and relief, refer to the Income Tax Act, Rules and CBDT circulars.
+        </p>
       </div>
     </details>
 
-    <!-- Revised -->
-    <details id="revDetails">
+    <details>
       <summary>
-        Revised Schedule (with Prepayments)
+        Disclaimer & Guidance
         <span class="summary-chevron">▼</span>
       </summary>
-      <div class="table-wrapper">
-        <table id="revTable">
-          <thead>
-          <tr>
-            <th data-sort-key="paymentNumber"># <span class="sort-indicator">⇅</span></th>
-            <th data-sort-key="date">Payment Date <span class="sort-indicator">⇅</span></th>
-            <th data-sort-key="openingBalance">Opening Balance <span class="sort-indicator">⇅</span></th>
-            <th data-sort-key="emi">EMI <span class="sort-indicator">⇅</span></th>
-            <th data-sort-key="principal">Principal <span class="sort-indicator">⇅</span></th>
-            <th data-sort-key="interest">Interest <span class="sort-indicator">⇅</span></th>
-            <th data-sort-key="closingBalance">Closing Balance <span class="sort-indicator">⇅</span></th>
-          </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+      <div style="margin-top:6px;">
+        <p class="muted">
+          • This tool uses broadly indicative TDS rates and thresholds based on common understanding of Finance Act 2024-25.<br>
+          • DTAA relief, special rates, exemptions, declarations (Form 15G/15H), lower/nil deduction certificates (197) etc. are not fully captured.<br>
+          • Please treat this as a working / planning tool only. Always consult your Chartered Accountant / tax advisor
+            and refer to the Income Tax Act, 1961, Rules & latest CBDT notifications before finalising decisions.
+        </p>
       </div>
     </details>
   </section>
 </div>
 
 <script>
-  // ===== Helpers =====
+  // ====== DATA CONFIG ======
+  const tdsSections = [
+    {
+      code: "192",
+      label: "192 - Salary",
+      description: "TDS on salary – at average rate based on slab for the employee.",
+      threshold: 0,
+      thresholdText: "No fixed threshold – depends on taxable salary after deductions.",
+      options: [
+        { key: "avg5", label: "Average slab rate approx up to 5%", rate: 5 },
+        { key: "avg10", label: "Average slab rate approx 5–10%", rate: 10 },
+        { key: "avg20", label: "Average slab rate approx 10–20%", rate: 20 },
+        { key: "avg30", label: "Average slab rate approx 20–30%", rate: 30 }
+      ]
+    },
+    {
+      code: "192A",
+      label: "192A - Premature withdrawal from EPF",
+      description: "TDS on premature withdrawal from EPF.",
+      threshold: 50000,
+      thresholdText: "No TDS if withdrawal ≤ ₹50,000 (subject to conditions).",
+      options: [{ key: "std", label: "Standard TDS @10%", rate: 10 }]
+    },
+    {
+      code: "193",
+      label: "193 - Interest on Securities",
+      description: "TDS on interest on securities.",
+      threshold: 2500,
+      thresholdText: "Indicative threshold ₹2,500 (depends on security & payee).",
+      options: [{ key: "std", label: "Standard TDS @10%", rate: 10 }]
+    },
+    {
+      code: "194",
+      label: "194 - Dividend",
+      description: "TDS on dividend income paid to resident shareholders.",
+      threshold: 5000,
+      thresholdText: "No TDS if dividend to resident individual ≤ ₹5,000 (subject to conditions).",
+      options: [{ key: "std", label: "Standard TDS @10%", rate: 10 }]
+    },
+    {
+      code: "194A",
+      label: "194A - Interest other than securities",
+      description: "TDS on interest (other than securities) by banks, companies etc.",
+      threshold: 40000,
+      thresholdText: "Indicative threshold ₹40,000 (₹50,000 for senior citizens) for bank/post office deposits.",
+      options: [{ key: "std", label: "Standard TDS @10%", rate: 10 }]
+    },
+    {
+      code: "194B",
+      label: "194B - Lottery / crossword / game shows",
+      description: "TDS on winnings from lotteries / game shows.",
+      threshold: 10000,
+      thresholdText: "TDS if winnings exceed ₹10,000.",
+      options: [{ key: "std", label: "Standard TDS @30%", rate: 30 }]
+    },
+    {
+      code: "194BA",
+      label: "194BA - Winnings from online games",
+      description: "TDS on net winnings from online games.",
+      threshold: 0,
+      thresholdText: "No threshold – TDS on net winnings.",
+      options: [{ key: "std", label: "Standard TDS @30%", rate: 30 }]
+    },
+    {
+      code: "194BB",
+      label: "194BB - Winnings from horse races",
+      description: "TDS on winnings from horse races.",
+      threshold: 10000,
+      thresholdText: "TDS if winnings exceed ₹10,000.",
+      options: [{ key: "std", label: "Standard TDS @30%", rate: 30 }]
+    },
+    {
+      code: "194C",
+      label: "194C - Payment to Contractors / Sub-contractors",
+      description: "TDS on resident contractor / subcontractor payments.",
+      threshold: 30000,
+      thresholdText: "₹30,000 single payment or ₹1,00,000 aggregate in FY.",
+      options: [
+        { key: "ind_huf", label: "Payment to Individual / HUF – 1%", rate: 1 },
+        { key: "others", label: "Payment to Company / Firm / Others – 2%", rate: 2 }
+      ]
+    },
+    {
+      code: "194D",
+      label: "194D - Insurance commission",
+      description: "TDS on insurance commission.",
+      threshold: 15000,
+      thresholdText: "No TDS if commission ≤ ₹15,000 in FY.",
+      options: [{ key: "std", label: "Standard TDS @5%", rate: 5 }]
+    },
+    {
+      code: "194DA",
+      label: "194DA - Life insurance policy payments",
+      description: "TDS on life insurance maturity amounts (non-exempt).",
+      threshold: 100000,
+      thresholdText: "TDS if aggregate amount exceeds ₹1,00,000.",
+      options: [{ key: "std", label: "Standard TDS @5%", rate: 5 }]
+    },
+    {
+      code: "194E",
+      label: "194E - Payment to non-resident sportsmen etc.",
+      description: "TDS on payments to non-resident sportsmen / sports associations etc.",
+      threshold: 0,
+      thresholdText: "No basic threshold.",
+      options: [{ key: "std", label: "Standard TDS @20%", rate: 20 }]
+    },
+    {
+      code: "194EE",
+      label: "194EE - NSS deposits",
+      description: "TDS on payments in respect of deposits under NSS.",
+      threshold: 2500,
+      thresholdText: "No TDS if amount ≤ ₹2,500.",
+      options: [{ key: "std", label: "Standard TDS @10%", rate: 10 }]
+    },
+    {
+      code: "194F",
+      label: "194F - Mutual fund units repurchase",
+      description: "TDS on payment on repurchase of units by MF/UTI.",
+      threshold: 0,
+      thresholdText: "No basic threshold.",
+      options: [{ key: "std", label: "Standard TDS @20%", rate: 20 }]
+    },
+    {
+      code: "194G",
+      label: "194G - Commission on lottery tickets",
+      description: "TDS on commission/remuneration on lottery tickets.",
+      threshold: 15000,
+      thresholdText: "No TDS if commission ≤ ₹15,000 in FY.",
+      options: [{ key: "std", label: "Standard TDS @5%", rate: 5 }]
+    },
+    {
+      code: "194H",
+      label: "194H - Commission / Brokerage",
+      description: "TDS on commission/brokerage (other than insurance).",
+      threshold: 15000,
+      thresholdText: "No TDS if commission/brokerage ≤ ₹15,000 in FY.",
+      options: [{ key: "std", label: "Standard TDS @5%", rate: 5 }]
+    },
+    {
+      code: "194I",
+      label: "194I - Rent",
+      description: "TDS on rent of land/building/furniture and P&M.",
+      threshold: 240000,
+      thresholdText: "TDS if aggregate rent exceeds ₹2,40,000 in FY.",
+      options: [
+        { key: "pm", label: "Rent of Plant / Machinery / Equipment – 2%", rate: 2 },
+        { key: "lb", label: "Rent of Land / Building / Furniture / Fittings – 10%", rate: 10 }
+      ]
+    },
+    {
+      code: "194-IA",
+      label: "194-IA - Sale of immovable property",
+      description: "TDS on transfer of immovable property (non-agri land).",
+      threshold: 5000000,
+      thresholdText: "TDS if consideration ≥ ₹50,00,000.",
+      options: [{ key: "std", label: "Standard TDS @1%", rate: 1 }]
+    },
+    {
+      code: "194-IB",
+      label: "194-IB - Rent by Individual/HUF (non-audit)",
+      description: "TDS on rent paid by Individual/HUF not liable to audit.",
+      threshold: 50000,
+      thresholdText: "Monthly rent ≥ ₹50,000.",
+      options: [{ key: "std", label: "Standard TDS @5%", rate: 5 }]
+    },
+    {
+      code: "194-IC",
+      label: "194-IC - JDA consideration",
+      description: "TDS on monetary consideration under Joint Development Agreement.",
+      threshold: 0,
+      thresholdText: "No specific threshold.",
+      options: [{ key: "std", label: "Standard TDS @10%", rate: 10 }]
+    },
+    {
+      code: "194J",
+      label: "194J - Professional / Technical services / Royalty",
+      description: "TDS on professional fees, technical services, royalty etc.",
+      threshold: 30000,
+      thresholdText: "Aggregate payment exceeds ₹30,000 in FY.",
+      options: [
+        { key: "tech", label: "Technical services – 2%", rate: 2 },
+        { key: "prof", label: "Professional services / Royalty – 10%", rate: 10 }
+      ]
+    },
+    {
+      code: "194K",
+      label: "194K - Income from mutual funds",
+      description: "TDS on income from units of MF / specified companies.",
+      threshold: 5000,
+      thresholdText: "No TDS if income ≤ ₹5,000.",
+      options: [{ key: "std", label: "Standard TDS @10%", rate: 10 }]
+    },
+    {
+      code: "194LA",
+      label: "194LA - Compensation on land acquisition",
+      description: "TDS on compensation on compulsory acquisition of certain immovable property.",
+      threshold: 250000,
+      thresholdText: "No TDS if amount ≤ ₹2,50,000.",
+      options: [{ key: "std", label: "Standard TDS @10%", rate: 10 }]
+    },
+    {
+      code: "194LBA",
+      label: "194LBA - Business trust income",
+      description: "TDS on income distributed by business trust.",
+      threshold: 0,
+      thresholdText: "No basic threshold.",
+      options: [{ key: "std", label: "Standard TDS @10%", rate: 10 }]
+    },
+    {
+      code: "194LBB",
+      label: "194LBB - Income from investment fund",
+      description: "TDS on income in respect of units of investment fund.",
+      threshold: 0,
+      thresholdText: "No basic threshold.",
+      options: [{ key: "std", label: "Standard TDS @10%", rate: 10 }]
+    },
+    {
+      code: "194LBC",
+      label: "194LBC - Securitisation trust income",
+      description: "TDS on income from investment in securitisation trust.",
+      threshold: 0,
+      thresholdText: "No basic threshold.",
+      options: [{ key: "std", label: "Standard TDS @10%", rate: 10 }]
+    },
+    {
+      code: "194M",
+      label: "194M - Contractor/professional payments by non-audit cases",
+      description: "TDS on specified payments by Individual/HUF not liable to audit.",
+      threshold: 500000,
+      thresholdText: "TDS if aggregate payments exceed ₹50,00,000 in FY.",
+      options: [{ key: "std", label: "Standard TDS @5%", rate: 5 }]
+    },
+    {
+      code: "194N",
+      label: "194N - Cash withdrawal",
+      description: "TDS on high-value cash withdrawals from banks etc.",
+      threshold: 10000000,
+      thresholdText: "₹1 crore (other limits may apply based on compliance).",
+      options: [
+        { key: "2", label: "Standard TDS @2% (above basic limit)", rate: 2 },
+        { key: "5", label: "Higher TDS @5% (for certain non-filers)", rate: 5 }
+      ]
+    },
+    {
+      code: "194O",
+      label: "194O - E-commerce participants",
+      description: "TDS on gross sales via e-commerce operator.",
+      threshold: 500000,
+      thresholdText: "For certain small Individual/HUF participants; else from ₹1 onwards.",
+      options: [{ key: "std", label: "Standard TDS @1%", rate: 1 }]
+    },
+    {
+      code: "194P",
+      label: "194P - Specified senior citizens",
+      description: "TDS by specified bank in lieu of return filing.",
+      threshold: 0,
+      thresholdText: "Depends on taxable income.",
+      options: [
+        { key: "slab5", label: "Effective slab rate approx up to 5%", rate: 5 },
+        { key: "slab10", label: "Effective slab rate approx 5–10%", rate: 10 },
+        { key: "slab20", label: "Effective slab rate approx 10–20%", rate: 20 },
+        { key: "slab30", label: "Effective slab rate approx 20–30%", rate: 30 }
+      ]
+    },
+    {
+      code: "194Q",
+      label: "194Q - Purchase of goods",
+      description: "TDS on purchase of goods by specified buyers.",
+      threshold: 5000000,
+      thresholdText: "TDS if purchase from seller exceeds ₹50,00,000 in FY.",
+      options: [{ key: "std", label: "Standard TDS @0.1%", rate: 0.1 }]
+    },
+    {
+      code: "194R",
+      label: "194R - Benefits / Perquisites",
+      description: "TDS on value of benefits/perquisites in course of business/profession.",
+      threshold: 20000,
+      thresholdText: "No TDS if aggregate value ≤ ₹20,000.",
+      options: [{ key: "std", label: "Standard TDS @10%", rate: 10 }]
+    },
+    {
+      code: "194S",
+      label: "194S - Virtual Digital Assets (crypto etc.)",
+      description: "TDS on consideration for transfer of VDAs.",
+      threshold: 10000,
+      thresholdText: "₹10,000 (₹50,000 for specified persons).",
+      options: [{ key: "std", label: "Standard TDS @1%", rate: 1 }]
+    },
+    {
+      code: "195",
+      label: "195 - Payment to non-residents",
+      description: "TDS on interest, royalty, FTS and other sums to non-residents.",
+      threshold: 0,
+      thresholdText: "No general threshold – depends on nature and DTAA.",
+      options: [
+        { key: "royalty", label: "Royalty – 10% (plus surcharge/cess)", rate: 10 },
+        { key: "fts", label: "Fees for Technical Services – 10%", rate: 10 },
+        { key: "interest", label: "Interest (other than some concessional) – 20%", rate: 20 },
+        { key: "div", label: "Dividend – 20%", rate: 20 },
+        { key: "other", label: "Other taxable income – 40%", rate: 40 }
+      ]
+    },
+    {
+      code: "196B",
+      label: "196B - Income from units (offshore funds etc.)",
+      description: "TDS on income from units to non-resident / foreign companies.",
+      threshold: 0,
+      thresholdText: "No threshold.",
+      options: [{ key: "std", label: "Standard TDS @10%", rate: 10 }]
+    },
+    {
+      code: "196C",
+      label: "196C - Foreign currency bonds & GDRs",
+      description: "TDS on income from foreign currency bonds / GDRs of Indian companies.",
+      threshold: 0,
+      thresholdText: "No threshold.",
+      options: [{ key: "std", label: "Standard TDS @10%", rate: 10 }]
+    },
+    {
+      code: "196D",
+      label: "196D - FII income from securities",
+      description: "TDS on income of FIIs from securities (other than capital gains).",
+      threshold: 0,
+      thresholdText: "No threshold.",
+      options: [{ key: "std", label: "Standard TDS @20%", rate: 20 }]
+    }
+  ];
+
+  // Formatter helpers
   const currencyFormatter = new Intl.NumberFormat("en-IN", {
     style: "currency",
     currency: "INR",
@@ -771,762 +1048,444 @@
     maximumFractionDigits: 2
   });
 
-  function formatCurrency(value) {
-    if (isNaN(value)) return "₹ 0.00";
-    return currencyFormatter.format(value);
+  function formatCurrency(v) {
+    if (!v || isNaN(v)) return "₹ 0.00";
+    return currencyFormatter.format(v);
   }
-
-  function formatPercent(value) {
-    if (isNaN(value)) return "0.00%";
-    return value.toFixed(2) + "%";
+  function formatPercent(v) {
+    if (v == null || isNaN(v)) return "0.00%";
+    return v.toFixed(2) + "%";
   }
-
-  function addMonths(date, n) {
-    const d = new Date(date.getTime());
-    const day = d.getDate();
-    d.setMonth(d.getMonth() + n);
-
-    // handle month-end overflow
-    if (d.getDate() < day) {
-      d.setDate(0);
-    }
-    return d;
+  function parseDateInput(val) {
+    if (!val) return null;
+    const d = new Date(val);
+    return isNaN(d.getTime()) ? null : d;
   }
-
-  function formatDate(date) {
-    const d = String(date.getDate()).padStart(2, "0");
-    const m = String(date.getMonth() + 1).padStart(2, "0");
-    const y = date.getFullYear();
-    return `${d}-${m}-${y}`;
+  function formatDate(d) {
+    if (!(d instanceof Date) || isNaN(d.getTime())) return "–";
+    const dd = String(d.getDate()).padStart(2, "0");
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const yy = d.getFullYear();
+    return `${dd}-${mm}-${yy}`;
   }
-
-  function calcEmi(P, r, N) {
-    if (r === 0) return P / N;
-    const pow = Math.pow(1 + r, N);
-    return P * r * pow / (pow - 1);
-  }
-
   function monthDiff(from, to) {
     return (to.getFullYear() - from.getFullYear()) * 12 + (to.getMonth() - from.getMonth());
   }
 
-  // ===== EMI & Schedule Calculations =====
-  function buildOriginalSchedule(principal, annualRate, tenureMonths, startDate) {
-    const monthlyRate = annualRate / 12 / 100;
-    const emi = calcEmi(principal, monthlyRate, tenureMonths);
-    const schedule = [];
-    let balance = principal;
-    let totalInterest = 0;
-    let currentDate = new Date(startDate.getTime());
+  // DOM refs
+  const tdsSectionInput = document.getElementById("tdsSectionInput");
+  const datalist = document.getElementById("tdsSectionsList");
+  const rateOptionSelect = document.getElementById("rateOption");
+  const financialYearSelect = document.getElementById("financialYear");
+  const deducteeTypeSelect = document.getElementById("deducteeType");
+  const paymentAmountInput = document.getElementById("paymentAmount");
+  const paymentDateInput = document.getElementById("paymentDate");
+  const depositDateInput = document.getElementById("depositDate");
+  const surchargeOption = document.getElementById("surchargeOption");
 
-    for (let i = 1; i <= tenureMonths; i++) {
-      const opening = balance;
-      const interest = opening * monthlyRate;
-      let principalComponent = emi - interest;
+  const thresholdAlert = document.getElementById("thresholdAlert");
+  const errorBox = document.getElementById("errorBox");
 
-      if (principalComponent > opening) {
-        principalComponent = opening;
-      }
+  const grossAmountDisplay = document.getElementById("grossAmountDisplay");
+  const sectionDisplay = document.getElementById("sectionDisplay");
+  const effectiveRateDisplay = document.getElementById("effectiveRateDisplay");
+  const rateExplanationDisplay = document.getElementById("rateExplanationDisplay");
+  const totalTdsDisplay = document.getElementById("totalTdsDisplay");
+  const basicTdsBreakupDisplay = document.getElementById("basicTdsBreakupDisplay");
+  const netAmountDisplay = document.getElementById("netAmountDisplay");
+  const dueDateDisplay = document.getElementById("dueDateDisplay");
+  const dueDateInfoDisplay = document.getElementById("dueDateInfoDisplay");
+  const interestDisplay = document.getElementById("interestDisplay");
+  const penaltyDisplay = document.getElementById("penaltyDisplay");
 
-      let closing = opening - principalComponent;
-      if (closing < 0.01) closing = 0;
+  const baseRateRow = document.getElementById("baseRateRow");
+  const panImpactRow = document.getElementById("panImpactRow");
+  const abImpactRow = document.getElementById("abImpactRow");
+  const finalRateRow = document.getElementById("finalRateRow");
+  const basicTdsRow = document.getElementById("basicTdsRow");
+  const surchargeRow = document.getElementById("surchargeRow");
+  const cessRow = document.getElementById("cessRow");
+  const totalTdsRow = document.getElementById("totalTdsRow");
+  const thresholdRow = document.getElementById("thresholdRow");
+  const remarkRow = document.getElementById("remarkRow");
 
-      totalInterest += interest;
+  const sectionInfoBox = document.getElementById("sectionInfoBox");
+  const tdsReturnTableBody = document.getElementById("tdsReturnTableBody");
 
-      schedule.push({
-        paymentNumber: i,
-        date: new Date(currentDate.getTime()),
-        openingBalance: opening,
-        emi: emi,
-        principal: principalComponent,
-        interest: interest,
-        closingBalance: closing
-      });
-
-      balance = closing;
-      if (balance <= 0) break;
-      currentDate = addMonths(currentDate, 1);
-    }
-
-    const roundedInterest = totalInterest;
-    return {
-      emi,
-      totalInterest: roundedInterest,
-      totalPayable: principal + roundedInterest,
-      tenureMonths: schedule.length,
-      schedule
-    };
-  }
-
-  function buildRevisedSchedule(principal, annualRate, tenureMonths, startDate, prepayments, mode) {
-    const monthlyRate = annualRate / 12 / 100;
-    const originalEmi = calcEmi(principal, monthlyRate, tenureMonths);
-
-    let emi = originalEmi;
-    const schedule = [];
-    let balance = principal;
-    let totalInterest = 0;
-    let totalPrepaid = 0;
-    let currentDate = new Date(startDate.getTime());
-    let month = 1;
-
-    // iterate until loan closed or safety cap
-    while (balance > 0.01 && month <= tenureMonths + 600) {
-      const opening = balance;
-      const interest = opening * monthlyRate;
-      let emiPrincipal = emi - interest;
-
-      if (emiPrincipal < 0) {
-        // pathological case; break
-        break;
-      }
-
-      // compute prepayment for this month
-      let prepayThisMonth = 0;
-      for (const p of prepayments) {
-        if (p.monthIndex < 1) continue;
-        const startMonthIndex = p.monthIndex;
-        if (!p.recurring && startMonthIndex === month) {
-          prepayThisMonth += p.amount;
-        } else if (p.recurring && month >= startMonthIndex) {
-          prepayThisMonth += p.amount;
-        }
-      }
-
-      totalPrepaid += prepayThisMonth;
-
-      let principalComponent = emiPrincipal + prepayThisMonth;
-      if (principalComponent > opening) {
-        principalComponent = opening;
-      }
-
-      let closing = opening - principalComponent;
-      if (closing < 0.01) closing = 0;
-
-      totalInterest += interest;
-
-      schedule.push({
-        paymentNumber: month,
-        date: new Date(currentDate.getTime()),
-        openingBalance: opening,
-        emi: emi,
-        principal: principalComponent,
-        interest: interest,
-        closingBalance: closing
-      });
-
-      // If reduce EMI mode, recalc EMI after prepayment at each month for remaining tenure
-      if (mode === "emi" && prepayThisMonth > 0 && closing > 0) {
-        const monthsLeft = tenureMonths - month;
-        if (monthsLeft > 0) {
-          emi = calcEmi(closing, monthlyRate, monthsLeft);
-        }
-      }
-
-      balance = closing;
-      month++;
-      currentDate = addMonths(currentDate, 1);
-    }
-
-    const tenureRevised = schedule.length;
-    const roundedInterest = totalInterest;
-
-    return {
-      emi: emi, // latest EMI after last prepayment (for reduce EMI mode)
-      totalInterest: roundedInterest,
-      totalPayable: principal + roundedInterest + 0, // principal + interest (prepay is just timing)
-      tenureMonths: tenureRevised,
-      totalPrepaid,
-      schedule
-    };
-  }
-
-  // ===== DOM References =====
-  const principalInput = document.getElementById("principal");
-  const annualRateInput = document.getElementById("annualRate");
-  const tenureInput = document.getElementById("tenure");
-  const startDateInput = document.getElementById("startDate");
-  const tenureToggle = document.getElementById("tenureToggle");
-  const addPrepaymentBtn = document.getElementById("addPrepaymentBtn");
-  const prepaymentsContainer = document.getElementById("prepaymentsContainer");
   const calculateBtn = document.getElementById("calculateBtn");
   const resetBtn = document.getElementById("resetBtn");
-  const errorBox = document.getElementById("errorBox");
-  const downloadCsvBtn = document.getElementById("downloadCsvBtn");
   const printBtn = document.getElementById("printBtn");
+  const delayDaysInput = document.getElementById("delayDaysInput");
+  const recalcPenaltyBtn = document.getElementById("recalcPenaltyBtn");
 
-  // Summary fields
-  const origEmiDisplay = document.getElementById("origEmiDisplay");
-  const origTenureDisplay = document.getElementById("origTenureDisplay");
-  const revEmiDisplay = document.getElementById("revEmiDisplay");
-  const revTenureDisplay = document.getElementById("revTenureDisplay");
-  const interestSavedDisplay = document.getElementById("interestSavedDisplay");
-  const interestSavedPercentDisplay = document.getElementById("interestSavedPercentDisplay");
-  const totalPrepayDisplay = document.getElementById("totalPrepayDisplay");
-  const origTotalPayableDisplay = document.getElementById("origTotalPayableDisplay");
-  const origInterestDisplay = document.getElementById("origInterestDisplay");
-  const revTotalPayableDisplay = document.getElementById("revTotalPayableDisplay");
-  const revInterestDisplay = document.getElementById("revInterestDisplay");
+  let lastTdsAmount = 0;
 
-  // Comparison table fields
-  const cmpOrigEmi = document.getElementById("cmpOrigEmi");
-  const cmpRevEmi = document.getElementById("cmpRevEmi");
-  const cmpEmiDiff = document.getElementById("cmpEmiDiff");
-  const cmpOrigTenure = document.getElementById("cmpOrigTenure");
-  const cmpRevTenure = document.getElementById("cmpRevTenure");
-  const cmpTenureDiff = document.getElementById("cmpTenureDiff");
-  const cmpOrigInterest = document.getElementById("cmpOrigInterest");
-  const cmpRevInterest = document.getElementById("cmpRevInterest");
-  const cmpInterestDiff = document.getElementById("cmpInterestDiff");
-  const cmpOrigTotal = document.getElementById("cmpOrigTotal");
-  const cmpRevTotal = document.getElementById("cmpRevTotal");
-  const cmpTotalDiff = document.getElementById("cmpTotalDiff");
-
-  // Tables
-  const origTableBody = document.querySelector("#origTable tbody");
-  const revTableBody = document.querySelector("#revTable tbody");
-
-  // Charts
-  let principalInterestChart, emiChart, principalBalanceChart, interestComparisonChart;
-
-  function showError(message) {
+  function showError(msg) {
     errorBox.style.display = "block";
-    errorBox.textContent = message;
+    errorBox.textContent = msg;
   }
-
   function clearError() {
     errorBox.style.display = "none";
     errorBox.textContent = "";
   }
 
-  // Tenure toggle
-  tenureToggle.addEventListener("click", (e) => {
-    const btn = e.target.closest(".toggle-btn");
-    if (!btn) return;
-    tenureToggle.querySelectorAll(".toggle-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    // just UI change; calculation considers unit at runtime
-    calculateAll();
+  // populate datalist
+  function populateSectionList() {
+    datalist.innerHTML = "";
+    tdsSections.forEach(sec => {
+      const opt = document.createElement("option");
+      opt.value = `${sec.code} - ${sec.label.split(" - ")[1]}`;
+      datalist.appendChild(opt);
+    });
+  }
+  populateSectionList();
+
+  function getSelectedSection() {
+    const val = (tdsSectionInput.value || "").trim();
+    if (!val) return null;
+    const code = val.split(" - ")[0].trim();
+    return tdsSections.find(s => s.code === code) || null;
+  }
+
+  function populateRateOptions() {
+    const sec = getSelectedSection();
+    rateOptionSelect.innerHTML = "";
+    if (!sec) {
+      const opt = document.createElement("option");
+      opt.value = "";
+      opt.textContent = "Select Section First";
+      rateOptionSelect.appendChild(opt);
+      return;
+    }
+    sec.options.forEach(o => {
+      const opt = document.createElement("option");
+      opt.value = o.key;
+      opt.textContent = o.label;
+      opt.dataset.rate = o.rate;
+      rateOptionSelect.appendChild(opt);
+    });
+    if (sec.options.length === 1) {
+      rateOptionSelect.selectedIndex = 0;
+    } else {
+      const opt = document.createElement("option");
+      opt.value = "";
+      opt.textContent = "Select Nature / Option";
+      rateOptionSelect.insertBefore(opt, rateOptionSelect.firstChild);
+      rateOptionSelect.selectedIndex = 0;
+    }
+  }
+
+  tdsSectionInput.addEventListener("change", () => {
+    populateRateOptions();
+    updateSectionInfo();
+  });
+  rateOptionSelect.addEventListener("change", () => {
+    if (paymentAmountInput.value && paymentDateInput.value && tdsSectionInput.value && rateOptionSelect.value) {
+      calculate();
+    }
   });
 
-  // Prepayment row creation
-  function createPrepaymentRow() {
-    const row = document.createElement("div");
-    row.className = "prepayment-row";
-
-    row.innerHTML = `
-      <div>
-        <label style="font-size:0.75rem;color:var(--muted);margin-bottom:2px;">Prepayment Date</label>
-        <input type="date" class="prepay-date">
-      </div>
-      <div>
-        <label style="font-size:0.75rem;color:var(--muted);margin-bottom:2px;">Amount</label>
-        <input type="number" class="prepay-amount" placeholder="e.g. 50000" min="0" step="1000">
-      </div>
-      <div>
-        <label style="font-size:0.75rem;color:var(--muted);margin-bottom:2px;">Type</label>
-        <select class="prepay-type">
-          <option value="one-time">One-time</option>
-          <option value="recurring">Recurring Monthly</option>
-        </select>
-      </div>
-      <div style="display:flex;justify-content:flex-end;">
-        <button type="button" class="danger" style="padding:4px 8px;font-size:0.7rem;">Remove</button>
-      </div>
+  function updateSectionInfo() {
+    const sec = getSelectedSection();
+    if (!sec) {
+      sectionInfoBox.className = "alert info";
+      sectionInfoBox.innerHTML = "Select a TDS section to view description, nature-wise rate options & thresholds.";
+      return;
+    }
+    const optionsHtml = sec.options.map(o => `<span class="chip green">${o.label}</span>`).join(" ");
+    sectionInfoBox.className = "alert info";
+    sectionInfoBox.innerHTML = `
+      <strong>${sec.code}</strong> – ${sec.label.split(" - ")[1]}<br>
+      <span class="muted">${sec.description}</span><br><br>
+      ${optionsHtml}<br>
+      <span class="chip yellow">Threshold (indicative): ${sec.thresholdText || "Not specifically defined here."}</span>
     `;
-
-    row.querySelector("button.danger").addEventListener("click", () => {
-      row.remove();
-      calculateAll();
-    });
-
-    prepaymentsContainer.appendChild(row);
   }
 
-  addPrepaymentBtn.addEventListener("click", () => {
-    createPrepaymentRow();
-  });
-
-  // Get prepayments from UI
-  function readPrepayments(startDate) {
-    const rows = prepaymentsContainer.querySelectorAll(".prepayment-row");
-    const prepayments = [];
-
-    rows.forEach(row => {
-      const dateInput = row.querySelector(".prepay-date");
-      const amountInput = row.querySelector(".prepay-amount");
-      const typeSelect = row.querySelector(".prepay-type");
-
-      const dateVal = dateInput.value;
-      const amountVal = parseFloat(amountInput.value);
-      const typeVal = typeSelect.value;
-
-      if (!dateVal || isNaN(amountVal) || amountVal <= 0) {
-        return; // skip incomplete
-      }
-
-      const preDate = new Date(dateVal);
-      if (isNaN(preDate.getTime())) return;
-
-      const diff = monthDiff(startDate, preDate);
-      const monthIndex = diff + 1; // 1-based schedule month
-
-      prepayments.push({
-        date: preDate,
-        amount: amountVal,
-        monthIndex,
-        recurring: typeVal === "recurring"
-      });
-    });
-
-    return prepayments;
-  }
-
-  // Render tables
-  function renderScheduleTable(tbody, schedule) {
-    tbody.innerHTML = "";
-    schedule.forEach(row => {
+  // Quarterly due dates
+  function populateReturnDueDates() {
+    const fy = financialYearSelect.value || "YYYY-YY";
+    const startYear = parseInt(fy.substring(0, 4)) || 0;
+    const rows = [
+      { q: "Q1", period: "Apr – Jun", month: 6, day: 31, yearOffset: 0 },
+      { q: "Q2", period: "Jul – Sep", month: 10, day: 31, yearOffset: 0 },
+      { q: "Q3", period: "Oct – Dec", month: 1, day: 31, yearOffset: 1 },
+      { q: "Q4", period: "Jan – Mar", month: 5, day: 31, yearOffset: 1 }
+    ];
+    tdsReturnTableBody.innerHTML = "";
+    rows.forEach(r => {
+      const y = startYear ? startYear + r.yearOffset : "YYYY";
+      const dd = String(r.day).padStart(2, "0");
+      const mm = String(r.month).padStart(2, "0");
       const tr = document.createElement("tr");
-      tr.dataset.paymentNumber = row.paymentNumber;
-      tr.dataset.date = row.date.toISOString();
-      tr.dataset.openingBalance = row.openingBalance;
-      tr.dataset.emi = row.emi;
-      tr.dataset.principal = row.principal;
-      tr.dataset.interest = row.interest;
-      tr.dataset.closingBalance = row.closingBalance;
-
-      tr.innerHTML = `
-        <td>${row.paymentNumber}</td>
-        <td>${formatDate(row.date)}</td>
-        <td>${formatCurrency(row.openingBalance)}</td>
-        <td>${formatCurrency(row.emi)}</td>
-        <td>${formatCurrency(row.principal)}</td>
-        <td>${formatCurrency(row.interest)}</td>
-        <td>${formatCurrency(row.closingBalance)}</td>
-      `;
-      tbody.appendChild(tr);
+      tr.innerHTML = `<td>${r.q}</td><td>${r.period}</td><td>${dd}-${mm}-${y}</td>`;
+      tdsReturnTableBody.appendChild(tr);
     });
   }
+  populateReturnDueDates();
+  financialYearSelect.addEventListener("change", populateReturnDueDates);
 
-  // Sortable tables
-  function attachTableSorting(tableId) {
-    const table = document.getElementById(tableId);
-    const thead = table.querySelector("thead");
-    const tbody = table.querySelector("tbody");
+  // effective rate calculation
+  function computeEffectiveRate(baseRate) {
+    const panAvailable = document.querySelector('input[name="panAvailable"]:checked').value;
+    const is206ab = document.querySelector('input[name="is206ab"]:checked').value;
 
-    thead.addEventListener("click", (e) => {
-      const th = e.target.closest("th[data-sort-key]");
-      if (!th) return;
+    let base = baseRate;
+    let panHigher = null;
+    if (panAvailable === "no") {
+      panHigher = Math.max(baseRate, 20);
+    }
+    let abRate = null;
+    if (is206ab === "yes") {
+      abRate = Math.max(baseRate * 2, 5);
+    }
+    let effective = baseRate;
+    if (panHigher != null) effective = Math.max(effective, panHigher);
+    if (abRate != null) effective = Math.max(effective, abRate);
 
-      const key = th.getAttribute("data-sort-key");
-      const currentOrder = th.dataset.sortOrder === "asc" ? "desc" : "asc";
-      th.dataset.sortOrder = currentOrder;
+    return { baseRate, panHigher, abRate, effectiveRate: effective };
+  }
 
-      const rowsArray = Array.from(tbody.querySelectorAll("tr"));
+  function computeDueDate(paymentDate, deductorType) {
+    if (!paymentDate) return null;
+    const m = paymentDate.getMonth();
+    const y = paymentDate.getFullYear();
+    if (m === 2) {
+      return new Date(y, 3, 30); // 30 April
+    } else {
+      const nextMonth = (m + 1) % 12;
+      const nextYear = m === 11 ? y + 1 : y;
+      const day = deductorType === "govt" ? 7 : 30;
+      return new Date(nextYear, nextMonth, day);
+    }
+  }
 
-      rowsArray.sort((a, b) => {
-        let valA = a.dataset[key];
-        let valB = b.dataset[key];
+  function computeInterest(tdsAmount, dueDate, depositDate) {
+    if (!dueDate || !depositDate || tdsAmount <= 0) return 0;
+    if (!(depositDate > dueDate)) return 0;
+    const months = monthDiff(dueDate, depositDate) + 1;
+    return tdsAmount * 0.01 * months; // 1% p.m. simple as per instruction
+  }
 
-        if (key === "date") {
-          valA = new Date(valA).getTime();
-          valB = new Date(valB).getTime();
-        } else {
-          valA = parseFloat(valA);
-          valB = parseFloat(valB);
+  function checkThreshold(section, amount) {
+    if (!section) return { msg: "Section not selected.", below: false };
+    if (!section.threshold || section.threshold <= 0) {
+      return { msg: "No fixed monetary threshold in this tool (depends on aggregate / conditions).", below: false };
+    }
+    if (amount < section.threshold) {
+      return {
+        msg: `Amount below indicative threshold of ${formatCurrency(section.threshold)} – in many cases TDS may not be required (check aggregate & conditions).`,
+        below: true
+      };
+    }
+    return {
+      msg: `Amount crosses indicative threshold of ${formatCurrency(section.threshold)} – TDS likely applicable (subject to conditions).`,
+      below: false
+    };
+  }
+
+  function calculate() {
+    clearError();
+    const sec = getSelectedSection();
+    if (!sec) {
+      showError("Please select a valid TDS section.");
+      return;
+    }
+    if (!rateOptionSelect.value) {
+      showError("Please select Nature / Rate option for the selected section.");
+      return;
+    }
+    if (!deducteeTypeSelect.value) {
+      showError("Please select Deductee Type.");
+      return;
+    }
+    const amount = parseFloat(paymentAmountInput.value);
+    if (!amount || isNaN(amount) || amount <= 0) {
+      showError("Please enter a valid Payment Amount greater than zero.");
+      return;
+    }
+    const paymentDate = parseDateInput(paymentDateInput.value);
+    if (!paymentDate) {
+      showError("Please enter a valid Payment/Credit Date.");
+      return;
+    }
+    const depositDate = parseDateInput(depositDateInput.value) || new Date();
+    const deductorType = document.querySelector('input[name="deductorType"]:checked').value;
+    const applyCessVal = document.querySelector('input[name="applyCess"]:checked').value;
+    const surchargeVal = surchargeOption.value;
+
+    const selectedOption = sec.options.find(o => o.key === rateOptionSelect.value);
+    if (!selectedOption) {
+      showError("Invalid rate option selected. Please re-select.");
+      return;
+    }
+
+    const baseRate = selectedOption.rate;
+    const rateInfo = computeEffectiveRate(baseRate);
+
+    const thresholdInfo = checkThreshold(sec, amount);
+    thresholdRow.textContent = thresholdInfo.msg;
+    if (thresholdInfo.below) {
+      thresholdAlert.style.display = "block";
+      thresholdAlert.className = "alert success";
+      thresholdAlert.innerHTML = "Payment appears below indicative threshold. In many cases TDS may not be required (subject to aggregate & conditions).";
+    } else {
+      thresholdAlert.style.display = "none";
+    }
+
+    const effRate = rateInfo.effectiveRate;
+    const basicTds = amount * (effRate / 100);
+
+    let surcharge = 0;
+    if (surchargeVal !== "none") {
+      surcharge = basicTds * (parseFloat(surchargeVal) / 100);
+    }
+    let cess = 0;
+    if (applyCessVal === "yes") {
+      cess = (basicTds + surcharge) * 0.04;
+    }
+    const totalTds = basicTds + surcharge + cess;
+    lastTdsAmount = totalTds;
+    const netAmount = amount - totalTds;
+
+    const dueDate = computeDueDate(paymentDate, deductorType);
+    const interest = computeInterest(totalTds, dueDate, depositDate);
+
+    const delayDays = parseInt(delayDaysInput.value || "0", 10);
+    const fee234E = Math.min((isNaN(delayDays) ? 0 : delayDays) * 200, totalTds);
+
+    grossAmountDisplay.textContent = formatCurrency(amount);
+    sectionDisplay.textContent = `Section: ${sec.code} (${sec.label.split(" - ")[1]})`;
+    effectiveRateDisplay.textContent = formatPercent(effRate);
+    rateExplanationDisplay.textContent =
+      `Base: ${formatPercent(baseRate)} | PAN: ${
+        rateInfo.panHigher != null ? formatPercent(rateInfo.panHigher) : "—"
+      } | 206AB: ${rateInfo.abRate != null ? formatPercent(rateInfo.abRate) : "—"}`;
+
+    totalTdsDisplay.textContent = formatCurrency(totalTds);
+    basicTdsBreakupDisplay.textContent =
+      `Basic: ${formatCurrency(basicTds)} | Surch.: ${formatCurrency(surcharge)} | Cess: ${formatCurrency(cess)}`;
+    netAmountDisplay.textContent = formatCurrency(netAmount);
+
+    dueDateDisplay.textContent = formatDate(dueDate);
+    if (dueDate) {
+      const dep = new Date(depositDate.getFullYear(), depositDate.getMonth(), depositDate.getDate());
+      const diffMs = dueDate.getTime() - dep.getTime();
+      const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+      if (diffDays >= 0) {
+        dueDateInfoDisplay.textContent = `Approx. ${diffDays} day(s) remaining (assuming deposit date ${formatDate(dep)}).`;
+        dueDateInfoDisplay.style.color = "#bbf7d0";
+      } else {
+        dueDateInfoDisplay.textContent = `Overdue by approx. ${Math.abs(diffDays)} day(s) (deposit date ${formatDate(dep)}).`;
+        dueDateInfoDisplay.style.color = "#fecaca";
+      }
+    } else {
+      dueDateInfoDisplay.textContent = "Could not compute due date.";
+      dueDateInfoDisplay.style.color = "#e5e7eb";
+    }
+
+    interestDisplay.textContent = `Interest (1% p.m. approx): ${formatCurrency(interest)}`;
+    penaltyDisplay.textContent = `Estimated 234E fee (₹200/day, capped at TDS): ${formatCurrency(fee234E)}`;
+
+    baseRateRow.textContent = formatPercent(baseRate);
+    panImpactRow.textContent = rateInfo.panHigher != null ? formatPercent(rateInfo.panHigher) : "Not triggered";
+    abImpactRow.textContent = rateInfo.abRate != null ? formatPercent(rateInfo.abRate) : "Not triggered";
+    finalRateRow.textContent = formatPercent(effRate);
+    basicTdsRow.textContent = formatCurrency(basicTds);
+    surchargeRow.textContent = formatCurrency(surcharge);
+    cessRow.textContent = formatCurrency(cess);
+    totalTdsRow.textContent = formatCurrency(totalTds);
+
+    if (thresholdInfo.below) {
+      remarkRow.textContent = "Below indicative threshold – please check aggregate payments & conditions before deducting.";
+    } else {
+      remarkRow.textContent = "TDS appears applicable subject to DTAA / certificates / declarations etc.";
+    }
+  }
+
+  calculateBtn.addEventListener("click", calculate);
+
+  // auto-recalc on some changes
+  [tdsSectionInput, rateOptionSelect, deducteeTypeSelect, paymentAmountInput, paymentDateInput,
+   depositDateInput, surchargeOption].forEach(el => {
+    el.addEventListener("change", () => {
+      if (paymentAmountInput.value && paymentDateInput.value && tdsSectionInput.value && rateOptionSelect.value) {
+        calculate();
+      }
+    });
+  });
+
+  ["panAvailable", "is206ab", "applyCess", "deductorType"].forEach(name => {
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+      r.addEventListener("change", () => {
+        if (paymentAmountInput.value && paymentDateInput.value && tdsSectionInput.value && rateOptionSelect.value) {
+          calculate();
         }
-
-        if (isNaN(valA) || isNaN(valB)) return 0;
-        return currentOrder === "asc" ? valA - valB : valB - valA;
       });
-
-      tbody.innerHTML = "";
-      rowsArray.forEach(r => tbody.appendChild(r));
-    });
-  }
-
-  attachTableSorting("origTable");
-  attachTableSorting("revTable");
-
-  // Charts
-  function updateCharts(orig, rev) {
-    const labels = [];
-    const origEmiSeries = [];
-    const revEmiSeries = [];
-    const origPrincipalSeries = [];
-    const revPrincipalSeries = [];
-
-    const maxLen = Math.max(orig.schedule.length, rev.schedule.length);
-
-    for (let i = 0; i < maxLen; i++) {
-      labels.push((i + 1).toString());
-      if (i < orig.schedule.length) {
-        origEmiSeries.push(orig.schedule[i].emi);
-        origPrincipalSeries.push(orig.schedule[i].closingBalance);
-      } else {
-        origEmiSeries.push(null);
-        origPrincipalSeries.push(null);
-      }
-
-      if (i < rev.schedule.length) {
-        revEmiSeries.push(rev.schedule[i].emi);
-        revPrincipalSeries.push(rev.schedule[i].closingBalance);
-      } else {
-        revEmiSeries.push(null);
-        revPrincipalSeries.push(null);
-      }
-    }
-
-    const principalInterestCtx = document.getElementById("principalInterestChart").getContext("2d");
-    const emiCtx = document.getElementById("emiChart").getContext("2d");
-    const principalBalanceCtx = document.getElementById("principalBalanceChart").getContext("2d");
-    const interestComparisonCtx = document.getElementById("interestComparisonChart").getContext("2d");
-
-    if (principalInterestChart) principalInterestChart.destroy();
-    if (emiChart) emiChart.destroy();
-    if (principalBalanceChart) principalBalanceChart.destroy();
-    if (interestComparisonChart) interestComparisonChart.destroy();
-
-    principalInterestChart = new Chart(principalInterestCtx, {
-      type: "doughnut",
-      data: {
-        labels: ["Principal (Original)", "Interest (Original)", "Principal (Revised)", "Interest (Revised)"],
-        datasets: [{
-          data: [
-            orig.schedule.length ? orig.schedule[0].openingBalance : 0,
-            orig.totalInterest,
-            rev.schedule.length ? rev.schedule[0].openingBalance : 0,
-            rev.totalInterest
-          ]
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { position: "bottom", labels: { color: "#e5e7eb", font: { size: 10 } } }
-        }
-      }
-    });
-
-    emiChart = new Chart(emiCtx, {
-      type: "line",
-      data: {
-        labels,
-        datasets: [
-          {
-            label: "Original EMI",
-            data: origEmiSeries,
-            borderWidth: 2,
-            fill: false
-          },
-          {
-            label: "Revised EMI",
-            data: revEmiSeries,
-            borderWidth: 2,
-            borderDash: [5, 5],
-            fill: false
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { labels: { color: "#e5e7eb", font: { size: 10 } } }
-        },
-        scales: {
-          x: { ticks: { color: "#9ca3af", font: { size: 9 } }, grid: { display: false } },
-          y: { ticks: { color: "#9ca3af", font: { size: 9 } }, grid: { color: "#1f2937" } }
-        }
-      }
-    });
-
-    principalBalanceChart = new Chart(principalBalanceCtx, {
-      type: "line",
-      data: {
-        labels,
-        datasets: [
-          {
-            label: "Original Outstanding",
-            data: origPrincipalSeries,
-            borderWidth: 2,
-            fill: true
-          },
-          {
-            label: "Revised Outstanding",
-            data: revPrincipalSeries,
-            borderWidth: 2,
-            fill: true
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { labels: { color: "#e5e7eb", font: { size: 10 } } }
-        },
-        scales: {
-          x: { ticks: { color: "#9ca3af", font: { size: 9 } }, grid: { display: false } },
-          y: { ticks: { color: "#9ca3af", font: { size: 9 } }, grid: { color: "#1f2937" } }
-        }
-      }
-    });
-
-    interestComparisonChart = new Chart(interestComparisonCtx, {
-      type: "bar",
-      data: {
-        labels: ["Original Interest", "Revised Interest"],
-        datasets: [{
-          label: "Total Interest",
-          data: [orig.totalInterest, rev.totalInterest]
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            callbacks: {
-              label: (ctx) => formatCurrency(ctx.parsed.y)
-            }
-          }
-        },
-        scales: {
-          x: { ticks: { color: "#9ca3af", font: { size: 9 } }, grid: { display: false } },
-          y: { ticks: { color: "#9ca3af", font: { size: 9 } }, grid: { color: "#1f2937" } }
-        }
-      }
-    });
-  }
-
-  // Download CSV
-  function downloadCsv(orig, rev) {
-    let csv = "Scenario,Payment #,Date,Opening Balance,EMI,Principal,Interest,Closing Balance\n";
-
-    orig.schedule.forEach(r => {
-      csv += [
-        "Original",
-        r.paymentNumber,
-        formatDate(r.date),
-        r.openingBalance.toFixed(2),
-        r.emi.toFixed(2),
-        r.principal.toFixed(2),
-        r.interest.toFixed(2),
-        r.closingBalance.toFixed(2)
-      ].join(",") + "\n";
-    });
-
-    csv += "\n";
-
-    rev.schedule.forEach(r => {
-      csv += [
-        "Revised",
-        r.paymentNumber,
-        formatDate(r.date),
-        r.openingBalance.toFixed(2),
-        r.emi.toFixed(2),
-        r.principal.toFixed(2),
-        r.interest.toFixed(2),
-        r.closingBalance.toFixed(2)
-      ].join(",") + "\n";
-    });
-
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "emi_amortization_schedules.csv";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }
-
-  let lastOrigSummary = null;
-  let lastRevSummary = null;
-
-  // Main calculation
-  function calculateAll() {
-    clearError();
-
-    const principal = parseFloat(principalInput.value);
-    const annualRate = parseFloat(annualRateInput.value);
-    let tenureVal = parseInt(tenureInput.value, 10);
-    const startDateVal = startDateInput.value;
-
-    if (isNaN(principal) || principal <= 0) {
-      showError("Please enter a valid Principal Amount (greater than 0).");
-      return;
-    }
-
-    if (isNaN(annualRate) || annualRate <= 0) {
-      showError("Please enter a valid Annual Interest Rate (greater than 0).");
-      return;
-    }
-
-    if (isNaN(tenureVal) || tenureVal <= 0) {
-      showError("Please enter a valid Tenure.");
-      return;
-    }
-
-    if (!startDateVal) {
-      showError("Please select a Loan Start Date.");
-      return;
-    }
-
-    const startDate = new Date(startDateVal);
-    if (isNaN(startDate.getTime())) {
-      showError("Invalid start date.");
-      return;
-    }
-
-    const activeUnit = tenureToggle.querySelector(".toggle-btn.active").dataset.unit;
-    let tenureMonths;
-    if (activeUnit === "years") {
-      tenureMonths = tenureVal * 12;
-    } else {
-      tenureMonths = tenureVal;
-    }
-
-    const orig = buildOriginalSchedule(principal, annualRate, tenureMonths, startDate);
-
-    const prepayments = readPrepayments(startDate);
-    const prepayEffect = document.querySelector('input[name="prepayEffect"]:checked').value;
-
-    const rev = buildRevisedSchedule(principal, annualRate, tenureMonths, startDate, prepayments, prepayEffect);
-
-    lastOrigSummary = orig;
-    lastRevSummary = rev;
-
-    // Summary
-    origEmiDisplay.textContent = formatCurrency(orig.emi);
-    origTenureDisplay.textContent = `Tenure: ${orig.tenureMonths} months`;
-
-    if (prepayEffect === "emi") {
-      revEmiDisplay.textContent = formatCurrency(rev.emi);
-      revTenureDisplay.textContent = `Tenure (same base): ${rev.tenureMonths} months`;
-    } else {
-      revEmiDisplay.textContent = formatCurrency(orig.emi);
-      revTenureDisplay.textContent = `Tenure: ${rev.tenureMonths} months (saved ${
-        orig.tenureMonths - rev.tenureMonths
-      } months)`;
-    }
-
-    const interestSaved = Math.max(0, orig.totalInterest - rev.totalInterest);
-    const interestSavedPercent = orig.totalInterest > 0 ? (interestSaved / orig.totalInterest) * 100 : 0;
-
-    interestSavedDisplay.textContent = formatCurrency(interestSaved);
-    interestSavedPercentDisplay.textContent = formatPercent(interestSavedPercent) + " of original interest";
-
-    totalPrepayDisplay.textContent = formatCurrency(rev.totalPrepaid);
-
-    origTotalPayableDisplay.textContent = formatCurrency(orig.totalPayable);
-    origInterestDisplay.textContent = "Interest: " + formatCurrency(orig.totalInterest);
-
-    revTotalPayableDisplay.textContent = formatCurrency(rev.totalPayable);
-    revInterestDisplay.textContent = "Interest: " + formatCurrency(rev.totalInterest);
-
-    // Comparison table
-    cmpOrigEmi.textContent = formatCurrency(orig.emi);
-    cmpRevEmi.textContent = prepayEffect === "emi" ? formatCurrency(rev.emi) : formatCurrency(orig.emi);
-    cmpEmiDiff.textContent = formatCurrency(
-      (prepayEffect === "emi" ? rev.emi : orig.emi) - orig.emi
-    );
-
-    cmpOrigTenure.textContent = orig.tenureMonths;
-    cmpRevTenure.textContent = rev.tenureMonths;
-    const tenureDiff = rev.tenureMonths - orig.tenureMonths;
-    cmpTenureDiff.textContent = tenureDiff;
-
-    cmpOrigInterest.textContent = formatCurrency(orig.totalInterest);
-    cmpRevInterest.textContent = formatCurrency(rev.totalInterest);
-    cmpInterestDiff.textContent = formatCurrency(rev.totalInterest - orig.totalInterest);
-
-    cmpOrigTotal.textContent = formatCurrency(orig.totalPayable);
-    cmpRevTotal.textContent = formatCurrency(rev.totalPayable);
-    cmpTotalDiff.textContent = formatCurrency(rev.totalPayable - orig.totalPayable);
-
-    // Tables
-    renderScheduleTable(origTableBody, orig.schedule);
-    renderScheduleTable(revTableBody, rev.schedule);
-
-    // Charts
-    updateCharts(orig, rev);
-  }
-
-  calculateBtn.addEventListener("click", calculateAll);
-
-  // Real-time updates on core inputs
-  [principalInput, annualRateInput, tenureInput, startDateInput].forEach(inp => {
-    inp.addEventListener("input", () => {
-      // Only calculate if all required fields present (to avoid error spam)
-      if (principalInput.value && annualRateInput.value && tenureInput.value && startDateInput.value) {
-        calculateAll();
-      }
     });
   });
 
-  // Download CSV button
-  downloadCsvBtn.addEventListener("click", () => {
-    if (!lastOrigSummary || !lastRevSummary) {
-      showError("Please calculate the EMI first before downloading.");
+  recalcPenaltyBtn.addEventListener("click", () => {
+    if (lastTdsAmount <= 0) {
+      showError("Please calculate TDS once before estimating 234E late fee.");
       return;
     }
     clearError();
-    downloadCsv(lastOrigSummary, lastRevSummary);
+    const delayDays = parseInt(delayDaysInput.value || "0", 10);
+    const fee234E = Math.min((isNaN(delayDays) ? 0 : delayDays) * 200, lastTdsAmount);
+    penaltyDisplay.textContent = `Estimated 234E fee (₹200/day, capped at TDS): ${formatCurrency(fee234E)}`;
   });
 
-  // Print
-  printBtn.addEventListener("click", () => {
-    window.print();
-  });
+  printBtn.addEventListener("click", () => window.print());
 
-  // Reset
   resetBtn.addEventListener("click", () => {
-    principalInput.value = "";
-    annualRateInput.value = "";
-    tenureInput.value = "";
-    startDateInput.value = "";
-    prepaymentsContainer.innerHTML = "";
+    tdsSectionInput.value = "";
+    rateOptionSelect.innerHTML = "<option value=''>Select Section First</option>";
+    financialYearSelect.value = "2024-25";
+    deducteeTypeSelect.value = "";
+    paymentAmountInput.value = "";
+    paymentDateInput.value = "";
+    depositDateInput.value = "";
+    surchargeOption.value = "none";
+    delayDaysInput.value = "";
+
+    document.querySelector('input[name="panAvailable"][value="yes"]').checked = true;
+    document.querySelector('input[name="is206ab"][value="no"]').checked = true;
+    document.querySelector('input[name="deductorType"][value="non-govt"]').checked = true;
+    document.querySelector('input[name="applyCess"][value="no"]').checked = true;
+
+    grossAmountDisplay.textContent = "₹ 0.00";
+    sectionDisplay.textContent = "Section: –";
+    effectiveRateDisplay.textContent = "0.00%";
+    rateExplanationDisplay.textContent = "Base: –";
+    totalTdsDisplay.textContent = "₹ 0.00";
+    basicTdsBreakupDisplay.textContent = "Basic: ₹0.00 | Surch.: ₹0.00 | Cess: ₹0.00";
+    netAmountDisplay.textContent = "₹ 0.00";
+    dueDateDisplay.textContent = "–";
+    dueDateInfoDisplay.textContent = "Days remaining: –";
+    interestDisplay.textContent = "Interest: ₹ 0.00";
+    penaltyDisplay.textContent = "Late fee (234E) est.: ₹ 0.00";
+
+    baseRateRow.textContent = "0.00%";
+    panImpactRow.textContent = "–";
+    abImpactRow.textContent = "–";
+    finalRateRow.textContent = "0.00%";
+    basicTdsRow.textContent = "₹ 0.00";
+    surchargeRow.textContent = "₹ 0.00";
+    cessRow.textContent = "₹ 0.00";
+    totalTdsRow.textContent = "₹ 0.00";
+    thresholdRow.textContent = "–";
+    remarkRow.textContent = "–";
+
+    thresholdAlert.style.display = "none";
     clearError();
-
-    [
-      origEmiDisplay, revEmiDisplay,
-      interestSavedDisplay, interestSavedPercentDisplay,
-      totalPrepayDisplay, origTotalPayableDisplay,
-      origInterestDisplay, revTotalPayableDisplay,
-      revInterestDisplay
-    ].forEach(el => el.textContent = "₹ 0.00");
-
-    origTenureDisplay.textContent = "Tenure: 0 months";
-    revTenureDisplay.textContent = "Tenure: 0 months";
-
-    cmpOrigEmi.textContent = "₹ 0.00";
-    cmpRevEmi.textContent = "₹ 0.00";
-    cmpEmiDiff.textContent = "₹ 0.00";
-    cmpOrigTenure.textContent = "0";
-    cmpRevTenure.textContent = "0";
-    cmpTenureDiff.textContent = "0";
-    cmpOrigInterest.textContent = "₹ 0.00";
-    cmpRevInterest.textContent = "₹ 0.00";
-    cmpInterestDiff.textContent = "₹ 0.00";
-    cmpOrigTotal.textContent = "₹ 0.00";
-    cmpRevTotal.textContent = "₹ 0.00";
-    cmpTotalDiff.textContent = "₹ 0.00";
-
-    origTableBody.innerHTML = "";
-    revTableBody.innerHTML = "";
-
-    if (principalInterestChart) principalInterestChart.destroy();
-    if (emiChart) emiChart.destroy();
-    if (principalBalanceChart) principalBalanceChart.destroy();
-    if (interestComparisonChart) interestComparisonChart.destroy();
-
-    lastOrigSummary = null;
-    lastRevSummary = null;
+    updateSectionInfo();
+    populateReturnDueDates();
+    lastTdsAmount = 0;
   });
 
-  // Add one default prepayment row for convenience
-  createPrepaymentRow();
+  // initial
+  updateSectionInfo();
 </script>
 </body>
 </html>
