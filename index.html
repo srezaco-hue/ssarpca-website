@@ -585,6 +585,122 @@
 
 
 .tool-icon{font-size:1.5rem;opacity:.95;margin-bottom:.35rem;display:inline-block}
+/* =========================
+   Dark / Premium Theme (override)
+   ========================= */
+:root{
+  --primary:#4aa3ff;
+  --primary-light:rgba(74,163,255,.14);
+  --secondary:#00a3c4;
+  --accent:#f4b400;
+  --bg:#06080d;
+  --text:#eaf1ff;
+  --muted:rgba(234,241,255,.72);
+  --radius:16px;
+  --shadow-soft: 0 16px 40px rgba(0,0,0,.45);
+}
+
+body{
+  background: radial-gradient(1200px 700px at 20% -10%, rgba(74,163,255,.18), rgba(6,8,13,0) 55%),
+              radial-gradient(900px 600px at 90% 10%, rgba(0,163,196,.14), rgba(6,8,13,0) 50%),
+              var(--bg);
+  color: var(--text);
+}
+
+a{ color: var(--primary); }
+a:hover{ text-decoration: none; opacity: .92; }
+
+section{
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: var(--shadow-soft);
+}
+
+section:nth-of-type(even){
+  background: rgba(255,255,255,.03);
+}
+
+h1,h2,h3,h4{ color: #eaf1ff; }
+.section-subtitle{ color: var(--muted); }
+
+.badge, .pill{
+  background: rgba(74,163,255,.12);
+  border: 1px solid rgba(74,163,255,.22);
+  color: rgba(234,241,255,.92);
+}
+
+.navbar-wrap{
+  background: linear-gradient(120deg, #071428 0%, #050a12 55%, #052029 100%);
+}
+
+/* Buttons */
+.btn{
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 14px 35px rgba(0,0,0,.35);
+}
+.btn.btn-secondary{
+  background: rgba(255,255,255,.04);
+}
+
+/* Cards / surfaces */
+.hero-card, .service-card, .team-card, .tool-card, .contact-card, .update-card{
+  background: rgba(255,255,255,.04) !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+}
+
+/* ===== Clientele banner (7 images only) ===== */
+#clients{
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.clients-banner{
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.10);
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  box-shadow: 0 22px 60px rgba(0,0,0,.45);
+}
+
+.clients-strip{
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 14px;
+  padding: 18px;
+  align-items: stretch;
+}
+
+.clients-strip img{
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 14px;
+  filter: grayscale(1) contrast(1.05) brightness(.96);
+  opacity: .92;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.18);
+}
+
+@media (max-width: 1100px){
+  .clients-strip{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .clients-strip img{ height: 150px; }
+}
+@media (max-width: 640px){
+  .clients-strip{ grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 14px; }
+  .clients-strip img{ height: 120px; border-radius: 12px; }
+}
+
+/* Accessibility helper */
+.sr-only{
+  position:absolute;
+  width:1px;height:1px;
+  padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);
+  white-space:nowrap;border:0;
+}
+
 </style>
 </head>
 
@@ -1207,13 +1323,20 @@
   </div>
 </section>
 
-<section id="clients">
-      <span class="badge">Our Clientele</span>
-      <h2>Who trusted us</h2>
-      <p class="section-subtitle">A glimpse of some entities we have worked with.</p>
-      <img src="https://www.ssarpca.com/IMG_4330.jpeg" alt="Client logos – who trusted SSARP &amp; ASSOCIATES" class="clients-img" />
-      <p class="client-note">Detailed credentials can be shared during a discussion.</p>
-    </section>
+<section id="clients" aria-label="Clientele">
+  <h2 class="sr-only">Our Clientele</h2>
+  <div class="clients-banner">
+    <div class="clients-strip" role="list" aria-label="Client logos">
+      <img role="listitem" src="Cipla%20ltd.png" alt="Cipla Limited, Patna Depot" loading="lazy" />
+      <img role="listitem" src="Daewoo.jpeg" alt="Daewoo E&amp;C, Seoul (South Korea)" loading="lazy" />
+      <img role="listitem" src="DFS.jpeg" alt="DFS Deutsche Forstservice GmbH, Feldkirchen (Germany)" loading="lazy" />
+      <img role="listitem" src="ICMR.png" alt="ICMR, Patna" loading="lazy" />
+      <img role="listitem" src="IIT%20patna.png" alt="IIT Patna" loading="lazy" />
+      <img role="listitem" src="MCS%20india.png" alt="MCS India Limited" loading="lazy" />
+      <img role="listitem" src="Vastuvihar.png" alt="Vastu Vihar" loading="lazy" />
+    </div>
+  </div>
+</section>
 
     <!-- CONTACT (aapka same content) -->
     <section id="contact">
